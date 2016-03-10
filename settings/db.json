@@ -1,0 +1,18 @@
+{
+    "DB": {
+        "des": "Test",
+        "DB": "MYSQL",
+        "server": "localhost",
+        "dbuser": "root",
+        "dbpwd": null,
+        "dbname": "localdb",
+        "userid": "0",
+        "userpwd": "0",
+        "hide": 0
+    },
+    "SQLITE": {
+        "des": "General SQLITE",
+        "DB": "SQLITE3",
+        "hide": "1"
+    }
+}

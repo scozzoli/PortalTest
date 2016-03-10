@@ -1,0 +1,268 @@
+@keyframe pi-move-loader{
+	0% {
+		-ms-transform: rotate(0deg); /* IE 9 */
+		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+		transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg); /* IE 9 */
+		-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+		transform: rotate(360deg);
+	}
+}
+@-ms-keyframes pi-move-loader{
+	0% {
+		-ms-transform: rotate(0deg); /* IE 9 */
+		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+		transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg); /* IE 9 */
+		-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+		transform: rotate(360deg);
+	}
+}
+@-moz-keyframes pi-move-loader{
+	0% {
+		-ms-transform: rotate(0deg); /* IE 9 */
+		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+		transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg); /* IE 9 */
+		-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+		transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes pi-move-loader{
+	0% {
+		-ms-transform: rotate(0deg); /* IE 9 */
+		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+		transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(360deg); /* IE 9 */
+		-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+		transform: rotate(360deg);
+	}
+}
+
+.rotate{
+	-webkit-animation: pi-move-loader 1s linear infinite;
+	-moz-animation: pi-move-loader 1s linear infinite;
+	-ms-animation: pi-move-loader 1s linear infinite;
+	animation: pi-move-loader 1s linear infinite;
+}
+
+.pi-modal{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.25);
+	z-index: 100;
+	transition: @Main-Transition;
+	opacity:1;
+	top:0;
+	text-align:center;
+	
+	&.hide{
+		transition: @Main-Transition;
+		z-index: -1;
+		opacity: 0;
+	}
+	
+	&.pi-loader{
+		.pi-modal-content{
+			//transition: @Main-Transition;
+			opacity: 1;
+			z-index: 200;
+			padding: 10px;
+			text-align: left;
+			position: absolute;
+			display: table;
+			width: 300px;
+			top: ~"calc( 50% - 25px )";
+			left: ~"calc( 50% - 160px )";
+			border-radius: 3px;
+			box-shadow: @Main-BoxShadow-2;
+			background-color: #FFF;
+			height: 50px;
+			
+			.row{
+				display:table-row;
+				
+				i.mdi{
+					display: table-cell;
+					vertical-align: middle;
+					font-size: 50px;
+					height: 50px;
+					width: 50px;
+					color: @Main-C3;
+					//padding-left: 1px; //--> mi serve per centrare il carettere per la rotazione
+				}
+				
+				.text{
+					padding-left: 10px;
+					vertical-align: middle;
+					display: table-cell;
+					font-size: 18px;
+				}
+			}
+			
+			
+			&.hide{
+				//transition: @Main-Transition;
+				z-index: -1;
+				opacity:0;
+			}
+		}
+	}
+	
+	&.pi-message{
+		.pi-modal-content{
+			//transition: @Main-Transition;
+			opacity: 1;
+			padding: 10px;
+			text-align: left;
+			position: absolute;
+			display: table;
+			width: 500px;
+			top: ~"calc( 50% - 75px )";
+			left: ~"calc( 50% - 260px )"; // Width + padding / 2
+			border-radius: 3px;
+			box-shadow: @Main-BoxShadow-2;
+			background-color: #FFF;
+			height: 150px;
+			z-index: 180;
+			
+			&.hide{
+				//transition: @Main-Transition;
+				z-index: -1;
+				opacity:0;
+			}
+			
+			.row{
+				display:table-row;
+				height:115px;
+				
+				i.mdi{
+					display: table-cell;
+					vertical-align: middle;
+					font-size: 60px;
+					height: 60px;
+					width: 60px;
+					color: @Main-C3;
+				}
+				
+				.text{
+					padding-left: 10px;
+					vertical-align: middle;
+					display: table-cell;
+					font-size: 18px;
+				}
+			}
+			.actions{
+				display: block;
+				position: absolute;
+				width: ~"calc( 100% - 20px)";
+				text-align: right;
+				height:40px;
+				border-top: 1px solid @Main-C3;
+				
+				button{
+					margin-left:20px;
+				}
+			}
+			
+			&.info{
+				i.mdi{ color: @Blue-C3;	}
+				.actions{ border-color: @Blue-C3; }
+			}
+			
+			&.error, &.bug{
+				i.mdi{ color: @Red-C3; }
+				.actions{ border-color: @Red-C3; }
+			}
+			
+			&.alert{
+				i.mdi{ color: @Orange-C3;	}
+				.actions{ border-color: @Orange-C3; }
+			}
+		}
+	}
+	
+	// Posizionamento e dimensioni degli elementi della finestra sono indicativi poichè è il javascript che si occupa di ridimensionare e riposizionare:
+	// Header e Footer mantengono le dimensioni mentre il content viene ridimensionato
+	
+	&.pi-win{
+		.pi-modal-content{
+			//transition: @Main-Transition;
+			opacity: 1;
+			padding: 0;
+			text-align: left;
+			position: absolute;
+			display: table;
+			top: ~"calc( 50% - 150px )";
+			left: ~"calc( 50% - 250px )";
+			border-radius: 10px 10px 3px 3px;
+			box-shadow: @Main-BoxShadow-2;
+			background-color: #FFF;
+			width: 500px;
+			//height: 300px;
+			z-index: 150;
+			transition: @Main-Transition;
+			
+			.header{
+				color:@Main-Text-Title;
+				background-color: @Main-C3;
+				border-radius: 3px 3px 0 0;
+				font-size: 18px;
+				padding: 10px;
+				height: 20px;
+				
+				i.pi-win-close{
+				    margin: -10px;
+					padding: 9px;
+					float: right;
+					width: 25px;
+					height: 22px;
+					font-size: 24px;
+					transition: @Main-Transition;
+					
+					&:hover{
+						transition: @Main-Transition;
+						background-color: @Red-C3;
+						//color: @Red-C3;
+						cursor: pointer;
+						border-radius: 0 3px 0 0;
+					}
+				}
+			}
+			
+			.content{
+				overflow:auto;
+				width:100%;
+				//height:215px;
+			}
+			
+			.footer{
+				display: block;
+				position: absolute;
+				width: 100%;
+				text-align: right;
+				height:45px;
+				border-top: 1px solid @Main-C3;
+				
+				button{
+					margin-left:20px;
+				}
+			}
+			
+			&.hide{
+				//transition: @Main-Transition;
+				z-index: -1;
+				opacity:0;
+			}
+		}
+	}	
+}

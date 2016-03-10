@@ -1,0 +1,1 @@
+<?php	$db_list = $sysConfig->loadDB();	unset($db_list[$pr->post('id')]);	$sysConfig->saveDB($db_list);	$pr->addScript('pi.requestOnLoad("cerca_db");')->response();?>

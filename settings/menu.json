@@ -1,0 +1,46 @@
+{
+    "default": {
+        "A01": {
+            "BASE64": "0",
+            "des": "Commericiale",
+            "list": [
+                "Pi_Login"
+            ]
+        },
+        "Z01": {
+            "BASE64": 0,
+            "list": [
+                "Pi_Settings",
+                "Pi_Qry",
+                "test",
+                "Pi_Info"
+            ],
+            "des": "Impostazioni"
+        }
+    },
+    "guest": {
+        "A01": {
+            "BASE64": "1",
+            "des": "QmVudmVudXRv",
+            "icon": "",
+            "list": [
+                "Pi_Login"
+            ]
+        }
+    },
+    "root": {
+        "A01": {
+            "BASE64": "0",
+            "des": "Sistema",
+            "icon": "",
+            "list": [
+                "Pi_Login",
+                "Pi_Settings",
+                "Pi_Qry",
+                "test",
+                "Pi_DB_Utility",
+                "Pi_Info"
+            ]
+        }
+    }
+}

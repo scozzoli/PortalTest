@@ -1,0 +1,44 @@
+<?php
+	$style = $_GET['style'] ?: 'brown';
+	$dir = __DIR__;
+	
+	if(file_exists("css")){
+		if(!file_exists("css/{$style}.css")){
+			require '../../../lib/less/lessc.inc.php';	
+			$less = new lessc;
+			
+			$style = file_exists("style.{$style}.less") ? $style : 'brown';
+			
+			$out = "@import url('{$dir}/defaults.less');
+			@import url('{$dir}/style.{$style}.less');
+			@import url('{$dir}/main.less');
+			@import url('{$dir}/modal.less');
+			@import url('{$dir}/div.less');
+			@import url('{$dir}/table.less');
+			@import url('{$dir}/form.less');";
+		
+			file_put_contents("{$dir}/css/{$style}.css", $less->compile($out));
+		}
+		header('Content-type: text/css');
+		readfile("{$dir}/css/{$style}.css");
+	}else{
+		
+		require '../../../lib/less/lessc.inc.php';	
+		$less = new lessc;
+		
+		$style = file_exists("style.{$style}.less") ? $style : 'brown';
+		
+		$out = "@import url('{$dir}/defaults.less');
+		@import url('{$dir}/style.{$style}.less');
+		@import url('{$dir}/main.less');
+		@import url('{$dir}/modal.less');
+		@import url('{$dir}/div.less');
+		@import url('{$dir}/table.less');
+		@import url('{$dir}/form.less');";
+			
+		header('Content-type: text/css');
+		echo $less->compile($out);
+		
+	}
+	
+?>

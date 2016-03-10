@@ -1,0 +1,459 @@
+@font-face { font-family : Roboto; src : url('./fonts/Roboto-Regular.ttf'); font-weight:normal; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@font-face { font-family : Roboto; src : url('./fonts/Roboto-Bold.ttf'); font-weight: bold; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@font-face { font-family : Roboto; src : url('./fonts/Roboto-Italic.ttf'); font-weight:normal; font-style: italic; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+@font-face { font-family : Roboto; src : url('./fonts/Roboto-BoldItalic.ttf'); font-weight: bold; font-style: italic; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+//@font-face { font-family : OpenSans; src : url('./fonts/OpenSans-Regular.ttf'); font-weight:normal; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+//@font-face { font-family : OpenSans; src : url('./fonts/OpenSans-Bold.ttf'); font-weight: bold; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+//@font-face { font-family : OpenSans; src : url('./fonts/OpenSans-Italic.ttf'); font-weight:normal; font-style: italic; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+//@font-face { font-family : OpenSans; src : url('./fonts/OpenSans-BoldItalic.ttf'); font-weight: bold; font-style: italic; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body{
+	color: @Main-Text-Normal;
+	//font-family: OpenSans, Verdana, Arial, Helvetica, sans-serif;
+	font-family: Roboto, Verdana, Arial, Helvetica, sans-serif;
+	//font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding : 0px ;
+	margin: 0px;
+	background-color : @Main-BG-Color;
+    position: absolute;
+	height: 100%;
+    width: 100%;
+}
+
+.pi-wrapper{
+	padding : 0px ;	
+	margin: 0px;
+	height: 100%;
+	position: absolute;
+	height: 100%;
+    width: 100%;
+	top:0;
+	
+	&.lock{
+		//overflow:hidden;
+	}
+	
+	.pi-top{
+		position: fixed;
+		z-index:10;
+		display: block;
+		width: 100%;
+		height: 57px;
+		top: 0px;
+		left: 0px;
+		margin: 0px;
+		padding: 0px;
+		background-color: @Main-C3;
+		box-shadow: @Main-BoxShadow-2;
+		transition: @Main-Transition;
+	
+		.pi-logout{
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			margin: 0px;
+			padding: 0px;
+			.pi-user{
+				color: @Main-Text-Title;
+				position: absolute;
+				top: 0px;
+				padding: 6px 0 7px 6px;
+				right: 5px;
+				font-size: 15px;
+				font-style: italic;
+				white-space: nowrap;
+				cursor: pointer;
+				i{ 
+					font-size: 20px;
+					text-decoration: none;
+					margin-left: 5px;
+				}
+			}
+		}
+		
+		.pi-logo{
+			font-size: 50px;
+			> .mdi{
+				font-size: 50px;
+			}
+			color: @Main-Text-SubTitle;
+			position: absolute;
+			
+		}
+		
+		.pi-title{
+			color: @Main-Text-Title;
+			font-size: 24px;
+			font-weight: bold;
+			padding-top: 4px;
+			margin-left: 60px;
+		}
+		.pi-descr{
+			color: @Main-Text-SubTitle;
+			font-size: 14px;
+			margin-left: 60px;
+		}
+		.pi-menu{
+			height: 30px;
+			width: 100%;
+			text-align: right;
+			float: right;
+			position:absolute;
+			top: 30px;
+			z-index:2;
+			
+			ul{
+				margin-right: 10px; 
+				margin-top: 2px;
+				float: right;
+				list-style-type: none;
+				
+				li{
+					float: left;
+					position: relative;
+					
+					padding: 0px;
+					vertical-align: top;
+					color: @Main-Text-Title;
+					text-align: center;
+					//margin-left: 2px;
+					//margin-right: 2px;
+					height: 25px;
+					min-width: 100px;
+					border: 0;
+					
+					
+					&:hover{
+						ul{
+							display: block;
+							height : auto;
+							transition: @Main-Transition;
+							//opacity: 1;
+						}
+					}
+					
+					&.pi-selected{
+						background-color: #FFF;
+						
+						a{
+							color: @Main-Text-Normal;
+							
+							&:hover{
+								background-color: inherit;
+							}
+						}
+					}
+					
+					a{
+						margin: 0px;
+						padding-top: 5px;
+						padding-left: 15px;
+						padding-right: 15px;
+						padding-bottom: 0px;
+						text-align: center;
+						background-color : #FFF;
+						font-weight: bold;
+						text-decoration: none;
+						height: 20px;
+						display: block;
+						color: @Main-Text-Title;
+						background-color:transparent;
+						
+						&:hover{
+							background-color:@Main-C2;
+						}
+					}
+					
+					ul{
+
+						background : #FFF;
+						position: absolute;
+						box-shadow: @Main-BoxShadow-2;
+						margin-top: 0;//-1px;
+						margin-right:0;
+						display: none;
+						padding: 0px;
+						right: 0px;
+						white-space: nowrap;
+						text-align: left;
+						//transition: @Main-Transition;
+						//height:0px;
+						//opacity: 1;
+						
+						li{
+							&:hover{
+								background-color: @Main-C3;
+								a{
+									color:@Main-Text-Title;
+									.pi-title{
+										color:@Main-Text-Title;
+									}
+								}
+							}
+							
+							a{
+								text-decoration: none;
+								text-shadow: none;
+								border: 0px;
+								margin: 0px;
+								color: @Main-Text-Normal;
+								display:inline-block;
+								//padding:0;
+								//padding:5px 15px 8px 5px;
+								list-style: none;
+								list-style-type: none;
+								min-width:200px;
+								text-align: left;
+								background:none;
+								
+								.pi-title{
+									display:inline-block;
+									font-size: 13px;
+									color: @Main-Text-Normal;
+									margin: 0;
+									padding:0;
+									padding-left:5px;
+									height:auto;
+									font-weight: normal;
+								}
+								
+								.pi-descr{
+									display: none;
+								}
+							}
+						}
+					}
+					
+				}
+			
+			}
+		}
+	}
+	
+	.pi-body{
+		.pi-side-menu{
+			//float:left;
+			position: absolute;
+			top: 55px;//-9px;
+			display: block;
+			width: 60px;
+			z-index: 5;
+
+			transition: @Main-Transition;
+			
+			ul{
+				display: block;
+				padding: 0px;
+				
+				a{
+					text-decoration : none;
+					border: 0px;
+					padding: 0px;	
+					color: @Main-Text-Normal;
+					
+			
+					li{
+						display: inline-block;
+						height: 48px;
+						min-width: 54px;
+						padding-top: 14px;
+						padding-left: 6px;
+						border-radius: 0 3px 3px 0;
+						
+						&.pi-selected{
+							background : #FFF;
+							box-shadow: @Main-BoxShadow-1;
+						}
+						
+						&:hover{
+							background : #FFF;
+							box-shadow: @Main-BoxShadow-2;
+							
+							.pi-title, .pi-descr{
+								width:auto;
+								margin-right:20px;
+								transition: @Main-Transition;
+								opacity:1;
+							}
+							
+						}
+						
+						.pi-icon{
+							display:inline;
+							float: left;
+							height: 40px;
+							margin-top: -3px;
+							margin-left: 3px;
+							i{
+								font-size: 40px;
+							}
+						}
+						
+						.pi-title{
+							display: inline-block;
+							position: relative;
+							margin-left: 7px; //50px;
+							margin-top: -4px; //-40px;
+							margin-right:0;
+							height: 25px;
+							width:0;
+							float:left;
+							font-weight: bold;
+							font-size: 16px;
+							z-index: 1;
+							white-space: nowrap;
+							transition: @Main-Transition;
+							overflow: hidden;
+							opacity:0;
+						}
+						
+						.pi-descr{ 
+							display:inline-block;
+							height: 15px;
+							margin-left: 50px;
+							margin-top:-15px;
+							margin-right:0;
+							width:0;
+							float:left;
+							position: relative;
+							white-space: nowrap;
+							transition: @Main-Transition;
+							overflow: hidden;
+							opacity:0;
+						}
+					}
+				}
+			}
+			
+		}
+		
+		.pi-content{
+			display : block;
+			position : relative;
+			top : 60px;
+			left : 0;
+			color : @Main-Text-Normal;
+			padding-left : 65px;
+			padding-right : 5px;
+			padding-bottom : 4px;
+		}
+		
+		&.pi-hide-menu{
+			.pi-side-menu{
+				display:none;
+			}
+			.pi-content{
+				padding-left:5px;
+			}
+		}
+		
+		.pi-list{
+			padding-top: 5px;
+			display: inline-block;
+			width:100%;
+			.pi-mod{
+				cursor: pointer;
+				height: 60px;
+				margin: 5px;
+				float: left;
+				padding : 10px;
+				margin: 5px;
+				display : block;
+				box-shadow: @Main-BoxShadow-1;
+				border-radius: 3px;
+				color: @Main-Text-Normal;
+				background-color: #FFF;
+				transition: @Main-Transition;
+				
+				.pi-icon{
+					display:inline;
+					float: left;
+					//height: 40px;
+					//margin-top: -3px;
+					margin-left: 3px;
+					opacity: 0.5;
+					i{
+						font-size: 60px;
+					}
+				}
+				
+				.pi-name{
+					width: ~"calc(100% - 70px)";
+					display: inline-block;
+					position: relative;
+					margin-left: 7px; //50px;
+					margin-right:0;
+					height: 25px;
+					float:left;
+					font-weight: bold;
+					font-size: 16px;
+					z-index: 1;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+				.pi-descr{
+					display:inline-block;
+					height: 38px;
+					margin-left: 7px;
+					float:left;
+					position: relative;
+					//white-space: nowrap;
+					overflow: hidden;
+					width: ~"calc(100% - 70px)";
+				}
+				
+				&:hover{
+					box-shadow: @Main-BoxShadow-2;
+					transition: @Main-Transition;
+				}
+				
+				&.pi-state-att{	}
+				&.pi-state-dev{
+					//background-color: @Orange-C1;
+					color: @Orange-C3;
+				}
+				&.pi-state-dis{
+					cursor: inherit;
+					&:hover{
+						box-shadow: @Main-BoxShadow-1;
+					}
+				}
+				&.pi-state-err{
+					//background-color: @Red-C1;
+					color: @Red-C3;
+				}
+				&.pi-state-priv{
+					//background-color: @Purple-C1;
+					color: @Purple-C3;
+				}
+				
+			}
+		}
+	}
+}
+
+@pi-mod-width(@val) {
+	.pi-wrapper{
+		.pi-body{
+			.pi-list{
+				.pi-mod{
+					width: ~"calc(" @val ~" - 30px )";
+				}
+			}
+		}
+	}
+}
+
+@screen-xs-max = 767px;
+@screen-sm-min = 768px; @screen-sm-max = 991px;
+@screen-md-min = 992px; @screen-md-max = 1199px;
+@screen-lg-min = 1200px; @screen-lg-max = 1449px;
+@screen-xl-min = 1450px;
+
+@media (max-width: @screen-xs-max) { @pi-mod-width(100%); }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { @pi-mod-width(50%); }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { @pi-mod-width(33.33%); }
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { @pi-mod-width(25%); }
+@media (min-width: @screen-xl-min) { @pi-mod-width(20%); }

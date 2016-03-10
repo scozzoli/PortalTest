@@ -1,0 +1,52 @@
+{
+    "Pi_DB_Utility": {
+        "nome": "DB Utility",
+        "des": "Utilit\u00e0\u00a0per i DB ",
+        "path": "system\/Pi_DB_Utility",
+        "icon": "mdi-database",
+        "stato": "DEV",
+        "grp": "sys"
+    },
+    "Pi_Info": {
+        "nome": "Informazioni",
+        "des": "Informazioni generali e contributi",
+        "path": "system\/Pi_Info",
+        "icon": "mdi-camera-iris",
+        "stato": "ATT",
+        "grp": "pub"
+    },
+    "Pi_Login": {
+        "nome": "Login",
+        "des": "Autenticazione",
+        "path": "system\/Pi_Login",
+        "icon": "mdi-account",
+        "color": "blue",
+        "stato": "ATT",
+        "grp": "guest"
+    },
+    "Pi_Qry": {
+        "nome": "Gestione Interrogazioni",
+        "des": "Gestione delle interrogazioni personalizzate sul DB",
+        "path": "system\/Pi_Qry",
+        "icon": "mdi-comment-text",
+        "stato": "ATT",
+        "grp": "sys"
+    },
+    "Pi_Settings": {
+        "nome": "Impostazioni",
+        "des": "Gestione dei permessi, gruppi, moduli e DB",
+        "path": "system\/Pi_Settings",
+        "icon": "mdi-settings",
+        "stato": "PRIV",
+        "grp": "sys"
+    },
+    "test": {
+        "nome": "Prova Tecnica",
+        "des": "Strumento generico di test per gli stili dei fogli css",
+        "path": "system\/Pi_Test",
+        "icon": "mdi-help-circle",
+        "color": "blue",
+        "stato": "ATT",
+        "grp": "sys"
+    }
+}
