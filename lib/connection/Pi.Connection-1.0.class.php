@@ -6,21 +6,20 @@ abstract class PiConnection{
 	protected $link;
 	protected $is_connected = false;
 	protected $src;
+	protected $pr;
 	protected $opt = array(
 		'associative' 	=> true,	// Crea una Matrice associativa
 		'null'			=> ' --- ', // Al posto di 'null'
 		'lowercase'		=> false,	// Esegue un lowercase delel intestazioni (solo oci8 per ora)
 		'numrow'		=> false 	// numero di righe su cui ha avuto effetto l'operazione (solo oci8 per ora)
 		//'arrayindex'	=> false,	// [DEPRECATO] Crea un Array assoviatvo ed una matrice numerica $d[<0>][<0>] $d['rid']['id'] = <0>
-		//'rowindex' 		=> true,	// [DEPRECATO] crea una voce con il numero di righe $d["row"] = <0>
+		//'rowindex' 	=> true,	// [DEPRECATO] crea una voce con il numero di righe $d["row"] = <0>
 		//'reverse'		=> false,   // [DEPRECATO] inverte righe con colonne [da implementare]
 	);
 
-	public function __construct($iDbSource,$in_connect = false){
+	public function __construct($iDbSource,$iResponse = false){
 		$this->src = $iDbSource;
-		if($in_connect){
-			$this->connect();
-		}
+		$this->pr = $iResponse;
 	}
 	
 	public function connected(){
@@ -44,6 +43,15 @@ abstract class PiConnection{
 		$this->src['dbuser'] = $iDbUser;
 		$this->src['dbpwd'] = $iDbPassword;
 	}
+	
+	protected function error($iMsg){
+		if($this->pr){
+			$this->pr->error('Portal 1 <i>Connection</i> : '.$iMsg);
+		}else{
+			die('Portal 1 Connection : '.$iMsg);
+		}
+	}
+	
 	public abstract function connect();
 	public abstract function disconnect();
 	public abstract function get($iQry);

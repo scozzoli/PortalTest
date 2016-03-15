@@ -5,8 +5,10 @@
 class PiConnectionMSSQL extends PiConnection{
 	
 	public function connect(){
-		$this->link = mssql_connect($this->src["server"],$this->src["dbuser"],$this->src["dbpwd"]);
-		mssql_select_db($this->src["dbname"],$this->link);
+		$this->link = mssql_connect($this->src["server"],$this->src["dbuser"],$this->src["dbpwd"]) or $this->error('Errore nella connessione al server MSSQL : '.$this->src["server"]);
+		if(!mssql_select_db($this->src["dbname"],$this->link)){
+			$this->error('Errore nella selezione del db del server MSSQL : '.$this->src["server"].'\\'.$this->src["dbname"]);
+		}
 		$this->is_connected = true;
 	}
 	
@@ -18,6 +20,9 @@ class PiConnectionMSSQL extends PiConnection{
 	public function get($iQry){
 		$func = create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return($key);}');
 		$raw_data = mssql_query($iQry,$this->link);
+		if($row_data === false){
+			$this->error('MSSQL Errore Query: '.mssql_get_last_message()); 
+		}
 		$i = 0;
 		$data = array();
 		if($this->opt["associative"]){
@@ -37,6 +42,11 @@ class PiConnectionMSSQL extends PiConnection{
 			$this->opt['numrow'] = mssql_num_rows($raw_data);
 		}else{
 			$this->opt['numrow'] = $raw_data ? 1 : 0;
+			
+			if($row_data === false){
+				$this->error('MSSQL Errore Query: '.mssql_get_last_message());
+			}
+			
 		}
 	}
 	

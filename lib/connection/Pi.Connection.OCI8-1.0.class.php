@@ -6,7 +6,7 @@ class PiConnectionOCI8 extends PiConnection{
 	protected $cur;
 	
 	public function connect(){
-		$this->link = oci_connect($this->src["dbuser"],$this->src["dbpwd"],$this->src["server"],$this->src['lang']);
+		$this->link = oci_connect($this->src["dbuser"],$this->src["dbpwd"],$this->src["server"],$this->src['lang']) or $this->error('Errore nella connessione al server OCI8 : '.$this->src["server"]);
 		$this->is_connected = true;
 	}
 	

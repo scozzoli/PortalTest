@@ -5,7 +5,7 @@
 class PiConnectionODBC extends PiConnection{
 	
 	public function connect(){
-		$this->link = odbc_connect($this->src["dns"],$this->src["dbuser"],$this->src["dbpwd"]);
+		$this->link = odbc_connect($this->src["dns"],$this->src["dbuser"],$this->src["dbpwd"]) or or $this->error('Errore nella connessione al server ODBC : '.$this->src["server"]);
 		$this->is_connected = true;
 	}
 	
