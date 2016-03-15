@@ -5,9 +5,9 @@
 		//case 'OCI8' :
 		//	$pr->next('LockOCI8');
 		//	break;
-		//case 'MSSQL' :
-		//	$pr->next('LockMSSQL');
-		//	break;
+		case 'MSSQL' :
+			$pr->next('SessionMSSQL');
+			break;
 		//case 'MYSQL' :
 		//	$pr->next('LockMYSQL');
 		//	break;
