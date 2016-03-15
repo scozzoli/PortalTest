@@ -1,7 +1,7 @@
 <?php
 	$id = $pr->post('kill');
 	$dbConfig = $pr->getDB($pr->post('db'));
-	$db = new PiDB($dbConfig);
+	$db = new PiDB($dbConfig,$pr);
 	
 	$qry="KILL {$id}";
 	$db->exec($qry,true);

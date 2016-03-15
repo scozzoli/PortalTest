@@ -5,9 +5,9 @@
 class PiConnectionMySQL extends PiConnection{
 	
 	public function connect(){
-		$this->link = mysql_connect($this->src["server"],$this->src["dbuser"],$this->src["dbpwd"]) or $this->error('Errore nella connessione al server MySQL : '.$this->src["server"]);
-		if(!mysql_select_db($this->src["dbname"],$this->link)){
-			$this->error('Errore nella selezione del db del server MySQL : '.$this->src["server"].'\\'.$this->src["dbname"]);
+		$this->link = @mysql_connect($this->src["server"],$this->src["dbuser"],$this->src["dbpwd"]) or $this->error('Errore nella connessione al server MySQL <b>'.$this->src["server"].'</b>');
+		if(!@mysql_select_db($this->src["dbname"],$this->link)){
+			$this->error('Errore nella selezione del db del server MySQL '.$this->src["server"].'\\<b>'.$this->src["dbname"].'</b>');
 		}
 		$this->is_connected = true;
 	}

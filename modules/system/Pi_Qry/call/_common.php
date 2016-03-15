@@ -3,7 +3,7 @@
 	//include $pr->getRootPath('lib/Pi.Custom.php');
 	include $pr->getRootPath('lib/Pi.System.php');
 	
-	$db = new PiDB($pr->getDB());
+	$db = new PiDB($pr->getDB(),$pr);
 	$sysConfig = new PiSystem($pr->getRootPath('settings/'));
 	
 	/*
@@ -168,7 +168,7 @@
 		$aDest = Array();
 		$aToSave = Array();
 		
-		$myDB = new PiDB($pr->getDB($qryConf['db']));
+		$myDB = new PiDB($pr->getDB($qryConf['db']),$pr);
 		$myDB->opt('null',$null);
 		
 		$prev = $pr->get('CloseWin');

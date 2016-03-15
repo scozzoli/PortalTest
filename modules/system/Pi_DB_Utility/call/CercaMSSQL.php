@@ -1,7 +1,7 @@
 <?php
 	// $cerca e $dbConfig sono ereditati da Cerca
 	
-	$db = new PiDB($dbConfig);
+	$db = new PiDB($dbConfig,$pr);
 	
 	$qry = "SELECT t.name AS table_name,
 			SCHEMA_NAME(t.schema_id) AS schema_name,

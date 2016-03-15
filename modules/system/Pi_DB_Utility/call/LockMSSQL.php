@@ -1,7 +1,7 @@
 <?php
 	// $dbConfig è ereditato da Lock
 	
-	$db = new PiDB($dbConfig);
+	$db = new PiDB($dbConfig,$pr);
 	
 	//$qry = "SELECT t1.resource_type as resource_type,
 	//		   DB_NAME(resource_database_id) as db,
