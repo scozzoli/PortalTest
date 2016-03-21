@@ -29,6 +29,7 @@
 	private $opt;
 	private $actions;
 	private $actionsFill;
+	private $actionsFinally;
 	private $array_clean;
 	private $postPi;
 	private $postCall;
@@ -63,6 +64,7 @@
 		);
 		$this->actions = array();		
 		$this->actionsFill = array();
+		$this->actionsFinally = array();
 	}
 	
 	public function post(){	//$iVar,$iDefault
@@ -207,11 +209,18 @@
 		return $this;
 	}
 	
-	public function addScript($iScript){
-		$this->actions[] = array(
-				'type'		=>	'script',
-				'src'		=>	$iScript
-			);
+	public function addScript($iScript, $iFinally = false){
+		if($iFinally){
+			$this->actionsFinally[] = array(
+					'type'		=>	'script',
+					'src'		=>	$iScript
+				);
+		}else{			
+			$this->actions[] = array(
+					'type'		=>	'script',
+					'src'		=>	$iScript
+				);
+		}
 		return $this;
 	}
 	
@@ -326,7 +335,7 @@
 	}
 	
 	public function info($iMsg){
-		$this->action = [];
+		$this->action = $this->actionsFill = $this->actionsFinally = [];
 		$this->opt['CloseLoader'] = true;
 		$this->opt['CloseWin'] = true;
 		$this->opt['DoItBefore'] = false;
@@ -337,7 +346,7 @@
 	}
 	
 	public function error($iMsg){
-		$this->action = [];
+		$this->action = $this->actionsFill = $this->actionsFinally = [];
 		$this->opt['CloseLoader'] = true;
 		$this->opt['CloseWin'] = true;
 		$this->opt['DoItBefore'] = false;
@@ -348,7 +357,7 @@
 	}
 	
 	public function alert($iMsg){
-		$this->action = [];
+		$this->action = $this->actionsFill = $this->actionsFinally = [];
 		$this->opt['CloseLoader'] = true;
 		$this->opt['CloseWin'] = true;
 		$this->opt['DoItBefore'] = false;
@@ -382,7 +391,7 @@
 			'DoItBefore'	=> ($this->opt['DoItBefore']?'1':'0')
 		);
 		
-		$res['actions'] = array_merge($this->actions,$this->actionsFill);
+		$res['actions'] = array_merge($this->actions,$this->actionsFill,$this->actionsFinally);
 		//$res['actions'] = $this->array_map_recursive(utf8_encode,$this->actions); //--> nel caso ci siano delle incompatibilità con le codifiche
 		if($iNoOutput){
 			return(json_encode($res));
