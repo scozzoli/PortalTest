@@ -28,6 +28,13 @@
 		&.green{ background-color: @Green-C1; }
 		&.orange{ background-color: @Orange-C1; }
 		&.purple{ background-color: @Purple-C1; }
+		&.deleted{
+			text-decoration: line-through;
+			color:@C2;
+		}
+		&.disabled{ 
+			color:@C2;
+		}
 	}
 	&:hover{
 		> td{
@@ -37,6 +44,18 @@
 			&.green{ background-color: @Green-C2; }
 			&.orange{ background-color: @Orange-C2; }
 			&.purple{ background-color: @Purple-C2; }
+		}
+	}
+	
+	&.deleted{
+		> td{
+			text-decoration: line-through;
+			color:@C2;
+		}
+	}
+	&.disabled{
+		> td{
+			color:@C2;
 		}
 	}
 }
