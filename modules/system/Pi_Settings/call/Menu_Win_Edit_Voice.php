@@ -5,7 +5,8 @@
 						<li>L\'ordinamento &eacute; la chiave primaria. <b>NON</b> sono ammessi duplicati</li>
 						<li>L\'ordinamento &eacute; di tipo alfabetico, ES : "1" - "11" - "2" - "21" - "A1" - ecc...</li>
 						<li>Sarebbe buona norma tenere la descrizione pi&uacute; sintetica possbile (deve stare su di un pulsate e non c\'&eacute; solo lei)</li>
-						<li>Se si usano caretteri speciali (* ? ! \' " & ecc...) abilitare l\'utilizzo della codifica <b>Base64</b></li>
+						<li>Se si usano caretteri speciali (* ? ! \' " & ecc...) abilitare l\'utilizzo della codifica <b>Base64</b> (solo file INI) </li>
+						<li>Il men&uacute; nascosto permette di eseguire i moduli in esso contenuto senza visualizzarli negli elenchi </li>
 					<ul>
 		</div><br>
 	<table class="form separate" id="Mod_Voice">
@@ -27,6 +28,10 @@
 				<th>Base 64</th>
 				<td><input type="checkbox" name="BASE64"></td>
 			</tr>
+			<tr>
+				<th>Nascosto</th>
+				<td><input type="checkbox" name="hidden"></td>
+			</tr>
 		</table>';
 
 	$voice = $pr->post('voice',false);		
@@ -43,7 +48,8 @@
 			"des" => ($menu_list[$pr->post('menu')][$pr->post('voice')]['BASE64'] == 1 
 						? base64_decode($menu_list[$pr->post('menu')][$pr->post('voice')]['des']) 
 						: $menu_list[$pr->post('menu')][$pr->post('voice')]['des']),
-			"BASE64" => $menu_list[$pr->post('menu')][$pr->post('voice')]['BASE64']
+			"BASE64" => $menu_list[$pr->post('menu')][$pr->post('voice')]['BASE64'],
+			"hidden" => $menu_list[$pr->post('menu')][$pr->post('voice')]['hidden']
 			);
 		
 		$footer .= '<button class="red" onclick="pi.chk(\'Eliminare la Voce del menu?\').requestOnModal(\'Mod_Voice\',\'Menu_Del_Voice\')"> Elimina </button>

@@ -19,6 +19,10 @@
 			<td>Collegamento a SQLite v3</td> 
 			<td><button class="purple" onclick="pi.win.close(); pi.requestOnModal(null,\'DB_Win_Edit_SQLITE3\');"><i class="mdi mdi-database-plus"/> Crea Nuovo </button></td>
 		</tr>
+		<tr> 
+			<td>Collegamento a DB PostgreSQL</td> 
+			<td><button class="purple" onclick="pi.win.close(); pi.requestOnModal(null,\'DB_Win_Edit_PostgreSQL\');"><i class="mdi mdi-database-plus"/> Crea Nuovo </button></td>
+		</tr>
 	</table>';
 	$footer='<button onclick="pi.win.close()"> Annulla </button>';
 	

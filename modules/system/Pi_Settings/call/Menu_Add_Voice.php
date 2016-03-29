@@ -6,6 +6,7 @@
 	$id = strtoupper($pr->post('New-Id')); //Gli id li mantengo tutti uppercase
 	if(isset($menu_list[$menu][$id])){$pr->addAlertBox('Il codice ordinamento esiste gi&aacute;!')->set('CloseWin',false)->response();}
 	$menu_list[$menu][$id]['BASE64'] = $pr->post('BASE64');
+	$menu_list[$menu][$id]['hidden'] = $pr->post('hidden');
 	$menu_list[$menu][$id]['list'] = Array();
 	$menu_list[$menu][$id]['des'] = ($pr->post('BASE64')==1 ? base64_encode($pr->post('des')) : $pr->post('des'));
 	$sysConfig->saveMenu($menu_list);

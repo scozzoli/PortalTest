@@ -84,6 +84,9 @@
 			case 'MYSQL' :
 				$dett = '[ <b>Server :</b> '.$v['server'].' ][ <b>DB :</b> '.$v['dbname'].' ]';
 			break;
+			case 'PostgreSQL' :
+				$dett = '[ <b>Server :</b> '.$v['server'].' ][ <b>DB :</b> '.$v['dbname'].' ]';
+			break;
 		}
 		
 		$$db_out .='<tr style="cursor:pointer; '.$style.'" onclick="pi.request(\'edit_'.$k.'\');">

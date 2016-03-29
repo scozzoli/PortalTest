@@ -51,12 +51,19 @@
 				
 			}
 		}
+		if(!$v['hidden']){
+			$visibility = '<i class="mdi mdi-eye" title="Visibile"></i>';
+		}else{
+			$visibility = '<i class="mdi mdi-eye-off" title="Nascosto"></i>';
+		}
+		
 		$out.='<tr class="red">
 			<td style="text-align:center;">
 				<div id="Load_Win_Menu_Edit_Voice_'.$k.'">
 					<input type="hidden" name="Q" value="Menu_Win_Edit_Voice">
 					<input type="hidden" name="menu" value="'.$menu.'">
 					<input type="hidden" name="voice" value="'.$k.'">
+					<b>'.$visibility.' </b>
 					<b>'.$k.'</b>
 				</div>
 			</td>

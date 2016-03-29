@@ -11,6 +11,7 @@ define('PI_DB_CLASS_CONNECTION_MSSQL',			'connection/Pi.Connection.MSSQL-1.0.cla
 define('PI_DB_CLASS_CONNECTION_ODBC',			'connection/Pi.Connection.ODBC-1.0.class.php');
 define('PI_DB_CLASS_CONNECTION_SQLITE3',		'connection/Pi.Connection.SQLite3-1.0.class.php');
 define('PI_DB_CLASS_CONNECTION_MYSQL',			'connection/Pi.Connection.MySQL-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_PostgreSQL',		'connection/Pi.Connection.PostgreSQL-1.0.class.php');
 
 /**
  * Inclusioni delle Sotto Classi necessarie per la connessione
@@ -23,6 +24,7 @@ include PI_DB_CLASS_CONNECTION_MSSQL;				// il DB è in SQLSERVER
 //include PI_DB_CLASS_CONNECTION_ODBC;				// Connessione ODBC ... n'a merda ... ma in caso di emenrgenza
 include PI_DB_CLASS_CONNECTION_SQLITE3;				// Connessione SQLite ancora sperimentale
 include PI_DB_CLASS_CONNECTION_MYSQL;				// il DB è in MySQL
+include PI_DB_CLASS_CONNECTION_PostgreSQL;			// il DB è in PostgreSQL
 
 /**
  * Classe vera e propria utilizzata per la connessione alle basi di dati
@@ -45,6 +47,7 @@ class PiDB{
 			case "ODBC"		: $this->db = new PiConnectionODBC($this->src,false);		break;
 			case "SQLITE3"	: $this->db = new PiConnectionSQLite3($this->src,false);	break;
 			case "MYSQL"	: $this->db = new PiConnectionMySQL($this->src,false);		break;
+			case "POSTGRESQL": $this->db = new PiConnectionPostgreSQL($this->src,false);		break;
 			default : 
 				die('Portal 1 DB : Tipo base dati non supportata ('.$this->src['DB'].')');	
 			break;

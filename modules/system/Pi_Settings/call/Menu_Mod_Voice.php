@@ -16,10 +16,13 @@
 	}
 	
 	$menu_list[$menu][$id]['BASE64'] = $pr->post('BASE64');
+	$menu_list[$menu][$id]['hidden'] = $pr->post('hidden');
 	$menu_list[$menu][$id]['list'] = $menu_list[$menu][$oid]['list'] ?: Array();
 	$menu_list[$menu][$id]['des'] = ($pr->post('BASE64')==1 ? base64_encode($pr->post('des')) : $pr->post('des'));
 	
-	unset($menu_list[$menu][$oid]);
+	if($oid != $id){
+		unset($menu_list[$menu][$oid]);
+	}
 	
 	$sysConfig->saveMenu($menu_list);
 	$pr->addScript('pi.requestOnLoad("Menu_Action_Info","Menu_Load_Dett");')->response();

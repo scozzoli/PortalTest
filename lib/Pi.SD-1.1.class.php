@@ -4,7 +4,6 @@ define('PI_SD_SYSTEM',			'./lib/Pi.System.php');
 	
 include PI_SD_TAG;
 include PI_SD_SYSTEM;
-
 class PiSD{
 	private $menu;
 	private $tags;
@@ -42,7 +41,6 @@ class PiSD{
 		$this->users = false;
 		$this->inited = false;
 	}
-
 	public function set($iKey,$iVal){
 		if(!array_key_exists($iKey,$this->opt)){
 			die("Portal 1 SD : L'opzione '{$iKey}' non esiste!");
@@ -50,7 +48,6 @@ class PiSD{
 		$this->opt[$iKey] = $iVal;
 		return $this;
 	}
-
 	public function get($iKey){
 		if(!array_key_exists($iKey,$this->opt)){
 			return false;
@@ -58,7 +55,6 @@ class PiSD{
 			return $this->opt[$iKey];
 		}
 	}
-
 	/**
 	 * Include una libreria esterna (JQery ecc....)
 	 */
@@ -67,7 +63,6 @@ class PiSD{
 		$this->tags[] = new PiTAG('script');
 		$this->tags[$index_now]->set('language','javascript');
 		$this->tags[$index_now]->set('src',$iSrc);
-
 		return $this;
 	}
 	
@@ -83,7 +78,6 @@ class PiSD{
 		
 		return $this;
 	}
-
 	/**
 	 * Funzione che esegue tutte le procedure necessarie per inizializzare l'ut
 	 */
@@ -136,7 +130,8 @@ class PiSD{
 			$out[$k] = array(
 				"des"	=> $v["BASE64"] != 0 ? base64_decode($v["des"]) : $v["des"],
 				"list"	=> $tmpList,
-				"chklist" => $chkList
+				"chklist" => $chkList,
+				"hidden" => $v['hidden']
 			);
 		}
 		
@@ -159,7 +154,7 @@ class PiSD{
 	public function select($iGID,$iMID){
 		
 		// Controllo che esista l'id del menù passato come parametro ... se no seleziono il primo disponibile
-		if($iGID && isset($this->menu[$iGID])){
+		if($iGID && isset($this->menu[$iGID]) && ($this->menu[$iGID]['hidden'] ?: 0 == 0)){
 			$this->opt['GID'] = $iGID;
 		}else{
 			reset($this->menu);
@@ -264,6 +259,7 @@ class PiSD{
 		$out.= $crlf.'			<div class="pi-menu">';
 		$out.= $crlf.'				<ul>';
 		foreach($this->menu as $k => $v){
+			if($v['hidden'] ?: 0 == 1){ continue; }
 			$style = $k == $this->opt['GID'] ? 'pi-selected' : '';
 			$out.= $crlf.'					<li class="'.$style.'">';
 			$out.= $crlf.'						<a href="./index.php?GID='.$k.'">'.htmlentities($v['des']).'</a>';
@@ -316,7 +312,6 @@ class PiSD{
 		return $out;
 		
 	}
-
 	public function __destruct(){}
 }
 ?>
