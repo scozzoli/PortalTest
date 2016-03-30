@@ -49,3 +49,61 @@
 	}
 }
 
+// COLLAPSE PANNEL
+
+.pi-collapse{
+	
+	&.panel{
+		padding:0;
+		.header{
+			margin:0;
+			cursor: pointer;
+			&>.icons{
+				float: left;
+				margin-top: -5px;
+				margin-right: 5px;
+			}
+		}
+	}
+	
+	.content{
+		overflow: hidden;
+		padding: 10px;
+	}
+	
+	&.open{
+		.header{
+			&>.icons{
+				.icon-open{
+					display: inline;
+				}
+				.icon-close{
+					display: none;
+				}
+			}
+		}
+		.content{
+			padding: 10px;
+		}
+	}
+	
+	&.close{
+		.header{
+			&>.icons{
+				.icon-open{
+					display: none;
+				}
+				.icon-close{
+					display: inline;
+				}
+			}
+			border-radius:3px;
+		}
+		.content{
+			padding: 10px;
+		}
+	}
+	
+	
+}
+

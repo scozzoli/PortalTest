@@ -21,6 +21,7 @@
 	$sd->includeLib('./lib/Pi.Component.Tablesort.js');
 	$sd->includeLib('./lib/Pi.Component.Datepicker.js');
 	$sd->includeLib('./lib/Pi.Component.Tabstripe.js');
+	$sd->includeLib('./lib/Pi.Component.Collapse.js');
 	
 	$GID = $_GET["GID"] ?: false;
 	$MID = $_GET["MID"] ?: false;
