@@ -15,7 +15,7 @@ class PiConnectionODBC extends PiConnection{
 	}
 	
 	public function get($iQry){
-		$func = create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return($key);}');
+		$func = $this->getParseFunction();
 		$row_data = odbc_exec($this->link,$iQry);
         $i = 0;
         

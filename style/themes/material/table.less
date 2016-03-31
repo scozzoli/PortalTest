@@ -20,7 +20,7 @@
 	}
 }
 
-.RowColor(@C1,@C2,@C3){
+.RowColor(@C1,@C2,@C3,@DisabledColor: @C2){
 	& > td {
 		background-color: @C1;
 		&.red{ background-color: @Red-C1; }
@@ -50,12 +50,12 @@
 	&.deleted{
 		> td{
 			text-decoration: line-through;
-			color:@C2;
+			color:@DisabledColor;
 		}
 	}
 	&.disabled{
 		> td{
-			color:@C2;
+			color:@DisabledColor;
 		}
 	}
 }
@@ -134,7 +134,7 @@ table{
 			//	}
 			//}
 			
-			.RowColor(#FFF,rgb(255, 255, 204),"");
+			.RowColor(#FFF,rgb(255, 255, 204),"",@White-C2);
 			
 			&.red{ .RowColor(@Red-C1,@Red-C2,@Red-C3); }
 			&.blue{ .RowColor(@Blue-C1,@Blue-C2,@Blue-C3); }

@@ -11,7 +11,8 @@ abstract class PiConnection{
 		'associative' 	=> true,	// Crea una Matrice associativa
 		'null'			=> ' --- ', // Al posto di 'null'
 		'lowercase'		=> false,	// Esegue un lowercase delel intestazioni (solo oci8 per ora)
-		'numrow'		=> false 	// numero di righe su cui ha avuto effetto l'operazione (solo oci8 per ora)
+		'numrow'		=> false, 	// numero di righe su cui ha avuto effetto l'operazione (solo oci8 per ora)
+		'utf8'			=> true		// Decodifica in utf8 i dati del DB
 		//'arrayindex'	=> false,	// [DEPRECATO] Crea un Array assoviatvo ed una matrice numerica $d[<0>][<0>] $d['rid']['id'] = <0>
 		//'rowindex' 	=> true,	// [DEPRECATO] crea una voce con il numero di righe $d["row"] = <0>
 		//'reverse'		=> false,   // [DEPRECATO] inverte righe con colonne [da implementare]
@@ -49,6 +50,14 @@ abstract class PiConnection{
 			$this->pr->error('Portal 1 <i>Connection</i> : '.$iMsg);
 		}else{
 			die('Portal 1 Connection : '.$iMsg);
+		}
+	}
+	
+	protected function getParseFunction(){
+		if($this->opt['utf8']){
+			return create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return(utf8_encode($key));}');
+		}else{
+			return create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return($key);}');
 		}
 	}
 	

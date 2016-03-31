@@ -21,7 +21,7 @@ class PiConnectionMSSQL extends PiConnection{
 	}
 	
 	public function get($iQry){
-		$func = create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return($key);}');
+		$func = $this->getParseFunction();
 		$raw_data = sqlsrv_query($this->link,$iQry);
 		
 		if($raw_data === false){
