@@ -6,8 +6,11 @@ class PiConnectionPostgreSQL extends PiConnection{
 	
 
 	public function connect(){
-		//$this->link = pg_connect(' "host='.$this->src["server"].' user='.$this->src["dbuser"].' password='.$this->src["dbpwd"].' dbname='.$this->src["dbname"].' "');
-		$this->link = pg_connect("host=localhost user=postgres password=pi dbname=Pubbligraf");		
+		$this->link = pg_connect(' "host='.$this->src["server"].' user='.$this->src["dbuser"].' password='.$this->src["dbpwd"].' dbname='.$this->src["dbname"].' "');
+		//$this->link = pg_connect("host=localhost user=postgres password=pi dbname=Pubbligraf");
+		if($this->link === false){
+			$this->error('Errore nella selezione del db del server PostgreSQL '.$this->src["server"].'\\<b>'.$this->src["dbname"].'</b>');
+		}
 		$this->is_connected = true;
 	}
 	
@@ -19,6 +22,9 @@ class PiConnectionPostgreSQL extends PiConnection{
 	public function get($iQry){
 		$func = create_function('$key','if(!isset($key)){return("'.(str_replace('"','\\"',$this->opt["null"])).'");}else{return($key);}');
 		$raw_data = pg_query($this->link,$iQry);
+		if($row_data === false){
+			$this->error('PostgreSQL Errore Query: '.pg_last_error()); 
+		}
 		$i = 0;
 		$data = array();
 		
@@ -40,6 +46,9 @@ class PiConnectionPostgreSQL extends PiConnection{
 	
 	public function exec($iQry){
 		$raw_data = pg_query($iQry);
+		if($row_data === false){
+			$this->error('PostgreSQL Errore Query: '.pg_last_error()); 
+		}
 		$this->opt['numrow'] = pg_affected_rows();//mysql_num_rows($raw_data);
 	}
 	
