@@ -11,6 +11,71 @@
 				<button onclick="pi.request(null,\'Show_Icons\')">Material Icons</button>
 			</div>			
 			<div id="container" style="height:100%">
+				<div class="panel" data-pi-component="collapse">
+					<div class="header"> test </div>
+					<div>
+						<div data-pi-component="tabstripe">
+							<div data-pi-tab="primo">
+								<table class="lite" data-pi-component="tablesort">
+									<tr>
+										<th>Ciao</th>
+										<th>Ciccia</th>
+										<th>Puffi</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td>1.3</td>
+										<td>2.2</td>
+										<td>3.1</td>
+									</tr>
+								</table>
+							</div>
+							<div data-pi-tab="secondo">
+								nulla
+							</div>
+							<div data-pi-tab="uffa">
+								<div class="panel blue"> BU! </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div data-pic="tabstripe" class="panel">
+						<div data-pi-tab="primo">
+							<table class="lite" data-pi-component="tablesort">
+								<tr>
+									<th>Ciao</th>
+									<th>Ciccia</th>
+									<th>Puffi</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>2</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>1.3</td>
+									<td>2.2</td>
+									<td>3.1</td>
+								</tr>
+							</table>
+						</div>
+						<div data-pi-tab="secondo">
+							<div class="panel" data-pic="collapse" id="xx">
+								<div class="header">Collapse ME!</div>
+								fuffa fuffa<br>fuffa fuffa
+							</div>
+							nulla
+						</div>
+						<div data-pi-tab="uffa">
+							<div class="panel blue"> BU! </div>
+						</div>
+					</div>
+					
 				<div class="panel">
 					<table class="form">
 						<tr>
