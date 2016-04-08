@@ -37,6 +37,10 @@
 	
 	switch($qryConf['xls']){
 		case 'legacy' : $pr->next('_Sheet_Legacy'); break;
+		case 'csv' : 
+		case 'csve' :
+			$pr->next('_Sheet_CSV'); 
+		break;
 		default: $pr->next('_Sheet'); break;
 	}
 ?>

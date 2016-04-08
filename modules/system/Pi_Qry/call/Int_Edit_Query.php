@@ -140,6 +140,8 @@
 						<option value="disabled"> Disattivato </option>
 						<optgroup label="Senza formattazione">
 							<option value="legacy"> Excel 95 senza formattazione (xls) </option>
+							<option value="csv"> CSV separatore "," </option>
+							<option value="csve"> CSV separatore ";" (per Excel) </option>
 						</optgroup>
 						<optgroup label="Campi formattati">
 							<option value="xls"> Excel 95 (xls) </option>
