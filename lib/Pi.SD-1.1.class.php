@@ -231,11 +231,11 @@ class PiSD{
 		$out.= $crlf.'<html><head><title>'.$title.'</title>';
 		$out.= $crlf.'<meta http-equiv="Content-Type" content="text/html" charset="'.$this->opt["charset"].'" />';
 		$out.= $crlf.'<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=2">';
-		//if($mod){
-		//	$out.= '<LINK rel="icon" href="'.$this->get_icon($mod,'16').'" type="image/png" />';
-		//}elseif($this->opt["ico"] != ""){
-		//	$out.= '<LINK rel="icon" href="'.$this->opt["ico"].'" type="image/png" />';
-		//}
+		if($mod){
+			$out.= '<LINK rel="icon" href="./style/favicon.php?img='.$mod['icon'].'" type="image/png" />';
+		}elseif($this->opt["ico"] != ""){
+			$out.= '<LINK rel="icon" href="./style/favicon.php" type="image/png" />';
+		}
 		$out.= $crlf.'<link href="./style/common.php" rel="stylesheet" type="text/css" />';
 		$out.= $crlf.'<link href="./style/theme.php?theme='.$this->opt["theme"].'&style='.$this->opt["style"].'" rel="stylesheet" type="text/css" />';
 		for($i=0; $i!=count($this->tags);$i++){ $out.=$crlf.$this->tags[$i]->render(); }
