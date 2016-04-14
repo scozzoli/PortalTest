@@ -11,7 +11,7 @@
 			le variabili vengono automaticamente riconosiute al <b>salva</b> e devono avere il formato <b>{<i class="disabled">nome</i>}</b><br/>
 			<b>ATTENZIONE:</b> Le variabili non possono contenere spazi e sono presentate in ordine <i>alfabetico</i>
 		</div>
-		<div data-pi-component="code" data-pi-mode="sql" name="qry" style="min-height:500px;">'.htmlentities($qry).'</div>
+		<div data-pic="code : {mode:\'sql\'}"  name="qry" style="min-height:500px;">'.htmlentities($qry).'</div>
 	</div>';
 	$footer = '<button class="red" onClick="pi.win.close();"> Annulla </button> <button class="green" onClick="pi.requestOnModal(\'winEdit\');"> Salva </button>';
 	

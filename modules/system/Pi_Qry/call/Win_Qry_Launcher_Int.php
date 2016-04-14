@@ -29,7 +29,7 @@
 				break;
 				case "date" :
 					$typeIco = '<i class="mdi l2 mdi-calendar orange" title="Numero"></i>';
-					$input = '<input type="text" name="'.$k.'" class="'.$style.'" placeholder="dd/mm/yyyy" data-pi-component="datepicker">';
+					$input = '<input type="text" name="'.$k.'" class="'.$style.'" placeholder="dd/mm/yyyy" data-pic="datepicker">';
 				break;
 				case "select" :
 					$typeIco = '<i class="mdi l2 mdi-playlist-play orange" title="Seleziona una voce"></i>';

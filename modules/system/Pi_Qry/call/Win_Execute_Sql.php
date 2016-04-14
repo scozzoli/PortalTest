@@ -7,7 +7,7 @@
 		<div class="focus blue">
 			Eseguire la seguente interrogazione?. <br />	
 		</div>
-		<div data-pi-component="code" data-pi-mode="sql" data-pi-readonly="true" name="qry" style="min-height:100px;">'.htmlentities($qry).'</div>
+		<div data-pic="code : {mode:\'sql\', readOnly:true }" name="qry" style="min-height:100px;">'.htmlentities($qry).'</div>
 	</div>';
 	$footer = '<button class="red" onClick="pi.win.close();"> Annulla </button> <button class="green" onClick="pi.requestOnModal(\'winEdit\');"> Esegui </button>';
 	
