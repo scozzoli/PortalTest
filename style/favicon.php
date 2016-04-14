@@ -45,7 +45,7 @@
 		return array($x, $y);
 	}
 	
-	function createImg($text,$font,$outputSize){
+	function createImg($text,$font,$outputSize,$img = null){
 		
 		$size = $width = $height = $outputSize;
 		$fontSize = $outputSize*0.85;
@@ -67,21 +67,27 @@
 		imagesavealpha($im,true);			
 		//imagetrim($im, $bgc, $padding);
 		//imagecanvas($im, $outputSize, $bgc, $padding);
-		imagepng($im);
+		imagepng($im,$img);
 		imagedestroy($im);
 	}
 	
 	$img = $_GET['img'] ?: 'camera-iris';
 	$color = $_GET['color'] ?: 'black';
 	
-	$css = parseCSS('common/materialdesignicons.min.css');	
+	if(!file_exists("favicon/{$img}.png")){
+		$css = parseCSS('common/materialdesignicons.min.css');	
+		createImg(getTextFromStyle($css,$img),'fonts/materialdesignicons-webfont.ttf',16,"favicon/{$img}.png");
+	}
+	
 	//var_dump($css);
 	//echo $img.' '.getTextFromStyle($css,$img).'<br>' ;
 	
 	header('Content-Disposition: Attachment;filename='.$img.'.png'); 
 	header('Content-type: image/png'); 
 	
-	createImg(getTextFromStyle($css,$img),'fonts/materialdesignicons-webfont.ttf',16);
+	readfile("favicon/{$img}.png");
+	
+	//createImg(getTextFromStyle($css,$img),'fonts/materialdesignicons-webfont.ttf',16);
 	//createImg('&#x065','fonts/OpenSans-Bold.ttf',200);
 
 ?>
