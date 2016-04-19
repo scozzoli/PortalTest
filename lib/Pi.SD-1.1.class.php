@@ -139,11 +139,14 @@ class PiSD{
 		$this->inited = true;
 		
 		$dblist = $this->sysConfig->loadDB();
-		$_SESSION[MSID] = Array(
-			"usr" => $iUsr,
-			"config" => $usr[$iUsr],
-			"db" => $dblist
-		);
+		
+		if(!isset($_SESSION[MSID])){
+			$_SESSION[MSID] = Array();
+		}
+		
+		$_SESSION[MSID]['usr'] = $iUsr; 
+		$_SESSION[MSID]['config'] = $usr[$iUsr];
+		$_SESSION[MSID]['db'] = $dblist;
 		
 		return $this;
 	}
