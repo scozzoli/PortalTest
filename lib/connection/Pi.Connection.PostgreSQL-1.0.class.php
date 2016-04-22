@@ -21,7 +21,7 @@ class PiConnectionPostgreSQL extends PiConnection{
 	public function get($iQry){
 		$func = $this->getParseFunction();
 		$raw_data = pg_query($this->link,$iQry);
-		if($row_data === false){
+		if($raw_data === false){
 			$this->error('PostgreSQL Errore Query: '.pg_last_error()); 
 		}
 		$i = 0;
@@ -45,7 +45,7 @@ class PiConnectionPostgreSQL extends PiConnection{
 	
 	public function exec($iQry){
 		$raw_data = pg_query($iQry);
-		if($row_data === false){
+		if($raw_data === false){
 			$this->error('PostgreSQL Errore Query: '.pg_last_error()); 
 		}
 		$this->opt['numrow'] = pg_affected_rows();

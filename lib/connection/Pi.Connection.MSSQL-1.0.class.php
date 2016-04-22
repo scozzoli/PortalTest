@@ -20,7 +20,7 @@ class PiConnectionMSSQL extends PiConnection{
 	public function get($iQry){
 		$func = $this->getParseFunction();
 		$raw_data = @mssql_query($iQry,$this->link);
-		if($row_data === false){
+		if($raw_data === false){
 			$this->error('MSSQL Errore Query: '.mssql_get_last_message()); 
 		}
 		$i = 0;
@@ -43,7 +43,7 @@ class PiConnectionMSSQL extends PiConnection{
 		}else{
 			$this->opt['numrow'] = $raw_data ? 1 : 0;
 			
-			if($row_data === false){
+			if($raw_data === false){
 				$this->error('MSSQL Errore Query: '.mssql_get_last_message());
 			}
 			

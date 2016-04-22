@@ -16,30 +16,30 @@ class PiConnectionODBC extends PiConnection{
 	
 	public function get($iQry){
 		$func = $this->getParseFunction();
-		$row_data = odbc_exec($this->link,$iQry);
+		$raw_data = odbc_exec($this->link,$iQry);
         $i = 0;
         
         if($this->["associative"]=="matrix"){
-			while($res = odbc_fetch_array($row_data)){$data[$i++] = array_map($func,$res);}
+			while($res = odbc_fetch_array($raw_data)){$data[$i++] = array_map($func,$res);}
 		}else{
-			while(odbc_fetch_into($row_data,$res)){$data[$i++] = array_map($func,$res); unset($res);}
+			while(odbc_fetch_into($raw_data,$res)){$data[$i++] = array_map($func,$res); unset($res);}
 		}
 
 		if($this->opt["rowindex"]){$data["row"]=$i;}
 		if($this->opt["arrayindex"]){
 		  	$j=0;
-			while($j<odbc_num_fields($row_data)){
-				$data["rid"][odbc_field_name($row_data,$j)] = $j++;
+			while($j<odbc_num_fields($raw_data)){
+				$data["rid"][odbc_field_name($raw_data,$j)] = $j++;
 			}
 		}
-		$this->opt['numrow'] = odbc_num_rows($row_data);
-		odbc_free_result($row_data);
+		$this->opt['numrow'] = odbc_num_rows($raw_data);
+		odbc_free_result($raw_data);
 		return $data;
 	}
 	
 	public function exec($iQry){
-		$row_data = odbc_exec($this->link, $iQry);
-		$this->opt['numrow'] = odbc_num_rows($row_data);
+		$raw_data = odbc_exec($this->link, $iQry);
+		$this->opt['numrow'] = odbc_num_rows($raw_data);
 	}
 	
 	public function __destruct(){
