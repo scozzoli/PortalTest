@@ -18,15 +18,10 @@
 	<table class="form separate" id="saveformat">
 		<tr>
 			<th>
-				<input type="radio" name="format" value="ini" '.$edit.'>
+				<input type="radio" name="format" value="json" '.$edit.'>
 				'.$call.'
 				<input type="hidden" name="old">
 			</th>
-			<td> <b>ini</b> </td>
-			<td> Molto facie da leggere ed editare a mano ma con struttura limitata ad un paio di livelli e lento nella decodifica</td>
-		</tr>
-		<tr>
-			<th><input type="radio" name="format" value="json" '.$edit.'></th>
 			<td> <b>json</b> </td>
 			<td> Facile da leggere ed editare a mano e permette un numero indefinito di livelli. Lento nella decodifica</td>
 		</tr>

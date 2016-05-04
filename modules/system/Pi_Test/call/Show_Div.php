@@ -48,7 +48,7 @@
 	}
 	
 	$out = '		
-			<div class="panel">
+			<div class="panel" data-pi-component="collapse">
 				<div class="header">Informazioni generiche sugli stili</div>
 				Gli stili applicabili agli elementi "div" sono definiti come pannelli <b>panel</b> ed hanno una struttura cos&iacute; composta :<br><br>
 				<div class="focus blue">

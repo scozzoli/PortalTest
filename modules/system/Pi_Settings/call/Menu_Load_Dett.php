@@ -46,7 +46,7 @@
 						</div>
 					</td>
 					<td> (<b> '.($i + 1).' </b>) '.$v['list'][$i].'</td>
-					<td colspan="3">'.$mod_list[$v['list'][$i]]['nome'].' - <i>'.$mod_list[$v['list'][$i]]['des'].'</i> </td>
+					<td colspan="3">'.$sysConfig->i18nGet($mod_list[$v['list'][$i]]['nome']).' - <i>'.$sysConfig->i18nGet($mod_list[$v['list'][$i]]['des']).'</i> </td>
 				</tr>';
 				
 			}
@@ -67,7 +67,7 @@
 					<b>'.$k.'</b>
 				</div>
 			</td>
-			<td colspan="2">'.($v['BASE64']!=0 ? base64_decode($v['des']) : $v['des']).'</td>
+			<td colspan="2">'.$sysConfig->i18nGet($v['des']).'</td>
 			<td>
 				'.($mod_miss>0 ?'<i class="mdi mdi-alert-circle red" />' : '<i class="mdi mdi-check green" />').'
 				[ <b class="focus" >Totali : </b> '.($mod_ok + $mod_miss).' ]

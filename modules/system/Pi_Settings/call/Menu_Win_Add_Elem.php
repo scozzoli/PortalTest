@@ -27,7 +27,7 @@
 	</tr>';
 	
 	foreach($mod_list as $k => $v){
-		$strSearch = strtolower($v['nome'].$v['des'].$k);
+		$strSearch = strtolower($sysConfig->i18nGet($v['nome']).$sysConfig->i18nGet($v['des']).$k);
 		$strSearch = str_replace('"',"'",$strSearch);
 		$out.='<tr onclick="pi.requestOnModal(\'Add_Mod_'.$k.'\');" style="text-align:left; cursor:pointer;" class="j-module" data-pi-des="'.$strSearch.'">
 				<td style="width:30px; text-align:right;">
@@ -43,7 +43,7 @@
 					'.$k.'<br>
 					<span style="color:#888;">Gruppo : <i>'.$v['grp'].'</i>
 				</td>
-				<td><b>'.$v['nome'].'</b><br> '.$v['des'].'</td>
+				<td><b>'.$sysConfig->i18nGet($v['nome']).'</b><br> '.$sysConfig->i18nGet($v['des']).'</td>
 			</tr>';
 	}
 	$out.='</table></div>';

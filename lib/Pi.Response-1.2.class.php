@@ -59,7 +59,7 @@
 				'CloseWin'		=>	true,
 				'DoItBefore'	=>	false, //se impostato a true esegue CloseLoader e CloseWin PRIMA dei tag Action
 				'CallBack'		=>  false, 	// Variabile di appoggio per la gestione delle chiamate multiple
-				'NextCall'		=>  $this->postCall['Q'], 	// Presa in considerazione solo CallBack == true
+				'NextCall'		=>  $this->postCall['Q'] ?: false, 	// Presa in considerazione solo CallBack == true
 				'root'			=>  '../' //Path della root (usata da getLocalPath per avere il percorso corretto del modulo)
 		);
 		$this->actions = array();		
@@ -374,11 +374,11 @@
 	}
 	
 	public function nextCommon($iCommon,$iParams = null){
-		if(file_exists($this->postPi['root'].'../common/'.$iCommon.'.php')){
+		if(file_exists($this->opt['root'].'/common/'.$iCommon.'.php')){
 			foreach($iParams as $k => $v){
 				$$k = $v;
 			}
-			include $this->postPi['root'].'../common/'.$iCommon.'.php';
+			include $this->opt['root'].'/common/'.$iCommon.'.php';
 		}else{
 			$this->error("nextCommon : <b>{$iCommon}</b> non esiste!");
 		}

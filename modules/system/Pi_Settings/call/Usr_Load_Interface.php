@@ -6,6 +6,8 @@
 	
 	$usr_list = $sysConfig->loadUsr();
 	$grp_list = $sysConfig->loadGrp();
+	$db_list = $sysConfig->loadDB();
+	$lang_list = getLangList($pr);
 	
 	$countGroup = count($grp_list);
 	$filter = $pr->post('cerca','');
@@ -15,28 +17,28 @@
 			<tr>
 				<th>
 					<input type="hidden" name="Q" value="Usr_Load_Interface">
-					Nome utente : 
+					<i18n>usr:iface:lblUser</i18n>
 				</th>
 				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_utente"> </td>
-				<td> <button class="blue" onclick="pi.request(\'cerca_utente\');"><i class="mdi mdi-magnify"></i> Cerca </button></td>
-				<th> <button class="blue" onclick="pi.request(null,\'Usr_Win_Load_Dett\');"><i class="mdi mdi-account-plus"></i> Nuovo Utente </button></th>
+				<td> <button class="blue" onclick="pi.request(\'cerca_utente\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
+				<th> <button class="blue" onclick="pi.request(null,\'Usr_Win_Load_Dett\');"><i class="mdi mdi-account-plus"></i> <i18n>usr:btn:newUser</i18n> </button></th>
 			</tr>
 		</table>
 	</div> 
 	<div id="usrContainer">
 		<table class="lite blue">
 		<tr>
-			<th title="User Id univoco" style="width:36px;">  </th>
-			<th title="Nome uente esteso"> Utente </th>
-			<th title="Foglio di stile associato"> Theme </th>
-			<th title="Menu associato"> Menu </th>
-			<th title="Data base di Deafult"> DB </th>
-			<th title="Accesso al protocollo HTTP"> Http </th>
-			<th title="Accesso al protocollo HTTPS"> SSL </th>
-			<th>Pwd</th>
-			<th>Flags</th>
-			<th title="Valoro estesi">Ext</th>
-			<th title="Permessi di default" style="text-align:center;"> Permessi sui gruppi </th>
+			<th style="width:36px;">  </th>
+			<th> <i18n>usr:lbl:user</i18n> </th>
+			<th> <i18n>usr:lbl:theme</i18n> </th>
+			<th> <i18n>usr:lbl:menu</i18n> </th>
+			<th> <i18n>usr:lbl:db</i18n> </th>
+			<th> <i18n>usr:lbl:http</i18n> </th>
+			<th> <i18n>usr:lbl:ssl</i18n> </th>
+			<th> <i18n>usr:lbl:pwd</i18n></th>
+			<th> <i18n>usr:lbl:flags</i18n></th>
+			<th title="Valoro estesi"><i18n>usr:lbl:extension</i18n></th>
+			<th style="text-align:center;"> <i18n>usr:lbl:grant</i18n></th>
 		</tr>';
 	
 	$idx = 0;
@@ -83,10 +85,11 @@
 			<td>'.$v['theme'].'<br> <i>'.$v['style'].'</i></td>
 			<td>'.$v['menu'].'</td>
 			<td>'.$db_list[$v['db']]['des'].'</td>
-			<td><b class="green '.($v['http']==1 ? '' : 'disabled').'">http</b></td>
-			<td><b class="green '.($v['https']==1 ? '' : 'disabled').'">SSL</b></td>
-			<td><b class="green '.($v['use_pwd']==1 ? '' : 'disabled').'">Password</b></td>
-			<td>	
+			<td><b class="green '.($v['http']==1 ? '' : 'disabled').'"><i18n>usr:lbl:http</i18n></b></td>
+			<td><b class="green '.($v['https']==1 ? '' : 'disabled').'"><i18n>usr:lbl:ssl</i18n></b></td>
+			<td><b class="green '.($v['use_pwd']==1 ? '' : 'disabled').'"><i18n>usr:lbl:pwd</i18n></b></td>
+			<td>
+				<img src="style/img/'.$lang_list['langs'][$v['lang']]['icon'].'" title="'.$lang_list['langs'][$v['lang']]['des'].'">
 				<i class="mdi mdi-settings blue '.($v['acc_dev'] == 1 ? '' : 'disabled').'" title="strumenti di sviluppo"></i>
 				<i class="mdi mdi-alert-circle blue '.($v['acc_err'] == 1 ? '' : 'disabled').'" title="strumenti di errore" ></i>
 				<i class="mdi mdi-server-off blue '.($v['acc_dis'] == 1 ? '' : 'disabled').'" title="strumenti di disabilitati"></i>

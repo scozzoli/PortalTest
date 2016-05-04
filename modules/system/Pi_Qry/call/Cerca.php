@@ -27,7 +27,7 @@
 		}else{
 			if($prevGrp != $grp){
 				$prevGrp = $grp;
-				$out.='</div><div class="panel orange" style="font-size:16px;"><i class="mdi mdi-comment-multiple-outline"> </i> <b>'.$GroupList[$grp]['nome'].'</b> - <i>'.$GroupList[$grp]['des'].'</i></div><div class="pi-list">';
+				$out.='</div><div class="panel orange" style="font-size:16px;"><i class="mdi mdi-comment-multiple-outline"> </i> <b>'.$sysConfig->i18nGet($GroupList[$grp]['nome']).'</b> - <i>'.$sysConfig->i18nGet($GroupList[$grp]['des']).'</i></div><div class="pi-list">';
 			}
 		}
 		

@@ -6,7 +6,7 @@
 	$db = new PiDB($pr->getDB());
 	session_write_close();
 	
-	$sysConfig = new PiSystem($pr->getRootPath('settings/'));
+	$sysConfig = new PiSystem($pr->getRootPath('settings/'),$pr->getUsr('lang'));
 	
 	//$usr_list = parse_ini_file($pr->getRootPath('settings/users.ini'),true);
 	//$grp_list = parse_ini_file($pr->getRootPath('settings/groups.ini'),true);
@@ -63,4 +63,14 @@
 		
 		return $out;
 	}
+	
+	function getLangList($pr){
+		////$pr->error(json_encode(Array('x'=>'Español')));
+		//if(file_exists($pr->getRootPath('i18n/settings.json')))
+		//	$pr->error(file_get_contents($pr->getRootPath('i18n/settings.json')));
+		//else
+		//	$pr->alert($pr->getRootPath('i18n/settings.json'));
+		return json_decode(file_get_contents($pr->getRootPath('i18n/settings.json')),true);
+	}
+
 ?>

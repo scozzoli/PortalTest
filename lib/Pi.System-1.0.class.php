@@ -4,6 +4,8 @@
 		 
 	private $opt;
 	private $path;
+	private $pr;
+	private $lang;
 	
 	/*
 		Classe per la gestione dei file di configurazione.
@@ -14,7 +16,7 @@
 		encripted -> lo stesso di serialize ma con la cifratura (il più sicuro)
 	*/
 	
-	public function __construct($iPath = './'){	
+	public function __construct($iPath = './',$iLang = false){	
 		
 		if(file_exists($iPath)){
 			$this->path = $iPath;
@@ -25,7 +27,7 @@
 		if(file_exists($iPath.'system.ini')){
 			$type = parse_ini_file($iPath.'system.ini',false);
 		}else{
-			$type['format'] = 'ini';
+			$type['format'] = 'json';
 		}
 		
 		$this->opt = array(
@@ -35,10 +37,12 @@
 				'modules'		=>	false,
 				'menu'			=>	false,
 				'db'			=>	false,
+				'i18n'			=>	false,
 				'key'			=>	'mybucuducu!++[**~',
 				'iv'			=>	'nelmezzodelcammi'
 		);
 		
+		$this->lang = $iLang;
 	}
 	
 	private function _load($iSetting){
@@ -206,6 +210,20 @@
 		}
 	}
 	
+	// la configurazione di i18n non è sensibile e necessita di essere modifcata anche a mano, per questo è l'unica che rimane sempre in JSON
+	
+	public function loadI18n(){
+		if(!$this->opt['i18n']){ 
+			$this->opt['i18n'] = json_decode(file_get_contents($this->path.'../i18n/settings.json'),true);}
+		return $this->opt['i18n'];
+		
+	}
+	
+	public function saveI18n($iData){
+		$this->opt['i18n'] = $iData;
+		file_put_contents($this->path.'../i18n/settings.json', json_encode($iData,JSON_PRETTY_PRINT));
+	}
+	
 	public function set($iKey,$iVal){
 		if(array_key_exists($iKey,$this->opt)){
 			$this->opt[$iKey] = $iVal;
@@ -219,6 +237,23 @@
 		}else{
 			return $this->opt[$iKey];
 		}
+	}
+	
+	public function i18nGet($iData,$iName = false){
+		if(!$this->opt['i18n']){
+			$this->loadI18n();
+		}
+		
+		$var = $iName === false ? $iData : $iData[$iName];
+		if($this->lang){
+			$tr = $var[$this->lang] ?: '';	
+		}else{
+			$tr = '';
+		}
+		if(trim($tr) == ''){
+			$tr = $var[$this->opt['i18n']['defaultLang']] ?: '';
+		}
+		return $tr;
 	}
 	
 	public function clean($iFormat){

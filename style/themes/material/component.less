@@ -103,7 +103,25 @@
 			padding: 10px;
 		}
 	}
-	
-	
 }
 
+// I18N 
+
+.i18n-miss{
+	border: 2px solid @Main-C3;
+	padding: 3px;
+	background-color: @Main-BG-Color;
+	color: @Main-C3;
+	//box-shadow: @Main-BoxShadow-1;
+	&:before{
+		content:attr(data-lang);
+		color: @Main-Text-Title;
+		background-color: @Main-C2;
+		margin: -3px 3px -3px -3px;
+		padding:3px 2px 3px 5px;
+	}
+}
+
+i18n{
+	opacity:0;
+}

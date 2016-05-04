@@ -43,6 +43,27 @@
 					<b> Homepage del progetto : </b> <a href="https://ace.c9.io"> https://ace.c9.io </a>
 				</div>
 				
+				<div class="focus blue"> <b>Javascript : </b> SimpleMDE - Markdown Editor </div>
+				<div class="focus">
+					Libreria usata per eseguire l\'editing del codice markdown delle descrizioni e per il component <b class="blue">markdown</b>.<br>
+					<b> Homepage del progetto : </b> <a href="https://github.com/NextStepWebs/simplemde-markdown-editor"> https://github.com/NextStepWebs/simplemde-markdown-editor </a>
+				</div>
+				
+				<div class="focus blue"> <b>Javascript : </b> micromarkdown </div>
+				<div class="focus">
+					Libreria usata per eseguire il parsing del linguaggio markdown per il traduttore<br>
+					<b> Homepage del progetto : </b> <a href="https://github.com/SimonWaldherr/micromarkdown.js"> https://github.com/SimonWaldherr/micromarkdown.js </a>
+				</div>
+				
+				<div class="focus purple">
+					<b>PHP : </b> Parsedown
+				</div>
+				<div class="focus">
+					Libreria usata per la trasformazione del codice markdown in html (per le tradusioni).<br>
+					<b> Homepage del progetto : </b> <a href="https://github.com/erusev/parsedown"> https://github.com/erusev/parsedown </a><br>
+					Licensed under MIT
+				</div>
+				
 				<div class="focus purple">
 					<b>PHP : </b> PHPExcel
 				</div>

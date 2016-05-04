@@ -3,12 +3,9 @@
 	$sd->includeScript($js);
 	
 	//if(!isset($_SESSION[MSID]['usr'])){
-	if($_SESSION[MSID]['usr'] ?: 'guest' == 'guest'){
+	if(($_SESSION[MSID]['usr'] ?: 'guest') == 'guest'){
 		$interface = '<DIV class="panel blue">
-			<ul>
-				<li> Inserire il nome del profilo da caricare </li>
-				<li> Ne caso non si possieda un profilo contattare il CED</li>
-			</ul>
+			<i18n>iface:infoNoLogin</i18n>
 		</DIV><br>
 		
 		<div style="position:relative; margin-left:50%; padding:0; text-align:center;"  id="login">
@@ -17,13 +14,13 @@
 				<div class="header" style="font-size : 16px; margin-bottom: 60px;">
 					<br>
 					<b style="font-size : 22px;">Portal 1</b><br>
-					<span style="font-size : 12px;">Login utente</apan>
+					<span style="font-size : 12px;"><i18n>iface:lblLogin</i18n>Login utente</apan>
 					<br>
 					
 					<div class="badge xlarge" style="width:190px;"><i class="mdi mdi-account"></i></div>
 				</div>
 				<input type="text" class="std" name="UID" id="UID" style="width:230px" placeholder="Nome Utente"><br><br>
-				<button class="confirm blu" onclick="pi.request(\'login\')">Entra</button>
+				<button class="confirm blu" onclick="pi.request(\'login\')"><i18n>login</i18n></button>
 			</div>
 		</div>';
 	}else{
@@ -69,48 +66,45 @@
 		//}
 		//$db_select .= '</select>';
 		$interface='<DIV class="panel blue">
-			Dettagli Utente:<br><ul>
-			<li>Cambia nome utente</li>
-			<li>Cambia password</li>
-			</ul>
+			<i18n>iface:infoLogged</i18n>
 		</DIV>
 		<div class="panel" id="data">
-			<div class="header"> Configurazione utente </div>
+			<div class="header"> <i18n>iface:lblConfUsr</i18n> </div>
 			<table class="form">
 				<tr>
-					<th>Utente</th>
+					<th><i18n>lbl:usrId</i18n></th>
 					<td>
 						<input type="text" disabled name="UID" value="'.$_SESSION[MSID]['usr'].'">
 					</td>
-					<td style="color: #888;"> (Solo l\'amministratore di sistema pu&oacute; cambiarlo)</td>
+					<td style="color: #888;"> <i18n>iface:onlyAdmin</i18n></td>
 				</tr>
 				<tr>
-					<th>Nome Utente</th>
+					<th><i18n>lbl:usrName</i18n></th>
 					<td colspan="2">
 						<input type="text" class="double" name="nome" value="'.$_SESSION[MSID]['config']['nome'].'" >
 					</td>
 				</tr>
 				<tr>
-					<th>Email</th>
+					<th><i18n>lbl:email</i18n></th>
 					<td colspan="2">
 						<input type="text" class="double" name="email" value="'.$_SESSION[MSID]['config']['email'].'" >
 					</td>
 				</tr>
 				<tr>
-					<th align="right">Base Dati</th>
+					<th align="right"><i18n>lbl:DB</i18n></th>
 					<td>
 						<input type="text" disabled value="'.$_SESSION[MSID]['db'][$_SESSION[MSID]['config']['db']]['des'].'">
 					</td>
-					<td style="color: #888;"> (Non tutti gli strumenti gestiscono il cambio di base dati)</td>
+					<td style="color: #888;"> <i18n>iface:infoDB</i18n> </td>
 				</tr>
 				<tr>
-					<th align="right">Stile</th>
+					<th align="right"><i18n>lbl:style</i18n></th>
 					<td colspan="2">
 						'.$ddTheme.'
 					</td>
 				</tr>
 				<tr>
-					<th align="right">Visualizza il menu laterale</th>
+					<th align="right"><i18n>lbl:sideMenu</i18n></th>
 					<td>
 						<input type="checkbox" name="showsidemenu" '.($_SESSION[MSID]['config']['showsidemenu']==1 ? 'checked' : '').'>
 					</td>
@@ -118,8 +112,8 @@
 				</tr>
 			</table>
 			<div class="footer">
-				<button onclick="pi.request(\'data\',\'ChangePassword\')" '.($_SESSION[MSID]['config']['use_pwd']==0 ? 'disabled' : '').'><i class="mdi mdi-key-change"></i> Cambia Password</button>
-				<button onclick="pi.request(\'data\',\'Save\')"><i class="mdi mdi-content-save"> </i>Salva modifiche</button>
+				<button onclick="pi.request(\'data\',\'ChangePassword\')" '.($_SESSION[MSID]['config']['use_pwd']==0 ? 'disabled' : '').'><i class="mdi mdi-key-change"></i> <i18n>btn:changePwd</i18n></button>
+				<button onclick="pi.request(\'data\',\'Save\')"><i class="mdi mdi-content-save"> </i> <i18n>btn:saveMod</i18n></button>
 			</div>
 		</div>';
 	}

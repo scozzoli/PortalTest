@@ -10,10 +10,12 @@ class PiSD{
 	private $opt;
 	private $modules;
 	private $users;
+	private $i18n;
 	//private $moduleLoad;
 	//private $db;
 	private $inited;
 	private $sysConfig;
+	public $usr;
 	
 	public function __construct(){
 		$this->opt = array(
@@ -23,14 +25,15 @@ class PiSD{
 				"subtitle"	=> "Strumenti Aggiuntivi per la Gestione dell'Informazione",
 				"ico"		=> "",
 				"ico-type"	=> "image/png",
-				"charset"	=> "ISO-8859-1",
+				"charset"	=> "UTF-8",//"ISO-8859-1",
 				"BaseURL"	=> "http://",
 				"BasePage"	=> "index.php",
 				"MID"		=> false,//"SYS_Login", //Strumento di default
 				"GID"		=> false,//Gruppo menu di default
 				"MSID"		=> "PI_MAIN_SESSION_ID", // Nome della variabile di sessione di principale
 				"logo"		=> "mdi-camera-iris",
-				"logoFont"	=> "mdi"
+				"logoFont"	=> "mdi",
+				"i18n"		=> false // indica se i nomi di sistema siano gestiti con i18n lato client (OLD),
 		);
 		
 		$this->sysConfig = new PiSystem('./settings/');
@@ -40,6 +43,7 @@ class PiSD{
 		$this->modules = false;
 		$this->users = false;
 		$this->inited = false;
+		$this->i18n = false;
 	}
 	public function set($iKey,$iVal){
 		if(!array_key_exists($iKey,$this->opt)){
@@ -89,7 +93,7 @@ class PiSD{
 			$this->menu = false;
 			return false;
 		}
-		
+		$this->i18n = $this->sysConfig->loadI18n();
 		$grp = $this->sysConfig->loadGrp();
 		$mod = $this->sysConfig->loadMod();
 		$allMenus = $this->sysConfig->loadMenu();
@@ -128,7 +132,7 @@ class PiSD{
 			}
 			
 			$out[$k] = array(
-				"des"	=> $v["BASE64"] != 0 ? base64_decode($v["des"]) : $v["des"],
+				"des"	=>  $v["des"],
 				"list"	=> $tmpList,
 				"chklist" => $chkList,
 				"hidden" => $v['hidden']
@@ -205,7 +209,33 @@ class PiSD{
 		return('mdi '.$this->modules[$iMID]['icon']);
 	}
 	
+	private function getString($iStr,$iScope){
+		if($this->opt['i18n']){
+			if($iStr){
+				if($iScope == 'menu'){
+					return '<i18n scope="sys">menu:'.$this->usr['menu'].':'.$iStr.'</i18n>';
+				}else{					
+					return '<i18n scope="sys">'.$iScope.':'.$iStr.'</i18n>';
+				}
+			}else{
+				return false;
+			}
+		}else{
+			switch($iScope){
+				case 'mod':  return htmlentities($this->getLangString($this->modules[$iStr]['nome']));
+				case 'des':  return htmlentities($this->getLangString($this->modules[$iStr]['des']));
+				case 'menu': return htmlentities($this->getLangString($this->menu[$iStr]["des"]));
+			}
+		}
+	}
 	
+	private function getLangString($iCfg){
+		$tr = $iCfg[$this->usr['lang']] ?: '';
+		if(trim($tr) == ''){
+			$tr = $iCfg[$this->i18n['defaultLang']] ?: '';
+		}
+		return $tr;
+	}
 	/// Metodi pubblici di output
 	
 	public function renderList(){
@@ -215,8 +245,8 @@ class PiSD{
 			
 			$out .= '<a class="pi-mod pi-state-'.strtolower($v['stato']).'" href="'.$link.'">';
 			$out .= '<div class="pi-icon"><i class="'.$this->getModuleIcon($v['id']).'"></i></div>';
-			$out .= '<div class="pi-name">'.htmlentities($v['nome']).'</div>';
-			$out .= '<div class="pi-descr">'.htmlentities($v['des']).'</div>';
+			$out .= '<div class="pi-name">'.$this->getString($v['id'],'mod').'</div>';
+			$out .= '<div class="pi-descr">'.$this->getString($v['id'],'des').'</div>';
 			$out .= '</a>';
 		}
 		$out.='</div>';
@@ -227,11 +257,11 @@ class PiSD{
 		$mod = $this->modules[$this->opt['MID']];
 		$sidemenu = $this->usr['showsidemenu'] == 0 ? 'pi-hide-menu' : '';
 		
-		$title = $this->opt["title"] ?: $mod['nome'];
-		$title = $title ?: $this->menu[$this->opt["GID"]]["des"];
+		$title = $this->opt["title"] ?: $this->getString($this->opt['MID'],'mod'); // $mod['nome'];
+		$title = $title ?: $this->getString($this->opt['GID'],'menu'); //$this->menu[$this->opt["GID"]]["des"];
 		$crlf = "\n";
 		$out = '<!DOCTYPE html>';
-		$out.= $crlf.'<html><head><title>'.$title.'</title>';
+		$out.= $crlf.'<html><head><title>'.str_replace(Array('<i18n scope="sys">','</i18n>'),Array('',''),$title).'</title>';
 		$out.= $crlf.'<meta http-equiv="Content-Type" content="text/html" charset="'.$this->opt["charset"].'" />';
 		$out.= $crlf.'<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=2">';
 		if($mod){
@@ -257,22 +287,22 @@ class PiSD{
 		}else{ //nel caso mi si passi un logo nel formato webfont
 			$out.= $crlf.'			<div class="pi-logo"><img src="'.$this->opt['logo'].'"></div>';
 		}
-		$out.= $crlf.'			<div class="pi-title">'.htmlentities($mod ? $mod["nome"] : $title).'</div>';
-		$out.= $crlf.'			<div class="pi-descr">'.htmlentities($mod ? $mod["des"] : $this->opt["subtitle"]).'</div>';
+		$out.= $crlf.'			<div class="pi-title">'.($mod ? $this->getString($this->opt['MID'],'mod') : $title).'</div>';
+		$out.= $crlf.'			<div class="pi-descr">'.($mod ? $this->getString($this->opt['MID'],'des') : $this->opt["subtitle"]).'</div>';
 		$out.= $crlf.'			<div class="pi-menu">';
 		$out.= $crlf.'				<ul>';
 		foreach($this->menu as $k => $v){
 			if($v['hidden'] ?: 0 == 1){ continue; }
 			$style = $k == $this->opt['GID'] ? 'pi-selected' : '';
 			$out.= $crlf.'					<li class="'.$style.'">';
-			$out.= $crlf.'						<a href="./index.php?GID='.$k.'">'.htmlentities($v['des']).'</a>';
+			$out.= $crlf.'						<a href="./index.php?GID='.$k.'">'.$this->getString($k,'menu').'</a>';
 			$out.= $crlf.'						<ul>';
 			foreach($v['list'] as $idx => $voice){
 				$link = $this->opt["BaseURL"].$this->opt["BasePage"].'?GID='.$k.'&MID='.$voice['id'];
 				$out.= $crlf.'							<li class="pi-voice">';
 				$out.= $crlf.'								<a href="'.$link.'">';
 				$out.= $crlf.'									<i class="'.$this->getModuleIcon($voice['id']).'"> </i>';
-				$out.= $crlf.'									<div class="pi-title">'.htmlentities($voice['nome']).'</div>';
+				$out.= $crlf.'									<div class="pi-title">'.$this->getString($voice['id'],'mod').'</div>';
 				//$out.= $crlf.'									<div class="pi-descr">'.htmlentities($voice['des']).'</div>';
 				$out.= $crlf.'								</a>';
 				$out.= $crlf.'							</li>';
@@ -292,20 +322,20 @@ class PiSD{
 			$out.= $crlf.'				<a href="'.$link.'">';
 			$out.= $crlf.'					<li class="'.$style.'">';
 			$out.= $crlf.'						<div class="pi-icon"> <i class="'.$this->getModuleIcon($voice['id']).'"> </i> </div>';
-			$out.= $crlf.'						<div class="pi-title"> '.htmlentities($voice['nome']).' </div>';
-			$out.= $crlf.'						<div class="pi-descr"> '.htmlentities($voice['des']).' </div>';
+			$out.= $crlf.'						<div class="pi-title"> '.$this->getString($voice['id'],'mod').' </div>';
+			$out.= $crlf.'						<div class="pi-descr"> '.$this->getString($voice['id'],'des').' </div>';
 			$out.= $crlf.'					</li>';
 			$out.= $crlf.'				</a>';
 		}
 		$out.= $crlf.'			</ul>';
 		$out.= $crlf.'		</div>';
 		$out.= $crlf.'		<span id="Pi_Mod_Vars">';
-		if($mod){ 
-			//$out.= $crlf.'			<input type="hidden" name="root" value="'.str_repeat('../',substr_count($mod['path'],'/')+1).'">';
-			$out.= $crlf.'			<input type="hidden" name="MSID" value="'.$this->opt['MSID'].'">';
-			$out.= $crlf.'			<input type="hidden" name="SID" value="PI_MOD_'.($this->opt['MID'] ?: 'null').'">';
-			$out.= $crlf.'			<input type="hidden" name="module" value="'.$mod['path'].'">';
-		}
+
+		//$out.= $crlf.'			<input type="hidden" name="root" value="'.str_repeat('../',substr_count($mod['path'],'/')+1).'">';
+		$out.= $crlf.'			<input type="hidden" name="MSID" value="'.$this->opt['MSID'].'">';
+		$out.= $crlf.'			<input type="hidden" name="SID" value="PI_MOD_'.($this->opt['MID'] ?: 'null').'">';
+		$out.= $crlf.'			<input type="hidden" name="module" value="'.($mod ? $mod['path'] : '' ).'">';
+
 		$out.= $crlf.'		</span>';
 		$out.= $crlf.'		<div class="pi-content">'.$iContent.'</div>';
 		$out.= $crlf.'	</div>';

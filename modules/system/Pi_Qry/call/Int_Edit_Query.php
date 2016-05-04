@@ -66,7 +66,7 @@
 	
 	$ddGrp ='<select name="grp" class="ale">';
 	foreach($grp_list as $k => $v){
-		$ddGrp.='<option value="'.$k.'">'.$k.' - '.$v["nome"].'</option>';
+		$ddGrp.='<option value="'.$k.'">'.$k.' - '.$sysConfig->i18nGet($v["nome"]).'</option>';
 	}
 	$ddGrp.='</select>';
 	
@@ -207,10 +207,10 @@
 	$js="$('#hideShowMetadataButton').on('click',function(e){
 		var button = $('#hideShowMetadataButton');
 		if($('#metadataList').css('display') == 'none'){
-			$('#metadataList').show('fast');
+			$('#metadataList').slideDown('fast');
 			button.html('<i class=\"mdi mdi-eye-off\"></i> Nascondi ');
 		}else{
-			$('#metadataList').hide('fast');
+			$('#metadataList').slideUp('fast');
 			button.html('<i class=\"mdi mdi-eye\"></i> Mostra ');
 		}
 	});	

@@ -4,6 +4,8 @@
 	$usr_list = $sysConfig->loadUsr();
 	$menu_list = $sysConfig->loadMenu();
 	
+	$lang_list = getLangList($pr);
+	
 	$usr = $pr->post("ID",'');//$_POST["ID"];
 	if($usr == ''){
 		$usr = false;
@@ -24,6 +26,7 @@
 			'acc_err' => '0',
 			'acc_dis' => '0',
 			'acc_priv' => '0',
+			'lang' => $lang_List['defaultLang'],
 			'extension' => array()
 		);
 	}
@@ -65,15 +68,22 @@
 	}
 	$ddDB .= '</select>';
 	
+	// creo la dropdown delle lingue
+	$ddLang ='<select name="lang">';
+	foreach($lang_list['langs'] as $k => $v){
+		$ddLang .='<option value="'.$k.'">'.$k.' - '.$v['des'].'</option>';
+	}
+	$ddLang .='</select>';
+	
 	
 	$tb_grp='<table class="lite '.($usr_list[$usr]['grpdef']==1 ? 'green' : 'red').'" id="usr_grant_table">
 			<tr>	
-				<th>Codice Grp</th>
-				<th>Gruppo</th>
-				<th>Descrizione</th>
+				<th><i18n>usr:win:groupCode</i18n></th>
+				<th><i18n>usr:win:group</i18n></th>
+				<th><i18n>usr:win:description</i18n></th>
 				<th style="text-align:center;" title="Valore di Delault">Def</th>
-				<th style="text-align:center;" title="Nessun Permesso"> No</th>
-				<th style="text-align:center;" title="Permesso Standard">Si</th>
+				<th style="text-align:center;" title="Nessun Permesso"> <i18n>no</i18n></th>
+				<th style="text-align:center;" title="Permesso Standard"><i18n>yes</i18n></th>
 			</tr>';
 	foreach($grp_list as $kg => $vg){
 		$lev = isset($usr_list[$usr]['grp'][$kg]) ? $usr_list[$usr]['grp'][$kg] : -1;
@@ -82,8 +92,8 @@
 			<td>
 				'.$kg.'	
 			</td>
-			<td>'.$vg['nome'].'</td>
-			<td>'.$vg['des'].'</td>
+			<td>'.$sysConfig->i18nGet($vg['nome']).'</td>
+			<td>'.$sysConfig->i18nGet($vg['des']).'</td>
 			<td style="text-align:center;">
 				<input type="radio" name="Grp-dett-'.$kg.'" '.($lev==-1 ? 'checked' :'').' value="-1" onclick="this.parentNode.parentNode.setAttribute(\'class\',\'\')">
 			</td>
@@ -121,11 +131,11 @@
 	$out ='	<div id="user_del"><input type="hidden" name="Q" value="Usr_Del"><input type="hidden" name="UID" value="'.$usr.'" ></div>
 	<div id="user_mod" style="text-align:left;">
 		<div data-pi-component="tabstripe">
-			<div data-pi-tab="Dettaglio">	
-				<div class="focus blue"> Modifica i dettagli del Dell\'utente <b>'.$usr_list[$usr]['nome'].'</b></div>
+			<div data-pi-i18n="usr:win:detail">	
+				<div class="focus blue"> <i18n>usr:win:info;'.$usr_list[$usr]['nome'].'</i18n></div>
 				<table class="form separate">
 					<tr>
-						<th style="text-align:right" > User Id </th>
+						<th style="text-align:right" > <i18n>usr:win:lblUid</i18n></th>
 						<td>
 							<input type="text" name="New-Uid" class="ale" value="'.$usr.'" id="UID">
 							<input type="hidden" name="Old-Uid" value="'.$usr.'">
@@ -133,88 +143,91 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Nome </th>
+						<th style="text-align:right" > <i18n>usr:win:lblName</i18n></th>
 						<td> <input type="text" name="nome" style="width:300px;"></td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Email </th>
+						<th style="text-align:right" > <i18n>usr:win:lblEmail</i18n></th>
 						<td> <input type="text" name="email" value="" style="width:300px;"></td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Usa Password </th>
+						<th style="text-align:right" > <i18n>usr:win:lblUsePwd</i18n></th>
 						<td> <input type="checkbox" name="use_pwd" > </td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Password </th>
-						<td> <input type="password" name="pwd" > attuale md5 [ '.$usr_list[$usr]['pwd'].' ]</td>
+						<th style="text-align:right" > <i18n>usr:win:lblPwd</i18n></th>
+						<td> <input type="password" name="pwd" > md5 [ '.$usr_list[$usr]['pwd'].' ]</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Stile </th>
+						<th style="text-align:right" > <i18n>usr:win:lblLang</i18n></th>
+						<td> '.$ddLang.'</td>
+					</tr>
+					<tr>
+						<th style="text-align:right" > <i18n>usr:win:lblStyle</i18n></th>
 						<td> '.$ddTheme.'</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Menu laterale </th>
+						<th style="text-align:right" > <i18n>usr:win:lblSideMenu</i18n></th>
 						<td> <input type="checkbox" name="showsidemenu" > </td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > DB Default </th>
+						<th style="text-align:right" > <i18n>usr:win:lblDBDef</i18n></th>
 						<td> '.$ddDB.'</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Menu associato </th>
+						<th style="text-align:right" > <i18n>usr:win:lblMenu</i18n></th>
 						<td> '.$ddMenu.'</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > Protocolli </th>
+						<th style="text-align:right" > <i18n>usr:win:lblProtocol</i18n> </th>
 						<td>
 							<table>
 								<tr>
 									<td><input type="checkbox" name="http" ></td>
-									<td>Abilita il <b>Protocollo HTTP (uso interno)</b></td>
+									<td><i18n>usr:win:lblHttpDes</i18n></td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" name="https"></td>
-									<td>Abilita il <b>Protocollo HTTPS (Per accesso esterno)</b></td>
+									<td><i18n>usr:win:lblHttpsDes</i18n></td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 				</table>
 			</div>
-			<div data-pi-tab="Permessi">
+			<div data-pi-i18n="usr:win:grants">
 				<div class="focus green">
-					Gestione dei permessi sui gruppi
+					<i18n>usr:win:infoGrants</i18n>
 				</div>
 				<table class="form separate">
 					<tr>
 						<td style="border-bottom:1px #888 solid;"><input type="checkbox" name="grpdef" onClick="if(this.checked){$(\'#usr_grant_table\').attr(\'class\',\'green lite\');}else{$(\'#usr_grant_table\').attr(\'class\',\'red lite\');}"></td>
-						<td colspan="3" style="border-bottom:1px #888 solid;">Accesso di default a tutti i <b>gruppi</b> (se non specificato diversamente)</td>
+						<td colspan="3" style="border-bottom:1px #888 solid;"><i18n>usr:win:lblgrpdef</i18n></td>
 					</tr>
 					<tr>
 						<td><input type="checkbox" name="acc_dev" ></td>
-						<td>Accedi ai moduli in <b>sviluppo</b></td>
+						<td><i18n>usr:win:lblDevModules</i18n> </td>
 						<td><input type="checkbox" name="acc_err" ></td>
-						<td>Accedi ai moduli con <b>errori</b></td>
+						<td><i18n>usr:win:lblErrModules</i18n></td>
 					</tr>
 					<tr>
 						<td><input type="checkbox" name="acc_dis"></td>
-						<td>Accedi ai moduli <b>disabilitati</b></td>
+						<td><i18n>usr:win:lblDisModules</i18n></td>
 						<td><input type="checkbox" name="acc_priv"></td>
-						<td>Accedi ai moduli <b>privati</b></td>
+						<td><i18n>usr:win:lblPrivModules</i18n></td>
 					</tr>
 				</table>
 				<input type="hidden" name="Grp-key-list" value="'.implode(':',array_keys($grp_list)).'">'.$tb_grp.'
 			</div>
-			<div data-pi-tab="Estensioni">
+			<div data-pi-i18n="usr:win:extension">
 				<div class="focus purple">
 					<table class="form">
 						<tr>
 							<td>
-								Valori aggiuntivi. Per eliminare una voce basta cancellare la chiave.<br> 
-								NB: le chiavi sono <b>Case Sensitive</b>
+								<i18n>usr:win:infoExtension</i18n>
 							</td>
 							<th>
-								<button class="purple" id="addExtensionOnClick"><i class="mdi mdi-playlist-plus"></i> Aggiungi </button>
+								<button class="purple" id="addExtensionOnClick"><i class="mdi mdi-playlist-plus"></i> <i18n>add</i18n> </button>
 								<input type="hidden" id="ExtenzionCounter" value="'.$extListIdx.'">
 							</th>
 						</tr>
@@ -226,9 +239,9 @@
 			</div>
 		</div>
 	</div>';
-	$footer='<button class="red" onclick="pi.win.close()">Annulla</button>
-			<button class="red" onclick="pi.chk(\'Eliminare <b>'.$usr.'</b> ?\').requestOnModal(\'user_del\')">Cancella Utente</button>
-			<button class="green" onclick="pi.requestOnModal(\'user_mod\')"> Salva </button>';
+	$footer='<button class="red" onclick="pi.win.close()"><i18n>cancel</i18n></button>
+			<button class="red" onclick="pi.chk(\'<i18n>usr:chk:deleteUser;'.$usr.'</i18n>\').requestOnModal(\'user_del\')"><i18n>usr:win:btnDelete</i18n></button>
+			<button class="green" onclick="pi.requestOnModal(\'user_mod\')"> <i18n>save</i18n> </button>';
 	
 	$fillVars['themeselector'] = $usr_list[$usr]['theme'].':'.$usr_list[$usr]['style'];
 	unset($fillVars['pwd']);

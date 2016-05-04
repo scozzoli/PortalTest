@@ -1,18 +1,34 @@
 {
     "guest": {
-        "nome": "Ospiti",
-        "des": "Strumenti pubblici"
+        "nome": {
+            "it": "Ospiti"
+        },
+        "des": {
+            "it": "Strumenti pubblici"
+        }
     },
     "pub": {
-        "nome": "Pubblico",
-        "des": "Gruppo Pubblico"
+        "nome": {
+            "it": "Pubblico"
+        },
+        "des": {
+            "it": "Gruppo Pubblico"
+        }
     },
     "qry": {
-        "nome": "Query",
-        "des": "Gruppo per la gestione delle query"
+        "nome": {
+            "it": "Query"
+        },
+        "des": {
+            "it": "Gruppo per la gestione delle query"
+        }
     },
     "sys": {
-        "nome": "System",
-        "des": "Strumenti di sistema"
+        "nome": {
+            "it": "System"
+        },
+        "des": {
+            "it": "Strumenti di sistema"
+        }
     }
 }

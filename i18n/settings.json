@@ -1,0 +1,25 @@
+{
+	"defaultLang" : "it",
+	"langs" : {
+		"it" : {
+			"des" : "Italiano",
+			"iso" : "IT",
+			"icon" : "flags/it.png"
+		},
+		"en" : {
+			"des" : "English",
+			"iso" : "GB",
+			"icon" : "flags/gb.png"
+		},
+		"fr" : {
+			"des" : "Fran\u00e7ais",
+			"iso" : "FR",
+			"icon" : "flags/fr.png"
+		},
+		"es" : {
+			"des" : "Espa\u00f1ol",
+			"iso" : "ES",
+			"icon" : "flags/es.png"
+		}
+	}
+}

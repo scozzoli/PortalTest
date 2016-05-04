@@ -4,7 +4,7 @@
 	include $pr->getRootPath('lib/Pi.System.php');
 	
 	$db = new PiDB($pr->getDB(),$pr);
-	$sysConfig = new PiSystem($pr->getRootPath('settings/'));
+	$sysConfig = new PiSystem($pr->getRootPath('settings/'),$pr->getUsr('lang'));
 	
 	/*
 		Struttura dei file delle query:

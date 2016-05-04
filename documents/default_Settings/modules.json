@@ -1,51 +1,127 @@
 {
     "Pi_DB_Utility": {
-        "nome": "DB Utility",
-        "des": "Utilit\u00e0\u00a0per i DB ",
+        "nome": {
+            "it": "DB Utility",
+            "en": "DB Utility",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Utilit\u00e0\u00a0per i DB ",
+            "en": "Utility for DB",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_DB_Utility",
         "icon": "mdi-database",
         "stato": "DEV",
         "grp": "sys"
     },
+    "Pi_I18n": {
+        "nome": {
+            "it": "Traduzioni",
+            "en": "Translation",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Gestione delle traduzioni",
+            "en": "Management of translations",
+            "fr": "",
+            "es": ""
+        },
+        "path": "system\/Pi_I18n",
+        "icon": "mdi-google-translate",
+        "stato": "ATT",
+        "grp": "sys"
+    },
     "Pi_Info": {
-        "nome": "Informazioni",
-        "des": "Informazioni generali e contributi",
+        "nome": {
+            "it": "Informazioni",
+            "en": "Information",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Informazioni generali e contributi",
+            "en": "Info, credits and contributions",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_Info",
         "icon": "mdi-camera-iris",
         "stato": "ATT",
         "grp": "pub"
     },
     "Pi_Login": {
-        "nome": "Login",
-        "des": "Autenticazione",
+        "nome": {
+            "it": "Login",
+            "en": "Login",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Autenticazione",
+            "en": "Autentication",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_Login",
         "icon": "mdi-account",
-        "color": "blue",
         "stato": "ATT",
         "grp": "guest"
     },
     "Pi_Qry": {
-        "nome": "Gestione Interrogazioni",
-        "des": "Gestione delle interrogazioni personalizzate sul DB",
+        "nome": {
+            "it": "Gestione Interrogazioni",
+            "en": "Query management",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Gestione delle interrogazioni personalizzate sul DB",
+            "en": "Management for user defined query",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_Qry",
         "icon": "mdi-comment-text",
         "stato": "ATT",
         "grp": "sys"
     },
     "Pi_Settings": {
-        "nome": "Impostazioni",
-        "des": "Gestione dei permessi, gruppi, moduli e DB",
+        "nome": {
+            "it": "Impostazioni",
+            "en": "Settings",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Gestione dei permessi, gruppi, moduli e DB",
+            "en": "Settings of grants, users, modules ad DB",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_Settings",
         "icon": "mdi-settings",
         "stato": "PRIV",
         "grp": "sys"
     },
     "test": {
-        "nome": "Prova Tecnica",
-        "des": "Strumento generico di test per gli stili dei fogli css",
+        "nome": {
+            "it": "Prova Tecnica",
+            "en": "Test module",
+            "fr": "",
+            "es": ""
+        },
+        "des": {
+            "it": "Strumento generico di test per gli stili dei fogli css",
+            "en": "Module only for test",
+            "fr": "",
+            "es": ""
+        },
         "path": "system\/Pi_Test",
         "icon": "mdi-help-circle",
-        "color": "blue",
         "stato": "ATT",
         "grp": "sys"
     }

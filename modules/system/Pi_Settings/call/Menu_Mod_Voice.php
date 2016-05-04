@@ -5,6 +5,7 @@
 	$oid = $pr->post('Old-Id');
 	
 	$menu_list = $sysConfig->loadMenu();
+	$i18n = $sysConfig->loadI18n();
 	$menu = $pr->post('menu');
 	
 	if($id == ''){
@@ -15,10 +16,12 @@
 		if(isset($menu_list[$menu][$id])){$pr->addAlertBox('Il codice ordinamento esiste gi&aacute;! ')->set('CloseWin',false)->response();}
 	}
 	
-	$menu_list[$menu][$id]['BASE64'] = $pr->post('BASE64');
 	$menu_list[$menu][$id]['hidden'] = $pr->post('hidden');
 	$menu_list[$menu][$id]['list'] = $menu_list[$menu][$oid]['list'] ?: Array();
-	$menu_list[$menu][$id]['des'] = ($pr->post('BASE64')==1 ? base64_encode($pr->post('des')) : $pr->post('des'));
+	
+	foreach($i18n['langs'] as $k => $v){
+		$menu_list[$menu][$id]['des'][$k] = $pr->post("des_{$k}");
+	}
 	
 	if($oid != $id){
 		unset($menu_list[$menu][$oid]);

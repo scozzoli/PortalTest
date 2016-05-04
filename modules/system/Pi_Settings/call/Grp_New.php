@@ -1,7 +1,17 @@
 <?php
 	$grp_list = $sysConfig->loadGrp();
-	if(isset($grp_list[$pr->post('ID')])){$pr->addAlertBox('Il codice Gruppo inserito non &eacute; univoco.')->response();}
-	$grp_list[$pr->post('ID')] = array('nome' => $pr->post('nome'), 'des' => $pr->post('des'));
+	if(isset($grp_list[$pr->post('id')])){$pr->addAlertBox('Il codice Gruppo inserito non &eacute; univoco.')->response();}
+	//$grp_list[$pr->post('id')] = array('nome' => $pr->post('nome'), 'des' => $pr->post('des'));
+	
+	$i18n = $sysConfig->loadI18n();
+	
+	$grp_list[$pr->post('id')] = array('nome' => array(), 'des' => array());
+	
+	foreach($i18n['langs'] as $k => $v){
+		$grp_list[$pr->post('id')]['nome'][$k] = $pr->post("nome_{$k}");
+		$grp_list[$pr->post('id')]['des'][$k] = $pr->post("des_{$k}");
+	}
+	
 	$sysConfig->saveGrp($grp_list);
 	$pr->addScript('pi.requestOnLoad("cerca_gruppo");')->response();
 ?>
