@@ -17,6 +17,7 @@
 	$sd->includeLib('./lib/js/jquery.sortElements.js');
 	$sd->includeLib('./lib/js/jquery.datetimepicker.full.min.js');
 	$sd->includeLib('./lib/js/shortcuts.js');
+	$sd->includeLib('./lib/js/micromarkdown.min.js');
 	$sd->includeLib('./lib/Pi.JS-1.2.js');
 	$sd->includeLib('./lib/Pi.Component.Tablesort.js');
 	$sd->includeLib('./lib/Pi.Component.Datepicker.js');
@@ -60,7 +61,7 @@
 	}
 	
 	/** Fine Controlli personalizzati */
-	$sd->includeScript('$(document).ready(pi.component.apply);');
+	$sd->includeScript('$(document).ready(pi.init);');
 	if($sd->get('MID')){
 		$sd->includeLib($sd->getModulePath().'/script.js');
 		if(file_exists($sd->getModulePath().'/remote.php')){
