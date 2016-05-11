@@ -145,6 +145,20 @@ table{
 	}
 	
 	&.fix{
+		
+		&.nohover > tbody > tr{
+			&:hover > td {
+				background-color:inherit; 
+			}
+			
+			&.red:hover > td { background-color:@Red-C1; }
+			&.blue:hover > td { background-color:@Blue-C1; }
+			&.green:hover > td { background-color:@Green-C1; }
+			&.orange:hover > td { background-color:@Orange-C1; }
+			&.purple:hover > td { background-color:@Purple-C1; }
+		}
+		
+		
 		& > tbody > tr {
 			&.red, &.blue, &.green, &.orange, &.purple, &{
 				&:hover{
