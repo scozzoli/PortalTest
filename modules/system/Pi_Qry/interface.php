@@ -12,7 +12,7 @@
 	if($_SESSION[MSID]['usr'] == 'root'){
 		$showNewButton = true;
 	}else{
-		$showNewButton = ($_SESSION[MSID]['config']['grp']['qry'] ?: $_SESSION[MSID]['config']['grpdef']['qry']) == 1;
+		$showNewButton = ($_SESSION[MSID]['config']['grp']['qry'] ?: $_SESSION[MSID]['config']['grpdef']) == 1;
 	}
 	
 	$insNew = $showNewButton ? '<button class="blue" onclick="pi.request(null,\'Int_Edit_Query\')"><i class="mdi mdi-note-plus"></i> Nuova Interrogazione</button>' : '';
