@@ -1,4 +1,5 @@
 <?php
+	$sd->includeLib('./lib/Pi.Component.Calendar.js');
 	$interface = '<div class="panel blue">
 				Elenco degli stili applicabili
 			</div>
@@ -9,6 +10,7 @@
 				<button onclick="pi.request(null,\'Show_Table\')">Stili Tabelle</button>
 				<button onclick="pi.request(null,\'Show_Modal\')">Stili Finestre</button>
 				<button onclick="pi.request(null,\'Show_Icons\')">Material Icons</button>
+				<button onclick="pi.request(null,\'Show_Cal\')">Calendario</button>
 			</div>			
 			<div id="container" style="height:100%">
 				<div class="panel" data-pi-component="collapse">

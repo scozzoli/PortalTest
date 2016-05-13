@@ -125,3 +125,84 @@
 i18n{
 	opacity:0;
 }
+
+// Calendar
+&.calendar{
+	
+	& > tbody > tr {
+		& > td {
+			vertical-align: top;
+			width: 12%;
+			color:black;
+			height: 80px;
+			
+			&.thisday{
+				border-width: medium;
+				
+				&> .day {
+					font-weight:bold;
+				}
+			}
+			
+			&.nomonth{
+				color: @Main-C1;
+			}
+			
+			&> .day{
+				font-size: x-large;
+				text-align: right;
+				float: right;
+				font-style: italic;
+				margin-right: 5px;
+			}
+			& > .event {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				margin:3px;
+				&:before{
+					content: " ";
+					float: left;
+					width: 14px;
+					height: 14px;
+					border-radius: 50%;
+					background-color: @Main-C3;
+					top:0;
+					margin-right: 5px;
+				}
+
+				&.red { 
+					color: @Res-C3; 
+					&:before { background-color: @Red-C3; }
+				}
+				&.blue{ 
+					color: @Blue-C3; 
+					&:before { background-color: @Blue-C3; }
+				}
+				&.green { 
+					color: @Green-C3; 
+					&:before { background-color: @Green-C3; }
+				}
+				&.orange { 
+					color: @Orange-C3; 
+					&:before { background-color: @Orange-C3; }
+				}
+				&.purple { 
+					color: @Purple-C3; 
+					&:before { background-color: @Purple-C3; }
+				}
+			}
+			&.red > .day{ color: @Res-C3; }
+			&.blue > .day{ color: @Blue-C3; }
+			&.green > .day{ color: @Green-C3; }
+			&.orange > .day{ color: @Orange-C3; }
+			&.purple > .day{ color: @Purple-C3; }
+		}
+	}
+	
+	&.red > tbody > tr > td.nomonth { color:@Red-C1; }
+	&.blue > tbody > tr > td.nomonth { color:@Blue-C1; }
+	&.green > tbody > tr > td.nomonth { color:@Green-C1; }
+	&.orange > tbody > tr > td.nomonth { color:@Orange-C1; }
+	&.purple > tbody > tr > td.nomonth { color:@Purple-C1; }
+}
