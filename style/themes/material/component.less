@@ -127,7 +127,7 @@ i18n{
 }
 
 // Calendar
-&.calendar{
+.calendar{
 	
 	& > tbody > tr {
 		& > td {
@@ -163,11 +163,11 @@ i18n{
 				&:before{
 					content: " ";
 					float: left;
-					width: 14px;
-					height: 14px;
+					width: 6px;
+					height: 6px;
 					border-radius: 50%;
 					background-color: @Main-C3;
-					top:0;
+					margin-top: 4px;
 					margin-right: 5px;
 				}
 
@@ -200,9 +200,49 @@ i18n{
 		}
 	}
 	
-	&.red > tbody > tr > td.nomonth { color:@Red-C1; }
-	&.blue > tbody > tr > td.nomonth { color:@Blue-C1; }
-	&.green > tbody > tr > td.nomonth { color:@Green-C1; }
-	&.orange > tbody > tr > td.nomonth { color:@Orange-C1; }
-	&.purple > tbody > tr > td.nomonth { color:@Purple-C1; }
+	&.red > tbody > tr > td { 
+		&.nomonth{
+			color:@Red-C1; 
+		}
+		&.thisday{
+			border-color: @Red-C3;
+			border-width: 3px;
+		}
+	}
+	&.blue > tbody > tr > td { 
+		&.nomonth{
+			color:@Blule-C1; 
+		}
+		&.thisday{
+			border-color: @Blue-C3;
+			border-width: 3px;
+		}
+	}
+	&.green > tbody > tr > td { 
+		&.nomonth{
+			color:@Green-C1; 
+		}
+		&.thisday{
+			border-color: @Green-C3;
+			border-width: 3px;
+		}
+	}
+	&.orange > tbody > tr > td { 
+		&.nomonth{
+			color:@Orange-C1; 
+		}
+		&.thisday{
+			border-color: @Orange-C3;
+			border-width: 3px;
+		}
+	}
+	&.purple > tbody > tr > td { 
+		&.nomonth{
+			color:@Purple-C1; 
+		}
+		&.thisday{
+			border-color: @Purple-C3;
+			border-width: 3px;
+		}
+	}
 }
