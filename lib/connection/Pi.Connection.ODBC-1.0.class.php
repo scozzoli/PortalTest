@@ -5,7 +5,7 @@
 class PiConnectionODBC extends PiConnection{
 	
 	public function connect(){
-		$this->link = odbc_connect($this->src["dns"],$this->src["dbuser"],$this->src["dbpwd"]) or or $this->error('Errore nella connessione al server ODBC : '.$this->src["server"]);
+		$this->link = odbc_connect($this->src["dns"],$this->src["dbuser"],$this->src["dbpwd"]) or $this->error('Errore nella connessione al server ODBC : '.$this->src["server"]);
 		$this->is_connected = true;
 	}
 	
@@ -19,7 +19,7 @@ class PiConnectionODBC extends PiConnection{
 		$raw_data = odbc_exec($this->link,$iQry);
         $i = 0;
         
-        if($this->["associative"]=="matrix"){
+        if($this->opt["associative"]=="matrix"){
 			while($res = odbc_fetch_array($raw_data)){$data[$i++] = array_map($func,$res);}
 		}else{
 			while(odbc_fetch_into($raw_data,$res)){$data[$i++] = array_map($func,$res); unset($res);}
