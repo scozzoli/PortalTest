@@ -77,4 +77,25 @@
 	
 	$sysConfig->saveMenu($tmp);
 	
+	echo '<br><br><h2> Utenti </h2><br>';
+	$tmp = $sysConfig->loadUsr();
+	
+	foreach($tmp as $k => $v){
+		$done = false;
+		
+		if(!isset($v['lang'])){
+			$tmp[$k]['lang'] = 'it';
+			$done = true;
+		}
+		
+		echo $k;
+		if($done){
+			echo '<b> Convertito </b><br>';
+		}else{
+			echo '<b> OK </b><br>';
+		}
+	}
+	
+	$sysConfig->saveMenu($tmp);
+	
 ?>

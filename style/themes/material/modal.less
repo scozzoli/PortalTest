@@ -65,15 +65,19 @@
 	top:0;
 	text-align:center;
 	
+	transition-property: width, height, opacity;
+	
 	&.hide{
-		transition: @Main-Transition;
+		transition: none;
+		transition-property: width, height, opacity;
 		z-index: -1;
 		opacity: 0;
 	}
 	
 	&.pi-loader{
 		.pi-modal-content{
-			//transition: @Main-Transition;
+			transition: @Main-Transition;
+			transition-property: width, height, opacity;
 			opacity: 1;
 			z-index: 200;
 			padding: 10px;
@@ -110,17 +114,19 @@
 			}
 			
 			
-			&.hide{
-				//transition: @Main-Transition;
-				z-index: -1;
-				opacity:0;
-			}
+			//&.hide{
+			//	transition: @Main-Transition;
+			//	transition-property: width, height, opacity;
+			//	z-index: -1;
+			//	opacity:0;
+			//}
 		}
 	}
 	
 	&.pi-message{
 		.pi-modal-content{
-			//transition: @Main-Transition;
+			transition: @Main-Transition;
+			transition-property: width, height, opacity;
 			opacity: 1;
 			padding: 10px;
 			text-align: left;
@@ -136,7 +142,8 @@
 			z-index: 180;
 			
 			&.hide{
-				//transition: @Main-Transition;
+				transition: @Main-Transition;
+				transition-property: width, height, opacity;
 				z-index: -1;
 				opacity:0;
 			}
@@ -196,7 +203,6 @@
 	
 	&.pi-win{
 		.pi-modal-content{
-			//transition: @Main-Transition;
 			opacity: 1;
 			padding: 0;
 			text-align: left;
@@ -211,6 +217,7 @@
 			//height: 300px;
 			z-index: 150;
 			transition: @Main-Transition;
+			transition-property: width, height, opacity;
 			
 			.header{
 				color:@Main-Text-Title;
@@ -228,9 +235,11 @@
 					height: 22px;
 					font-size: 24px;
 					transition: @Main-Transition;
+					transition-property: width, height, opacity;
 					
 					&:hover{
 						transition: @Main-Transition;
+						transition-property: width, height, opacity;
 						background-color: @Red-C3;
 						//color: @Red-C3;
 						cursor: pointer;
@@ -258,11 +267,12 @@
 				}
 			}
 			
-			&.hide{
-				//transition: @Main-Transition;
-				z-index: -1;
-				opacity:0;
-			}
+			//&.hide{
+			//	transition: @Main-Transition;
+			//	transition-property: width, height, opacity;
+			//	z-index: -1;
+			//	opacity:0;
+			//}
 		}
 	}	
 }
