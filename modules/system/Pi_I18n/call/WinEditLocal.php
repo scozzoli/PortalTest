@@ -22,7 +22,7 @@
 			<input type="hidden" name="lang" value="'.$pr->post('lang').'">
 			<input type="hidden" name="scope" value="'.$pr->post('scope').'">
 			<input type="hidden" name="containerId" value="'.$pr->post('containerId').'">
-			<textarea data-pic="markdowneditor" name="txt">'.$dic[$pr->post('key')][$pr->post('lang')].'</textarea>
+			<textarea data-pic="markdowneditor : { autofocus : true }" name="txt">'.$dic[$pr->post('key')][$pr->post('lang')].'</textarea>
 		</div>';
 	$footer = '<button class="red" onClick="pi.win.close();"><i18n>cancel</i18n></button>
 	<button class="blue" onclick="pi.requestOnModal(\'Win_Edit_Lang\')"><i18n>save</i18n></button>';

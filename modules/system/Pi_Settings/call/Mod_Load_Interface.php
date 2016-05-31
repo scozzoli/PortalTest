@@ -10,24 +10,24 @@
 			<tr>
 				<th>
 					<input type="hidden" name="Q" value="Mod_Load_Interface">
-					Nome modulo : 
+					<i18n>mod:iface:nameModule</i18n>
 				</th>
 				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_modulo"> </td>
-				<td> <button class="green" onclick="pi.request(\'cerca_modulo\');"><i class="mdi mdi-magnify"></i> Cerca </button></td>
-				<th> <button class="green" onclick="pi.request(null,\'Mod_Win_Load_Dett\');"><i class="mdi mdi-plus-box"></i> Nuovo Modulo </button> </th>
+				<td> <button class="green" onclick="pi.request(\'cerca_modulo\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
+				<th> <button class="green" onclick="pi.request(null,\'Mod_Win_Load_Dett\');"><i class="mdi mdi-plus-box"></i> <i18n>mod:iface:newMod</i18n> </button> </th>
 			</tr>
 		</table>
 	</div>
 	<table class="lite green">
 		<tr>
-			<th style="width:30px;"> Icona </th>
-			<th>Mod ID</th>
-			<th>Nome</th>
-			<th>Descrizione</th>
-			<th title="Dove si trova fisicamente il modulo" colspan="2">Percorso</th>
-			<th>Stato</th>
-			<th title="Gruppo di appartenenza">Gruppo</th>
-			<th>Modifica</th>
+			<th style="width:30px;"> <i18n>mod:iface:icon</i18n> </th>
+			<th><i18n>mod:iface:modId</i18n></th>
+			<th><i18n>mod:iface:name</i18n></th>
+			<th><i18n>mod:iface:desc</i18n></th>
+			<th title="Dove si trova fisicamente il modulo" colspan="2"><i18n>mod:iface:path</i18n></th>
+			<th><i18n>mod:iface:state</i18n></th>
+			<th title="Gruppo di appartenenza"><i18n>mod:iface:group</i18n></th>
+			<th><i18n>mod:iface:modify</i18n></th>
 		</tr>';
 	foreach($mod_list as $k => $v){
 		
@@ -36,11 +36,11 @@
 		}
 		
 		switch($v['stato']){
-			case 'ATT' : $des_stato = 'Attivo'; 			$class='green'; 	$style='';	break;
-			case 'DEV' : $des_stato = 'Sviluppo';  			$class='orange';	$style='';	break;
-			case 'PRIV': $des_stato = 'Privato';  			$class='purple';	$style='';	break;
-			case 'ERR' : $des_stato = 'Errori Bloccanti'; 	$class='red';		$style='';	break;
-			case 'DIS' : $des_stato = 'Disabilitato'; 		$class='';			$style='color:#888;';	break;
+			case 'ATT' : $des_stato = '<i18n>mod:iface:active</i18n>'; 			$class='green'; 	$style='';	break;
+			case 'DEV' : $des_stato = '<i18n>mod:iface:devel</i18n>';  			$class='orange';	$style='';	break;
+			case 'PRIV': $des_stato = '<i18n>mod:iface:priv</i18n>';  			$class='purple';	$style='';	break;
+			case 'ERR' : $des_stato = '<i18n>mod:iface:error</i18n>';		 	$class='red';		$style='';	break;
+			case 'DIS' : $des_stato = '<i18n>mod:iface:disable</i18n>'; 		$class='';			$style='color:#888;';	break;
 		}
 		$out.='<tr style="'.$style.'">
 				<td class="'.$class.'" style="text-align:center; cursor:pointer;" onclick="pi.request(\'Load_Img_'.$k.'\')">

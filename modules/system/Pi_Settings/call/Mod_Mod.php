@@ -1,9 +1,9 @@
 <?php
 	$mod_list = $sysConfig->loadMod();
 	$i18n = $sysConfig->loadI18n();
-	if(trim($pr->post('New-Id')) == ''){$pr->addAlertBox('Il codice del modulo non deve essere vuoto!')->set('CloseWin',false)->response();}
+	if(trim($pr->post('New-Id')) == ''){$pr->addAlertBox('<i18n>mod:err:notEmpty</i18n>')->set('CloseWin',false)->response();}
 	if($pr->post('New-Id') != $pr->post('Old-Id')){
-		if(isset($mod_list[$pr->post('New-Id')])){$pr->addAlertBox("Il nuovo codice modulo <i class=\"green\">".$pr->post("New-Id")."</i> esiste gi&aacute;!")->set('CloseWin',false)->response();}
+		if(isset($mod_list[$pr->post('New-Id')])){$pr->addAlertBox("<i18n>mod:err:alreadyExists;".$pr->post("New-Id")."</i18n>")->set('CloseWin',false)->response();}
 		unset($mod_list[$pr->post('Old-Id')]);
 	}
 	$mod_list[$pr->post('New-Id')] = array(

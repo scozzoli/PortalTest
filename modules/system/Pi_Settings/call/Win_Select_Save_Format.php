@@ -1,10 +1,10 @@
 <?php
 	
-	$footer = '<button class="red" onclick="pi.win.close()">Annulla</button>';
+	$footer = '<button class="red" onclick="pi.win.close()"><i18n>cancel</i18n></button>';
 	
 	if($pr->getUsr() == 'root'){
 		$edit = '';
-		$footer .= '<button class="blue" onclick="pi.requestOnModal(\'saveformat\')">Salva</button>';
+		$footer .= '<button class="blue" onclick="pi.requestOnModal(\'saveformat\')"><i18n>save</i18n></button>';
 		$call = '<input type="hidden" name="Q" value="Save_Format">';
 	}else{
 		$edit = 'disabled';
@@ -12,8 +12,7 @@
 	}
 	
 	$out='<div class="focus blue">
-		Selezionare il formato con cui salvare i dati di configurazione.<br>
-		&Eacute; comunque consigliabile evitare di rendere pubblica la cartella <b>settings</b> per avere una massima sicurezza.
+		<i18n>cfg:info</i18n>
 	</div>
 	<table class="form separate" id="saveformat">
 		<tr>
@@ -22,18 +21,18 @@
 				'.$call.'
 				<input type="hidden" name="old">
 			</th>
-			<td> <b>json</b> </td>
-			<td> Facile da leggere ed editare a mano e permette un numero indefinito di livelli. Lento nella decodifica</td>
+			<td> <i18n>cfg:lblJson</i18n> </td>
+			<td> <i18n>cfg:desJson</i18n> </td>
 		</tr>
 		<tr>
 			<th><input type="radio" name="format" value="serialize" '.$edit.'></th>
-			<td> <b>serialize PHP</b></td>
-			<td> Velocissimo in lettura e scrittura con la massima flessibilit&aacute;, ma quasi impossibile da lavorare a mano.</td>
+			<td> <i18n>cfg:lblSerializie</i18n></td>
+			<td> <i18n>cfg:desSerializie</i18n></td>
 		</tr>
 		<tr>
 			<th><input type="radio" name="format" value="encripted" '.$edit.'></th>
-			<td> <b>serialize PHP cifrato</b> </td>
-			<td> I file di configurazioni <i>non sono leggibili o modificabili a mano</i>. La cifratura rende pi&uacute; lenta l\'elaborazine della configurazione.</td>
+			<td> <i18n>cfg:lblEncript</i18n></td>
+			<td> <i18n>cfg:desEncript</i18n></td>
 		</tr>
 	</table>';
 	

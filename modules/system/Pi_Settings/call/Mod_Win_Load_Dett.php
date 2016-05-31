@@ -16,9 +16,9 @@
 	unset($fill['des']);
 	$descr = '<table class="lite green">
 		<tr>
-			<th colspan="2">Lingua</th>
-			<th>Nome</th>
-			<th>Descrizione</th>
+			<th colspan="2"><i18n>mod:iface:lang</i18n></th>
+			<th><i18n>mod:iface:name</i18n></th>
+			<th><i18n>mod:iface:desc</i18n></th>
 		</tr>';
 	foreach($i18n['langs'] as $k => $v){
 		$descr .= '<tr>
@@ -34,7 +34,7 @@
 	
 	
 	$out='<div class="green focus">
-			Dettagli del modulo <b>'.$sysConfig->i18nGet($mod_list[$id]["nome"]).'</b>
+			<i18n>mod:win:info;'.$sysConfig->i18nGet($mod_list[$id]["nome"]).'</i18n>
 		</div>
 		<div style="text-align:left;">
 		<div id="Mod_Del">
@@ -44,7 +44,7 @@
 		<div id="mod_mod">
 			<table class="form">
 				<tr>
-					<th>Id Modulo</th>
+					<th><i18n>mod:iface:modId</i18n></th>
 					<td>
 						<input type="text" class="ale" name="New-Id" value="'.$id.'" id="focusme">
 						<input type="hidden" name="Old-Id" value="'.$id.'" id="MID">
@@ -53,23 +53,23 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Percorso</th>
+					<th><i18n>mod:iface:path</i18n></th>
 					<td><input type="text" class="double" name="path"> Usare la barra stile Unix</td>
 				</tr>
 				<tr>
-					<th>Stato</th>
+					<th><i18n>mod:iface:state</i18n></th>
 					<td>
 						<select name="stato">
-							<option value="ATT"> ATT - Attivo</option>
-							<option value="DEV"> DEV - In Sviluppo</option>
-							<option value="ERR"> ERR - Con Errori Critici</option>
-							<option value="PRIV"> PRIV - Privato</option>
-							<option value="DIS"> DIS - Disabilitato</option>
+							<option value="ATT"> ATT - <i18n>mod:iface:active</i18n> </option>
+							<option value="DEV"> DEV - <i18n>mod:iface:devel</i18n> </option>
+							<option value="ERR"> ERR - <i18n>mod:iface:error</i18n> </option>
+							<option value="PRIV"> PRIV - <i18n>mod:iface:priv</i18n> </option>
+							<option value="DIS"> DIS - <i18n>mod:iface:disable</i18n> </option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<th> Gruppo </th>
+					<th> <i18n>mod:iface:group</i18n> </th>
 					<td>'.$grp_sel.'</td>
 				</tr>
 				
@@ -77,9 +77,9 @@
 			'.$descr.'
 		</div>';
 
-		$footer.='<button class="red" onclick="pi.win.close();"> Annulla </button>
-			<button class="red" onclick="pi.chk(\'Eliminare il modulo?\').requestOnModal(\'Mod_Del\')"> Rimuovi Modulo </button>
-			<button class="green" onclick="pi.requestOnModal(\'mod_mod\')"> Salva </button>';
+		$footer.='<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n> </button>
+			<button class="red" onclick="pi.chk(\'<i18n>mod:chk:removeMod</i18n>\').requestOnModal(\'Mod_Del\')"> <i18n>mod:win:removeModule</i18n> </button>
+			<button class="green" onclick="pi.requestOnModal(\'mod_mod\')"> <i18n>save</i18n> </button>';
 	
 	if($id == ''){
 		$fill['icon'] = 'mdi-android-studio';

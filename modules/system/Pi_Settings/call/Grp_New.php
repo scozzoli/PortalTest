@@ -1,6 +1,6 @@
 <?php
 	$grp_list = $sysConfig->loadGrp();
-	if(isset($grp_list[$pr->post('id')])){$pr->addAlertBox('Il codice Gruppo inserito non &eacute; univoco.')->response();}
+	if(isset($grp_list[$pr->post('id')])){$pr->addAlertBox('<i18n>grp:err:codeNotUnique</i18n>')->response();}
 	//$grp_list[$pr->post('id')] = array('nome' => $pr->post('nome'), 'des' => $pr->post('des'));
 	
 	$i18n = $sysConfig->loadI18n();
