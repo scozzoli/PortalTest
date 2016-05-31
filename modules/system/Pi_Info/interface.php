@@ -49,10 +49,10 @@
 					<b> Homepage del progetto : </b> <a href="https://github.com/NextStepWebs/simplemde-markdown-editor"> https://github.com/NextStepWebs/simplemde-markdown-editor </a>
 				</div>
 				
-				<div class="focus blue"> <b>Javascript : </b> markdown-js </div>
+				<div class="focus blue"> <b>Javascript : </b> marked </div>
 				<div class="focus">
 					Libreria usata per eseguire il parsing del linguaggio markdown per il traduttore<br>
-					<b> Homepage del progetto : </b> <a href="https://github.com/evilstreak/markdown-js"> https://github.com/evilstreak/markdown-js </a>
+					<b> Homepage del progetto : </b> <a href="https://github.com/chjj/marked"> https://github.com/chjj/marked </a>
 				</div>
 				
 				<div class="focus purple">

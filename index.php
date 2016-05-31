@@ -17,7 +17,7 @@
 	$sd->includeLib('./lib/js/jquery.sortElements.js');
 	$sd->includeLib('./lib/js/jquery.datetimepicker.full.min.js');
 	$sd->includeLib('./lib/js/shortcuts.js');
-	$sd->includeLib('./lib/js/markdown.min.js');
+	$sd->includeLib('./lib/js/marked.js');
 	$sd->includeLib('./lib/Pi.JS-1.2.js');
 	$sd->includeLib('./lib/Pi.Component.Tablesort.js');
 	$sd->includeLib('./lib/Pi.Component.Datepicker.js');
