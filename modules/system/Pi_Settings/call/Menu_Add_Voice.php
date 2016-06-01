@@ -5,7 +5,7 @@
 	$i18n = $sysConfig->loadI18n();
 	$menu = $pr->post('menu');
 	$id = strtoupper($pr->post('New-Id')); //Gli id li mantengo tutti uppercase
-	if(isset($menu_list[$menu][$id])){$pr->addAlertBox('Il codice ordinamento esiste gi&aacute;!')->set('CloseWin',false)->response();}
+	if(isset($menu_list[$menu][$id])){$pr->addAlertBox('<i18n>menu:err:codeExist</i18n>')->set('CloseWin',false)->response();}
 	$menu_list[$menu][$id]['hidden'] = $pr->post('hidden');
 	$menu_list[$menu][$id]['list'] = Array();
 	

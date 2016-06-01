@@ -10,18 +10,18 @@
 			<input type="hidden" name="menu" value="'.$menu.'">
 			<table class="form">
 				<tr>
-					<td><button class="red" onclick="pi.request(null,\'Menu_Load_Interface\')"> <i class="mdi mdi-arrow-left"/> Indietro </button></td>
+					<td><button class="red" onclick="pi.request(null,\'Menu_Load_Interface\')"> <i class="mdi mdi-arrow-left"/> <i18n>back</i18n> </button></td>
 					<th>
-						<button class="red" onclick="pi.chk(\'Rimuovere completamente il menu?\').request(\'Menu_Action_Info\',\'Menu_Del_Selected\')"><i class="mdi mdi-delete" /> Rimuvi il menu '.$menu.' </button>
-						<button class="red" onclick="pi.request(\'Menu_Action_Info\',\'Menu_Win_Edit_Voice\')"><i class="mdi mdi-server-plus"/> Aggiungi voce al menu </button>
+						<button class="red" onclick="pi.chk(\'<i18n>menu:chk:removeMenu</i18n>\').request(\'Menu_Action_Info\',\'Menu_Del_Selected\')"><i class="mdi mdi-delete" /> <i18n>menu:btn:remove;'.$menu.'</i18n> </button>
+						<button class="red" onclick="pi.request(\'Menu_Action_Info\',\'Menu_Win_Edit_Voice\')"><i class="mdi mdi-server-plus"/> <i18n>menu:btn:addVoice</i18n> </button>
 					</th>
 				</tr>
 			</table>
 		</div>
 		<table class="lite red"><tr>
-				<th>Indice</th>
-				<th>Nome Voce</th>
-				<th colspan="3">Moduli</th>
+				<th><i18n>menu:iface:idx</i18n></th>
+				<th><i18n>menu:iface:voiceName</i18n></th>
+				<th colspan="3"><i18n>menu:iface:modules</i18n></th>
 			</tr>';
 	
 	foreach($menu_list[$menu] as $k => $v){
@@ -70,13 +70,13 @@
 			<td colspan="2">'.$sysConfig->i18nGet($v['des']).'</td>
 			<td>
 				'.($mod_miss>0 ?'<i class="mdi mdi-alert-circle red" />' : '<i class="mdi mdi-check green" />').'
-				[ <b class="focus" >Totali : </b> '.($mod_ok + $mod_miss).' ]
-				[ <b class="green" >Ok : </b> '.$mod_ok.' ]
-				[ <b class="red">Mancanti : </b> '.$mod_miss.' ]
+				[ <b class="focus"><i18n>menu:iface:tot</i18n> : </b> '.($mod_ok + $mod_miss).' ]
+				[ <b class="green"><i18n>menu:iface:ok</i18n> : </b> '.$mod_ok.' ]
+				[ <b class="red"><i18n>menu:iface:miss</i18n> : </b> '.$mod_miss.' ]
 			</td>
 			<td style="text-align:right;">
-				<button class="red" onclick="pi.request(\'Load_Win_Menu_Edit_Voice_'.$k.'\');">Modifica voce</button>
-				<button class="red" onclick="pi.request(\'Add_Voice_Menu_Int_'.$k.'\')"><i class="mdi mdi-plus-box"/> Aggiungi modulo</button>
+				<button class="red" onclick="pi.request(\'Load_Win_Menu_Edit_Voice_'.$k.'\');"> <i18n>menu:btn:modVoice</i18n></button>
+				<button class="red" onclick="pi.request(\'Add_Voice_Menu_Int_'.$k.'\')"><i class="mdi mdi-plus-box"/> <i18n>menu:btn:addMod</i18n></button>
 				<span id="Add_Voice_Menu_Int_'.$k.'">
 					<input type="hidden" name="Q" value="Menu_Win_Add_Elem">
 					<input type="hidden" name="menu" value="'.$menu.'">

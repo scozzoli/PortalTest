@@ -3,7 +3,7 @@
 		$oldID = '<input type="hidden" name="old_id" value="'.($id ?: '').'">';
 		$fill = $db_list[$id];
 		unset($fill['dbpwd']);
-		$delButton='<button class="red" onclick="pi.chk(\'Eliminare il collegamento al DB?\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> Cancella </button>';
+		$delButton='<button class="red" onclick="pi.chk(\'<i18n>db:chk:delete</i18n>\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> <i18n>cancel</i18n> </button>';
 	}else{
 		$oldID = '';
 		$fill = Array(
@@ -15,31 +15,31 @@
 	}
 	
 	if($isUsed){
-		$txtMod = '<br><b>L\' id non &eacute; modificabile (e non &eacute; cancellabile) finch&eacute; la sorgente risuta in uso</b>';
+		$txtMod = '<br><b><i18n>db:iface:undelConnUsed</i18n></b>';
 	}else{
 		$txtMod = '';
 	}
 	
 	$out = '<div id="Win_Edit">
 		<div class="focus purple">
-			Sorgente dati SQlite (usando i driver SQLITE Ver 3) '.$txtMod.'
+			<i18n>db:conn:sqliteInfo</i18n> '.$txtMod.'
 			'.$oldID.'
 		</div>
 		<table class="form separate">
 			<tr>
-				<th>ID</th>
+				<th><i18n>db:iface:uid</i18n></th>
 				<td>
 					<input type="text" class="ale" value="'.$id.'" name="id" '.($isUsed ? 'disabled' : 'id="WinEditFocus"').'>
 				</td>
 			</tr>
 			<tr>
-				<th>Nome</th>
+				<th><i18n>db:iface:name</i18n></th>
 				<td>
 					<input type="text" calss="full" name="des" '.($isUsed ? 'id="WinEditFocus"' : '').'>
 				</td>
 			</tr>
 			<tr>
-				<th style="text-align:right;">Nascondi</th>
+				<th style="text-align:right;"><i18n>db:iface:hide</i18n></th>
 				<td>
 					<input type="checkbox" name="hide">
 					<input type="hidden" name="userid">
@@ -49,7 +49,7 @@
 		</table>
 		</div>';
 		
-	$footer = '<button class="red" onclick="pi.win.close();"> Annulla</button>'.$delButton.'<button class="green" onclick="pi.requestOnModal(\'Win_Edit\',\'DB_Save_SQLITE3\')">Salva</button>';
+	$footer = '<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n></button>'.$delButton.'<button class="green" onclick="pi.requestOnModal(\'Win_Edit\',\'DB_Save_SQLITE3\')"><i18n>save</i18n></button>';
 	
-	$pr->addWindow(600,0,'Sorgente Dati SQLITE3',$out,$footer)->addScript('$("#WinEditFocus").focus();')->addFill('Win_Edit',$fill)->response();
+	$pr->addWindow(600,0,'<i18n>db:conn:sqlite</i18n>',$out,$footer)->addScript('$("#WinEditFocus").focus();')->addFill('Win_Edit',$fill)->response();
 ?>

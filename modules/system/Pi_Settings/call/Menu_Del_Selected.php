@@ -8,7 +8,7 @@
 		$usr[$v['menu']]++;
 	}
 	if(isset($usr[$pr->post('menu')])){
-		$pr->addAlertBox('Ci sono ancora <b class="red">'.$usr[$pr->post('menu')].'</b> utenti con questo menu associato. <br> Per poter eliminare un men&uacute; questo non deve essere usato da nessuno!')->response();
+		$pr->addAlertBox('<i18n>menu:err:menuUsed;'.$usr[$pr->post('menu')].'</i18n>')->response();
 	}
 	unset($menu_list[$pr->post('menu')]);
 	$sysConfig->saveMenu($menu_list);

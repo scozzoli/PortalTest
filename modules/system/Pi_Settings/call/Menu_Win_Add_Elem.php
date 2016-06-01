@@ -1,18 +1,11 @@
 <?php
 	$mod_list = $sysConfig->loadMod();
-	
-	$out='<table class="lite red">
-	<tr>
-		<th>Ico</th>
-		<th>Nome e Gruppo</th>
-		<th>Descrizione</th>
-	</tr>';
-	
+
 	$out ='
 			<div class="focus red">
 				<table class="form">
 					<tr>
-						<th>Filtra per : </th>
+						<th><i18n>menu:iface:filterFor</i18n></th>
 						<td><input type="text" class="full" id="search_module_field"></td>
 						<td><button class="red icon" onclick="menuFilterMod()"><i class="mdi mdi-magnify"></button></td>
 					</tr>
@@ -21,9 +14,9 @@
 			<div id="icon_list" style="height:350px; overflow-y:auto;">
 	<table class="lite red" id="win_menu_module_list">
 	<tr>
-		<th>Ico</th>
-		<th>Nome e Gruppo</th>
-		<th>Descrizione</th>
+		<th><i18n>menu:iface:ico</i18n></th>
+		<th><i18n>menu:iface:nameGroup</i18n></th>
+		<th><i18n>menu:iface:desc</i18n></th>
 	</tr>';
 	
 	foreach($mod_list as $k => $v){
@@ -41,12 +34,12 @@
 				</td>
 				<td>
 					'.$k.'<br>
-					<span style="color:#888;">Gruppo : <i>'.$v['grp'].'</i>
+					<span style="color:#888;"><i18n>menu:iface:group</i18n> : <i>'.$v['grp'].'</i>
 				</td>
 				<td><b>'.$sysConfig->i18nGet($v['nome']).'</b><br> '.$sysConfig->i18nGet($v['des']).'</td>
 			</tr>';
 	}
 	$out.='</table></div>';
 	$js = '$("#search_module_field").focus(); shortcut("enter", menuFilterMod,{"propagate":false, target:"search_module_field"} );';
-	$pr->addWindow(600,0,'Selezionare il modulo da aggiungere',$out,'')->addScript($js)->response();
+	$pr->addWindow(600,0,'<i18n>menu:win:selectMod</i18n>',$out,'')->addScript($js)->response();
 ?>

@@ -20,17 +20,17 @@
 					Nome Menu : 
 				</th>
 				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_menu"> </td>
-				<td> <button class="red" onclick="pi.request(\'cerca_menu\');"><i class="mdi mdi-magnify"></i> Cerca </button></td>
-				<th> <button class="red" onclick="pi.request(null,\'Menu_Win_New\');"><i class="mdi mdi-playlist-plus"></i> Nuovo Menu </button> </th>
+				<td> <button class="red" onclick="pi.request(\'cerca_menu\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
+				<th> <button class="red" onclick="pi.request(null,\'Menu_Win_New\');"><i class="mdi mdi-playlist-plus"></i> <i18n>menu:iface:newMenu</i18n> </button> </th>
 			</tr>
 		</table>
 	</div>
 	<table class="lite red">
 		<tr>
-			<th>Nome</th>
-			<th>N. Utenti</th>
-			<th>N. Moduli(Tot/Mancanti)</th>
-			<th>Struttura</th>
+			<th><i18n>menu:iface:name</i18n></th>
+			<th><i18n>menu:iface:nUtenti</i18n></th>
+			<th><i18n>menu:iface:nModuli</i18n></th>
+			<th><i18n>menu:iface:making</i18n></th>
 		</tr>';
 	
 	
@@ -42,7 +42,8 @@
 		$struct = '';
 		foreach($v as $key => $val){
 			$count = isset($val['list']) ? count($val['list']) : 0;
-			$struct.='[<b>'.$key.'</b> :<i> '.($val['BASE64'] == 1 ? base64_decode($val['des']) : $val['des']).'</i> ('.$count.') ]';
+			//$struct.='[<b>'.$key.'</b> :<i> '.($val['BASE64'] == 1 ? base64_decode($val['des']) : $val['des']).'</i> ('.$count.') ]';
+			$struct.='[<b>'.$key.'</b> :<i> '.$sysConfig->i18nGet($val['des']).'</i> ('.$count.') ]';
 		}
 		
 		$icon = ($miss > 0) ? '<i class="mdi mdi-alert-circle orange" />' : '<i class="mdi mdi-check green" />';
@@ -55,9 +56,9 @@
 						<input type="hidden" name="Q" value="Menu_Load_Dett">
 						<input type="hidden" name="menu" value="'.$k.'">
 						'.$icon.'
-					[ <b>Totali :  <span class="focus">'.$tot.'</span> </b> ] 
-					[ <b>OK :  <span class="green">'.($tot - $miss).'</span> </b> ] 
-					[ <b>Mancanti : <span class="orange">'.$miss.'</span></b> ] 
+					[ <b><i18n>menu:iface:tot</i18n> :  <span class="focus">'.$tot.'</span> </b> ] 
+					[ <b><i18n>menu:iface:ok</i18n> :  <span class="green">'.($tot - $miss).'</span> </b> ] 
+					[ <b><i18n>menu:iface:miss</i18n> : <span class="orange">'.$miss.'</span></b> ] 
 					</div>
 				</td>
 				<td>'.$struct.'</td>

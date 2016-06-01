@@ -9,11 +9,11 @@
 	$menu = $pr->post('menu');
 	
 	if($id == ''){
-		$pr->addAlertBox('Il codice ordinamento non pu&oacute; essere vuoto! ')->set('CloseWin',false)->response();
+		$pr->addAlertBox('<i18n>menu:err:codeNull</i18n>')->set('CloseWin',false)->response();
 	}
 	
 	if($oid != $id){
-		if(isset($menu_list[$menu][$id])){$pr->addAlertBox('Il codice ordinamento esiste gi&aacute;! ')->set('CloseWin',false)->response();}
+		if(isset($menu_list[$menu][$id])){$pr->addAlertBox('<i18n>menu:err:codeExist</i18n>')->set('CloseWin',false)->response();}
 	}
 	
 	$menu_list[$menu][$id]['hidden'] = $pr->post('hidden');

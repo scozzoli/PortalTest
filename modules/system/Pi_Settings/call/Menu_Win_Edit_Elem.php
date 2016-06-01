@@ -15,12 +15,12 @@
 			<i class="mdi l3 '.(isset($mod_list[$v]) ? $mod_list[$v]['icon'] : 'mdi-alert-box').'" />  ('.($k+1).')</button>';
 	}
 	$out ='<div class="red focus">
-			Indicare la posizione del Mun&uacute; dove si vuole posizionare il modulo:
+			<i18n>menu:win:infoMove</i18n>
 		</div><br>
 		<div id="move">
 		<table class="form separate">
 			<tr>
-				<th> Posiszione attuale <i class="red" style="font-size:16px;">'.($pr->post('pos') + 1).'</i> nuova posizione : </th>
+				<th> Posiszione attuale <i class="red" style="font-size:16px;">'.($pr->post('pos') + 1).'</i> <i18n>menu:iface:newPos</i18n> : </th>
 				<td><input type="text" class="ale" name="pos_to" value="'.($pr->post('pos') + 1).'" id="focusme" style="width:60px; text-align:center;"></td>
 			</tr>
 		</table>
@@ -32,9 +32,9 @@
 		<br><div id="buttonListConainer">'.$buttonList.'</div>
 	</div>';
 	
-	$footer = '<button class="red" onclick="pi.win.close();"> Annulla </button>
-	<button class="red" onclick="pi.requestOnModal(\'move\',\'Menu_Del_Elem\');"> Elimina modulo </button>
-	<button class="green" onclick="pi.requestOnModal(\'move\')"> Salva </button>';
+	$footer = '<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n> </button>
+	<button class="red" onclick="pi.requestOnModal(\'move\',\'Menu_Del_Elem\');"> <i18n>menu:iface:delModule</i18n></button>
+	<button class="green" onclick="pi.requestOnModal(\'move\')"> <i18n>save</i18n> </button>';
 	
 	$js='$("#buttonListConainer").find(".j-button").on("click",function(){
 		$("#buttonListConainer").find(".j-button").attr("disabled",false);
@@ -42,6 +42,6 @@
 		$("#move").find("#focusme").val(pos);
 		this.setAttribute("disabled",true);
 	});';
-	$pr->addWindow(500,0,'Sposta Elemento',$out,$footer)->addScript("$('#focusme').select();")->addScript($js)->response();
+	$pr->addWindow(500,0,'<i18n>menu:win:moveTitle</i18n>',$out,$footer)->addScript("$('#focusme').select();")->addScript($js)->response();
 	
 ?>

@@ -3,7 +3,7 @@
 		$oldID = '<input type="hidden" name="old_id" value="'.($id ?: '').'">';
 		$fill = $db_list[$id];
 		unset($fill['dbpwd']);
-		$delButton='<button class="red" onclick="pi.chk(\'Eliminare il collegamento al DB?\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> Cancella </button>';
+		$delButton='<button class="red" onclick="pi.chk(\'<i18n>db:chk:delete</i18n>\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> <i18n>cancel</i18n> </button>';
 	}else{
 		$oldID = '';
 		$fill = Array(
@@ -21,55 +21,55 @@
 	}
 	
 	if($isUsed){
-		$txtMod = '<br><b>L\' id non &eacute; modificabile (e non &eacute; cancellabile) finch&eacute; la sorgente risuta in uso</b>';
+		$txtMod = '<br><b><i18n>db:iface:undelConnUsed</i18n></b>';
 	}else{
 		$txtMod = '';
 	}
 	
 	$out = '<div id="Win_Edit">
 		<div class="focus purple">
-			Sorgente dati MySQL '.$txtMod.'
+			<i18n>db:conn:mysqlInfo</i18n>'.$txtMod.'
 			'.$oldID.'
 		</div>
 		<table class="form separate">
 			<tr>
-				<th>ID</th>
+				<th><i18n>db:iface:uid</i18n></th>
 				<td>
 					<input type="text" class="ale" value="'.$id.'" name="id" '.($isUsed ? 'disabled' : 'id="WinEditFocus"').'>
 				</td>
 			</tr>
 			<tr>
-				<th>Nome</th>
+				<th><i18n>db:iface:name</i18n></th>
 				<td>
 					<input type="text" calss="full" name="des" '.($isUsed ? 'id="WinEditFocus"' : '').'>
 				</td>
 			</tr>
 			<tr>
-				<th>Server</th>
+				<th><i18n>db:iface:server</i18n></th>
 				<td>
 					<input type="text" name="server" style="width:300px;">
 				</td>
 			</tr>
 			<tr>
-				<th>Nome DB</th>
+				<th><i18n>db:iface:dbName</i18n></th>
 				<td>
 					<input type="text" class="double" name="dbname">
 				</td>
 			</tr>
 			<tr>
-				<th>Utente</th>
+				<th><i18n>db:iface:user</i18n></th>
 				<td>
 					<input type="text" name="dbuser">
 				</td>
 			</tr>
 			<tr>
-				<th>Password</th>
+				<th><i18n>db:iface:pwd</i18n></th>
 				<td>
-					<input type="password" value="" name="dbpwd"> <i class="purple disabled"> Compilare solo se &eacute; cambiata</i>
+					<input type="password" value="" name="dbpwd"> <i class="purple disabled"> <i18n>db:iface:pwdInfo</i18n></i>
 				</td>
 			</tr>
 			<tr>
-				<th style="text-align:right;">Nascondi</th>
+				<th style="text-align:right;"><i18n>db:iface:hide</i18n></th>
 				<td>
 					<input type="checkbox" name="hide">
 					<input type="hidden" name="userid">
@@ -79,7 +79,7 @@
 		</table>
 		</div>';
 		
-	$footer = '<button class="red" onclick="pi.win.close();"> Annulla</button>'.$delButton.'<button class="green" onclick="pi.requestOnModal(\'Win_Edit\',\'DB_Save_MYSQL\')">Salva</button>';
+	$footer = '<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n></button>'.$delButton.'<button class="green" onclick="pi.requestOnModal(\'Win_Edit\',\'DB_Save_MYSQL\')"><i18n>save</i18n></button>';
 	
-	$pr->addWindow(600,0,'Sorgente Dati MySQL',$out,$footer)->addScript('$("#WinEditFocus").focus();')->addFill('Win_Edit',$fill)->response();
+	$pr->addWindow(600,0,'<i18n>db:conn:mysql</i18n>',$out,$footer)->addScript('$("#WinEditFocus").focus();')->addFill('Win_Edit',$fill)->response();
 ?>

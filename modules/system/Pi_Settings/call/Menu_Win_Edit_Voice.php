@@ -1,7 +1,7 @@
 <?php
 	$i18n = $sysConfig->loadI18n();
 	$voice = $pr->post('voice',false);
-	$footer = '<button class="red" onclick="pi.win.close()">Annulla</button>';
+	$footer = '<button class="red" onclick="pi.win.close()"><i18n>cancel</i18n></button>';
 
 	if($voice){ // sono in modifica
 		$menu_list = $sysConfig->loadMenu();
@@ -14,33 +14,27 @@
 			"hidden" => $menu_list[$pr->post('menu')][$pr->post('voice')]['hidden']
 			);
 		
-		$footer .= '<button class="red" onclick="pi.chk(\'Eliminare la Voce del menu?\').requestOnModal(\'Mod_Voice\',\'Menu_Del_Voice\')"> Elimina </button>
-		<button class="green" onclick="pi.requestOnModal(\'Mod_Voice\',\'Menu_Mod_Voice\')"> Salva </button>';
-		$header = 'Modifica dettagli voce';
+		$footer .= '<button class="red" onclick="pi.chk(\'Eliminare la Voce del menu?\').requestOnModal(\'Mod_Voice\',\'Menu_Del_Voice\')"> <i18n>delete</i18n> </button>
+		<button class="green" onclick="pi.requestOnModal(\'Mod_Voice\',\'Menu_Mod_Voice\')"> <i18n>save</i18n> </button>';
+		$header = '<i18n>menu:iface:showDettVoice</i18n>';
 	}else{ // sono in inserimento
-		$footer .= '<button class="green" onclick="pi.requestOnModal(\'Mod_Voice\',\'Menu_Add_Voice\')"> Salva </button>';
+		$footer .= '<button class="green" onclick="pi.requestOnModal(\'Mod_Voice\',\'Menu_Add_Voice\')"> <i18n>save</i18n> </button>';
 		$fill = Array("menu" => $pr->post('menu'));
-		$header = 'Inserisci nuova voce';
+		$header = '<i18n>menu:iface:addNewVoice</i18n>';
 	}
 	
 	$out='<div class="focus red">
-			Sarebbe buona norma tenere conto di un paio di punti:
-					<ul>
-						<li>L\'ordinamento &eacute; la chiave primaria. <b>NON</b> sono ammessi duplicati</li>
-						<li>L\'ordinamento &eacute; di tipo alfabetico, ES : "1" - "11" - "2" - "21" - "A1" - ecc...</li>
-						<li>Sarebbe buona norma tenere la descrizione pi&uacute; sintetica possbile (deve stare su di un pulsate e non c\'&eacute; solo lei)</li>
-						<li>Il men&uacute; nascosto permette di eseguire i moduli in esso contenuto senza visualizzarli negli elenchi </li>
-					<ul>
+			<i18n>menu:iface:infoVoice</i18n>
 		</div><br>
 		<div id="Mod_Voice">
 			<table class="form separate" >
 				<tr>
-					<th>Ordinamento</th>
+					<th><i18n>menu:iface:sorting</i18n></th>
 					<td>
 						<input type="text" name="New-Id" id="winMenuFocusMe" class="ale">
 						<input type="hidden" name="Old-Id">
 						<input type="hidden" name="menu">
-						<th>Nascosto</th>
+						<th><i18n>menu:iface:hidden</i18n></th>
 						<td><input type="checkbox" name="hidden"></td>
 					</td>
 				</tr>
@@ -49,7 +43,7 @@
 			<table class="lite red">
 				<tr>
 					<th colspan="2">Lingua</th>
-					<th>Descrizione</th>
+					<th><i18n>menu:iface:desc</i18n></th>
 				</tr>';
 	foreach($i18n['langs'] as $k => $v){
 		$out .= '<tr>
