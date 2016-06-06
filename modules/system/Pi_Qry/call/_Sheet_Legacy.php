@@ -14,7 +14,7 @@
 	$name = explode('.',$pr->post('qry'));
 
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: filename="'.$name[1].'_'.date('Y.m.d_H.i').'.xls"');
+	header('Content-Disposition: attachment; filename="'.$name[1].'_'.date('Y.m.d_H.i').'.xls"');
 	
 	$out = xlsBOF();
 	

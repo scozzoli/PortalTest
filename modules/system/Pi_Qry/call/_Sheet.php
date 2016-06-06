@@ -53,7 +53,7 @@
 			break;
 	}
 	$name = explode('.',$pr->post('qry'));
-	header('Content-Disposition: filename="'.$name[1].'_'.date('Y.m.d_H.i').'.'.$qryConf['xls'].'"');
+	header('Content-Disposition: attachment; filename="'.$name[1].'_'.date('Y.m.d_H.i').'.'.$qryConf['xls'].'"');
 	$objWriter->save('php://output');
 	$pr->responseRaw();
 ?>

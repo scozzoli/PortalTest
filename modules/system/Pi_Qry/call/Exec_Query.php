@@ -5,5 +5,5 @@
 	
 	$res = $db->exec($pr->post('qry'),true);
 	
-	$pr->addInfoBox("Record interessati dalla query: <b>{$db->opt('numrow')}</b>")->response();
+	$pr->addInfoBox("<i18n>msg:recordNumber;{$db->opt('numrow')}</i18n>")->response();
 ?>

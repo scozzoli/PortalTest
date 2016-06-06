@@ -39,7 +39,7 @@
 	$name = explode('.',$pr->post('qry'));
 
 	header('Content-Type: text/csv');
-	header('Content-Disposition: filename="'.$name[1].'_'.date('Y.m.d_H.i').'.csv"');
+	header('Content-Disposition: attachment; filename="'.$name[1].'_'.date('Y.m.d_H.i').'.csv"');
 	
 	$a = Array();
 	foreach($res[0] as $key => $val){

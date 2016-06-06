@@ -15,14 +15,14 @@
 		$showNewButton = ($_SESSION[MSID]['config']['grp']['qry'] ?: $_SESSION[MSID]['config']['grpdef']) == 1;
 	}
 	
-	$insNew = $showNewButton ? '<button class="blue" onclick="pi.request(null,\'Int_Edit_Query\')"><i class="mdi mdi-note-plus"></i> Nuova Interrogazione</button>' : '';
+	$insNew = $showNewButton ? '<button class="blue" onclick="pi.request(null,\'Int_Edit_Query\')"><i class="mdi mdi-note-plus"></i> <i18n>iface:newQry</i18n></button>' : '';
 	
 	$interface = '<div class="blue panel" id="data">
 				<table class="form">
 					<tr>
-						<th>Nome o Descrizione : </th>
+						<th><i18n>iface:nameOrDesc</i18n> </th>
 						<td><input type="text" name="cerca" class="full" id="intFocusMe"></td>
-						<th><button class="blue" onclick="pi.request(\'data\',\'Cerca\');"><i class="mdi mdi-magnify"></i> Cerca</button> '.$insNew .'</th>
+						<th><button class="blue" onclick="pi.request(\'data\',\'Cerca\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n></button> '.$insNew .'</th>
 					</tr>
 				</table>
 			</div>

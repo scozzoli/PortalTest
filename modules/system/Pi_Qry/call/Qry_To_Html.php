@@ -2,6 +2,102 @@
 	$qryConf = json_decode(file_get_contents($pr->getLocalPath("script/".$pr->post('qry'))),true);
 	$res = getQryData($pr,$qryConf);
 	
+	function parsePHPCode($iRow,$iCode,$iPr){
+		
+		function val($iCol){ return $iCol['value']; }
+		function isnull($iCol){ return $iCol['value'] == '[[null]]'; }
+		function color(&$iCol, $iColor){ $iCol['color'] = $iColor; }
+		function bg(&$iCol, $iColor){ $iCol['bg'] = $iColor; }
+		function bold(&$iCol, $iVal = true){ $iCol['bold'] = $iVal; }
+		function italic(&$iCol, $iVal = true){ $iCol['italic'] = $iVal; }
+		
+		foreach($iRow as $K => $V){
+			$tName = '$'.str_replace(' ','_',strtolower($K));
+			
+			$$tName = Array(
+				'value' => $V,
+				'color' => '',
+				'bg'	=> '',
+				'bold'	=> null,
+				'italic'=> null
+			);
+		}
+		
+		$ROW = Array(
+			'color' => '',
+			'bg'	=> '',
+			'bold'	=> false,
+			'italic'=> false
+		);
+		
+		try{
+			eval($iCode);
+		}catch(Exception $e){
+			$iPr->error("Errore nella formattazione PHP");
+		}
+		
+		$OUT = Array();
+		
+		foreach($iRow as $K => $V){
+			$tName = str_replace(' ','_',strtolower($K));
+			$tName = '$'.$K;
+			unset($$tName['value']);
+			$OUT[$K] = $$tName;
+		}
+		
+		return Array("row" => $ROW , "col" => $OUT);
+	}
+	
+	function GetClassPHPFormat($iCfg,$iCol = null){
+		if($iCfg == false){ return ''; }
+		if($iCol === null){
+			switch($iCfg['row']['bg']){
+				case '' :
+				case 'white' :
+					return '';
+				case 'black' :
+					return 'style="background-color:#000;"';
+				default:
+					return 'class="'.strtolower($iCfg['row']['bg']).'"';
+			}
+		}else{
+			if(!isset($iCfg['col'][$iCol])){ return ''; }
+			switch($iCfg['col'][$iCol]['bg']){
+				case '' :
+				case 'white' :
+					return '';
+				case 'black' :
+					return 'style="background-color:#000;"';
+				default:
+					return 'class="'.strtolower($iCfg['row']['bg']).'"';
+			}
+		}
+	}
+	
+	function GetTXTfromPHPFormat($iCfg,$iCol,$iVal,$iNull){
+		if($iCfg == false){ return nvl($iVal,$iNull); }
+		$out = nvl($iVal,$iNull);
+		
+		if($iVal != '[[null]]'){
+			$bold = $iCfg['col'][$iCol]['bold'] == null ? $iCfg['row']['bold'] : $iCfg['col'][$iCol]['bold'];
+			$italic = $iCfg['col'][$iCol]['italic'] == null ? $iCfg['row']['italic'] : $iCfg['col'][$iCol]['italic'];
+			switch($iCfg['col'][$iCol]['color']){
+				case 'white':
+					$out = '<span style="color:#FFF;">'.$out.'</span>';
+					break;
+				case '' :
+				case 'black' :
+					break;
+				default:
+					$out = '<span class="'.$iCfg['col'][$iCol]['color'].'">'.$out.'</span>';
+			}
+			if($bold){ $out = "<b>{$out}</b>"; }
+			if($italic){ $out = "<i>{$out}</i>"; }
+		}
+		
+		return $out;
+	}
+	
 	$pr->addHtml('containerList','<div class="panel green" style="text-align:center;"> Cliccare su <b>Cerca</b> per visualizzare nuovamente la lista (questo non canceller&aacute; i risultati)</div>');
 	
 	if(count($res) == 0){

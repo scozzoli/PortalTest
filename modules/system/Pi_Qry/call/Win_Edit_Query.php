@@ -7,15 +7,13 @@
 		<input type="hidden" name="Q" value="Calc_Query">
 		<input type="hidden" name="inputs">
 		<div class="focus blue">
-			Editor delle interrogazioni. <br />
-			le variabili vengono automaticamente riconosiute al <b>salva</b> e devono avere il formato <b>{<i class="disabled">nome</i>}</b><br/>
-			<b>ATTENZIONE:</b> Le variabili non possono contenere spazi e sono presentate in ordine <i>alfabetico</i>
+			<i18n>info:editQry</i18n>
 		</div>
 		<div data-pic="code : {mode:\'sql\'}"  name="qry" style="min-height:500px;">'.htmlentities($qry).'</div>
 	</div>';
-	$footer = '<button class="red" onClick="pi.win.close();"> Annulla </button> <button class="green" onClick="pi.requestOnModal(\'winEdit\');"> Salva </button>';
-	
+	$footer = '<button class="red" onClick="pi.win.close();"> <i18n>cancel</i18n> </button> <button class="green" onClick="pi.requestOnModal(\'winEdit\');"> <i18n>save</i18n> </button>';
+
 	$fill = Array('inputs' => $pr->post('inputs'));
-	
+
 	$pr->addWindow(600,0,$header,$content,$footer)->addFill('winEdit',$fill)->response();
 ?>

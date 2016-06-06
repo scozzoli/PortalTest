@@ -34,8 +34,9 @@
 		
 		$icon = '<i class="mdi l2 '.($qryConfig['icon'] ?: 'mdi-comment-text-outline').' '.($qryConfig['color'] ?: '').'" ></i>';
 		
+		$disabled = $qryConfig['enabled'] ? '' : ' disabled';
 		
-		$qryPanel='<div class="pi-mod" onclick="pi.request(this.id)" id="RunQry'.$key.'">
+		$qryPanel='<div class="pi-mod '.$qryConfig['color'].$disabled.'" onclick="pi.request(this.id)" id="RunQry'.$key.'">
 			<input type="hidden" name="Q" value="Win_Qry_Launcher_Int">
 			<input type="hidden" name="qry" value="'.$v.'">
 			<table class="form">
@@ -45,7 +46,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<div style="max-height:30px; height:30px; overflow:hidden; text-overflow:ellipsis;">'.(htmlentities($qryConfig['des']) ?: '<i class="disabled"> Nessuna descrizione per questa interrogazione </i>').'</div>
+						<div style="max-height:30px; height:30px; overflow:hidden; text-overflow:ellipsis;">'.(htmlentities($qryConfig['des']) ?: '<i class="disabled"> <i18n>iface:noDescForQry</i18n> </i>').'</div>
 					</td>
 				</tr>
 			</table>
