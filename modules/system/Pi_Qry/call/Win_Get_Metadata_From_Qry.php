@@ -1,12 +1,12 @@
 <?php
 	$inputs = json_decode($pr->post('inputs'),true);
-	
-	$title = 'Carica Metadatai';
-	
+
+	$title = '<i18n>win:loadMetadata</i18n>';
+
 	$footer = '';
-	
+
 	$fill = Array();
-	
+
 	if(count($inputs)>0){
 		$contentInput = '<table class="form separate" id="inputFill">';
 		foreach($inputs as $k => $v){
@@ -28,14 +28,14 @@
 				case "select" :
 					$typeIco = '<i class="mdi l2 mdi-playlist-play orange" title="Seleziona una voce"></i>';
 					$input = '<select  name="i_'.$k.'" class="'.$style.'">';
-					$input .= '<option value="">Nessun valore</option>';
+					$input .= '<option value=""><i18n>iface:noValue</i18n></option>';
 					foreach($v['select'] as $selKey => $selVal){
 						$input .= '<option value="'.$selKey.'">'.$selKey.' - '.$selVal.'</option>';
 					}
 					$input .= '</select>';
 				break;
 			}
-			
+
 			$contentInput .= '<tr>
 				<th>'.$v['des'].'</th>
 				<td>'.$typeIco.'</td>
@@ -45,26 +45,26 @@
 		}
 		$contentInput .= '</table>';
 	}else{
-		$contentInput = '<div class="focus orange" style="text-align:center;"><br> <b>Nessun paramtro richiesto </b></br></br>';
+		$contentInput = '<div class="focus orange" style="text-align:center;"><br> <b><i18n>iface:noParam</i18n> </b></br></br>';
 	}
-	
+
 	$fill['inputs'] = $pr->post('inputs');
 	$fill['qry'] = $pr->post('qry');
 	$fill['db'] = $pr->post('db');
 	$fill['metadata'] = $pr->post('metadata');
-	
+
 	$content = '<div class="focus blue" id="config_qry">
-		<b>ATTENZIONE:</b> La query deve riportare dei risulati, altrimenti risulter&aacute; impossibile verificare le colonne (non &eacute; necessario compilare i campi obbligatori);
+		<i18n>err:noResultMetadata</i18n>
 	</div>';
-	
+
 	$content .= '<div id="winCalcMetadata">
 		<input type="hidden" name="Q" value="Calc_Metadata_From_Qry">
 		<input type="hidden" name="inputs">
 		<input type="hidden" name="metadata">
 		<input type="hidden" name="qry">
 		<input type="hidden" name="db">'.$contentInput.'</div>';
-	
-	$footer .= '<button class="red" onclick="pi.win.close();">Annulla</button> <button onclick="pi.requestOnModal(\'winCalcMetadata\')">Recupera colonne</button>';
+
+	$footer .= '<button class="red" onclick="pi.win.close();"><i18n>cancel</i18n></button> <button onclick="pi.requestOnModal(\'winCalcMetadata\')"><i18n>btn:getColumns</i18n></button>';
 	$js = "if($('#inputFill').find('input').length > 0) $('#inputFill').find('input')[0].focus();";
 	$pr->addWindow(500,0,$title,$content,$footer)->addfill('winCalcMetadata',$fill)->addScript($js)->response();
 ?>
