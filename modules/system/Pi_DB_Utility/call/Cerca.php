@@ -6,9 +6,9 @@
 	}
 	
 	switch($dbConfig['DB']){
-		//case 'OCI8' :
-		//	$pr->next('CercaOCI8');
-		//	break;
+		case 'OCI8' :
+			$pr->next('CercaOCI8');
+			break;
 		case 'MSSQL' :
 			$pr->next('CercaMSSQL');
 			break;

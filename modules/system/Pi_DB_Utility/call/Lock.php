@@ -2,9 +2,9 @@
 	$dbConfig = $pr->getDB($pr->post('db'));
 	
 	switch($dbConfig['DB']){
-		//case 'OCI8' :
-		//	$pr->next('LockOCI8');
-		//	break;
+		case 'OCI8' :
+			$pr->next('LockOCI8');
+			break;
 		case 'MSSQL' :
 			$pr->next('LockMSSQL');
 			break;
