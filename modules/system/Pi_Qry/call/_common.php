@@ -9,7 +9,7 @@
 	/*
 		Struttura dei file delle query:
 
-		< grupppo >.< nome della query >.json --> sys.Oragle_DB_Lock_Sessioni.json
+		< grupppo >.< nome della query >.json --> sys.Oracle_DB_Lock_Sessioni.json
 
 		{
 			des : < descrizione >
@@ -39,7 +39,7 @@
 				}
 			}
 			php : {
-				enables : < true / false* >
+				enabled : < true / false* >
 				code : < codice php di fomattazione >
 			}
 		}
@@ -216,6 +216,60 @@
 			return htmlentities($iVal);
 		}
 	}
+
+	function excelNull($iVal,$iNull = '[[null]]'){
+		if($iVal == $iNull){
+			return '';
+		}else{
+			return $iVal;
+		}
+	}
+
+	//#region PHP format function
+
+	function parsePHPCode($iRow,$iCode,$iPr){
+
+		$VAL = function($iCol){ return $iCol['value']; };
+		$NULL = function($iCol){ return $iCol['value'] == '[[null]]'; };
+		$FG = function(&$iCol, $iColor){ $iCol['color'] = $iColor; };
+		$BG = function(&$iCol, $iColor){ $iCol['bg'] = $iColor; };
+		$B = function(&$iCol, $iVal = true){ $iCol['bold'] = $iVal; };
+		$I = function(&$iCol, $iVal = true){ $iCol['italic'] = $iVal; };
+
+		foreach($iRow as $K => $V){
+			$tName = str_replace(' ','_',strtolower($K));
+			$$tName = Array(
+				'value' => $V,
+				'color' => '',
+				'bg'	=> '',
+				'bold'	=> null,
+				'italic'=> null
+			);
+		}
+
+		$ROW = Array(
+			'color' => '',
+			'bg'	=> '',
+			'bold'	=> false,
+			'italic'=> false
+		);
+
+		try{
+			eval($iCode);
+		}catch(Exception $e){
+			$iPr->error("<i18n>err:phpFormat</i18n>");
+		}
+
+		$OUT = Array();
+
+		foreach($iRow as $K => $V){
+			$tName = str_replace(' ','_',strtolower($K));
+			$OUT[$K] = $$tName;
+		}
+
+		return Array("row" => $ROW , "col" => $OUT);
+	}
+
 
 	session_write_close();
 ?>

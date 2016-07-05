@@ -74,6 +74,8 @@
 	$metadata = createMetadataTable($qryConf['metadata']);
 	$fill['inputs'] = json_encode($qryConf['inputs']);
 	$fill['metadata'] = json_encode($qryConf['metadata']);
+	$fill['php'] = json_encode($qryConf['php'] ?: Array('enabled' => false, 'code' => ''));
+
 
 
 
@@ -155,7 +157,9 @@
 				<th> <i18n>lbl:qry</i18n> </th>
 				<td>
 					<input type="hidden" name="qry">
+					<input type="hidden" name="php" id="php_qry_value">
 					<button onClick="pi.request(\'qryDataForm\',\'Win_Edit_Query\')"> <i class="mdi mdi-pencil"> </i> <i18n>btn:modQry</i18n> </button>
+					<button onClick="pi.request(\'qryDataForm\',\'Win_Edit_Php_Format\')"> <i class="mdi mdi-brush"> </i> <i18n>btn:phpFormat</i18n> </button>
 				</td>
 			</tr>
 			<tr>

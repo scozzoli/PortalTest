@@ -2,76 +2,34 @@
 	$qryConf = json_decode(file_get_contents($pr->getLocalPath("script/".$pr->post('qry'))),true);
 	$res = getQryData($pr,$qryConf);
 
-	function parsePHPCode($iRow,$iCode,$iPr){
-
-		function val($iCol){ return $iCol['value']; }
-		function isnull($iCol){ return $iCol['value'] == '[[null]]'; }
-		function color(&$iCol, $iColor){ $iCol['color'] = $iColor; }
-		function bg(&$iCol, $iColor){ $iCol['bg'] = $iColor; }
-		function bold(&$iCol, $iVal = true){ $iCol['bold'] = $iVal; }
-		function italic(&$iCol, $iVal = true){ $iCol['italic'] = $iVal; }
-
-		foreach($iRow as $K => $V){
-			$tName = '$'.str_replace(' ','_',strtolower($K));
-
-			$$tName = Array(
-				'value' => $V,
-				'color' => '',
-				'bg'	=> '',
-				'bold'	=> null,
-				'italic'=> null
-			);
-		}
-
-		$ROW = Array(
-			'color' => '',
-			'bg'	=> '',
-			'bold'	=> false,
-			'italic'=> false
-		);
-
-		try{
-			eval($iCode);
-		}catch(Exception $e){
-			$iPr->error("<i18n>err:phpFormat</i18n>");
-		}
-
-		$OUT = Array();
-
-		foreach($iRow as $K => $V){
-			$tName = str_replace(' ','_',strtolower($K));
-			$tName = '$'.$K;
-			unset($$tName['value']);
-			$OUT[$K] = $$tName;
-		}
-
-		return Array("row" => $ROW , "col" => $OUT);
-	}
-
 	function GetClassPHPFormat($iCfg,$iCol = null){
-		if($iCfg == false){ return ''; }
+		$out = Array('class' => '' , 'style' => '');
+		if($iCfg == false){	return $out; }
 		if($iCol === null){
 			switch($iCfg['row']['bg']){
 				case '' :
 				case 'white' :
-					return '';
+					break;
 				case 'black' :
-					return 'style="background-color:#000;"';
+					$out['style'] = 'background-color:#000;' ;
+					break;
 				default:
-					return 'class="'.strtolower($iCfg['row']['bg']).'"';
+					$out['class'] = strtolower($iCfg['row']['bg']);
 			}
 		}else{
-			if(!isset($iCfg['col'][$iCol])){ return ''; }
+			if(!isset($iCfg['col'][$iCol])){ return $out; }
 			switch($iCfg['col'][$iCol]['bg']){
 				case '' :
 				case 'white' :
-					return '';
+					break;
 				case 'black' :
-					return 'style="background-color:#000;"';
+					$out['style'] = 'background-color:#000;' ;
+					break;
 				default:
-					return 'class="'.strtolower($iCfg['row']['bg']).'"';
+					$out['class'] = strtolower($iCfg['col'][$iCol]['bg']);
 			}
 		}
+		return $out;
 	}
 
 	function GetTXTfromPHPFormat($iCfg,$iCol,$iVal,$iNull){
@@ -81,7 +39,8 @@
 		if($iVal != '[[null]]'){
 			$bold = $iCfg['col'][$iCol]['bold'] == null ? $iCfg['row']['bold'] : $iCfg['col'][$iCol]['bold'];
 			$italic = $iCfg['col'][$iCol]['italic'] == null ? $iCfg['row']['italic'] : $iCfg['col'][$iCol]['italic'];
-			switch($iCfg['col'][$iCol]['color']){
+			$myColor = $iCfg['col'][$iCol]['color'] == '' ? $iCfg['row']['color'] : $iCfg['col'][$iCol]['color'];
+			switch($myColor){
 				case 'white':
 					$out = '<span style="color:#FFF;">'.$out.'</span>';
 					break;
@@ -89,7 +48,7 @@
 				case 'black' :
 					break;
 				default:
-					$out = '<span class="'.$iCfg['col'][$iCol]['color'].'">'.$out.'</span>';
+					$out = '<span class="'.$myColor.'">'.$out.'</span>';
 			}
 			if($bold){ $out = "<b>{$out}</b>"; }
 			if($italic){ $out = "<i>{$out}</i>"; }
@@ -139,23 +98,33 @@
 		$table.='</tr>';
 
 		$myNull = $qryConf['null'] == '' ? '<i class="disabled"> null </i>' : $qryConf['null'];
+		$qryConf['php'] = $qryConf['php'] ?: Array("enabled" => false);
 
 		foreach($res as $k => $v){
-			$table .= '<tr>';
+			if($qryConf['php']["enabled"]){
+				$format = parsePHPCode($v,$qryConf['php']['code'],$pr);
+			}else{
+				$format = false;
+			}
+			$phpClass = GetClassPHPFormat($format);
+			$table .= '<tr class="'.$phpClass['class'].'" style="'.$phpClass['style'].'">';
 			foreach($v as $vk => $vv){
+				$phpClass = GetClassPHPFormat($format,$vk);
 				if($qryConf['metadata'][strtolower($vk)]){
 					switch($qryConf['metadata'][strtolower($vk)]){
 						case 'numeric' :
-							$table.='<td style="text-align:right;">'.nvl($vv,$myNull).'</td>';
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:right; '.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
 						break;
 						case 'date' :
-							$table.='<td style="text-align:center;">'.nvl($vv,$myNull).'</td>';
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
 						break;
 						case 'datecobol' :
-							$table.='<td style="text-align:center;">'.substr($vv,6,2).'/'.substr($vv,4,2).'/'.substr($vv,0,4).'</td>';
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'">
+								'.GetTXTfromPHPFormat($format,$vk,substr($vv,6,2).'/'.substr($vv,4,2).'/'.substr($vv,0,4),$myNull).'
+								</td>';
 						break;
 						case 'qry' :
-							$table.='<td style="text-align:center; cursor:pointer;" id="'.$k.'_'.$vk.'" onclick="pi.request(\''.$k.'_'.$vk.'\');">
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" id="'.$k.'_'.$vk.'" onclick="pi.request(\''.$k.'_'.$vk.'\');">
 								<input type="hidden" name="Q" value="Win_Execute_Sql">
 								<input type="hidden" name="db" value="'.$qryConf['db'].'">
 								<input type="hidden" name="sql" value="'.htmlentities($vv).'">
@@ -163,29 +132,28 @@
 							</td>';
 						break;
 						case 'text' :
-							$table.='<td style="text-align:center; cursor:pointer;" onclick="pi.win.open({ content: $(\'#'.$k.'_'.$vk.'\').html(), title:\''.$vk.'\'});">
-								<div style="display:none" id="'.$k.'_'.$vk.'"><div style="padding:10px;">'.nvl($vv,$myNull).'</div></div>
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" onclick="pi.win.open({ content: $(\'#'.$k.'_'.$vk.'\').html(), title:\''.$vk.'\'});">
+								<div style="display:none" id="'.$k.'_'.$vk.'"><div style="padding:10px;">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</div></div>
 								<i class="mdi mdi-comment-text-outline"></i> '.$vk.'
 							</td>';
 						break;
 						case 'link' :
-							$table.='<td style="text-align:center;"><a href="'.$vv.'" target="_blank" > [ Link ] </a></td>';
+							$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'"><a href="'.$vv.'" target="_blank" > [ Link ] </a></td>';
 						break;
 						case 'string':
-							$table.='<td>'.nvl($vv,$myNull).'</td>';
+							$table.='<td class="'.$phpClass['class'].'" style="'.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
 						break;
 						case 'hidden':
 						break;
 					}
 				}else{
-					$table.='<td>'.nvl($vv,$myNull).'</td>';
+					$table.='<td class="'.$phpClass['class'].'" style="'.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
 				}
 
 			}
 			$table .= '<tr>';
 		}
 	}
-
 
 	$name = explode('.',$pr->post('qry'));
 
