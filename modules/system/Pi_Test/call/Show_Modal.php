@@ -37,9 +37,9 @@
 				<div class="footer">
 					<button id="actionOpenWin">Apri finestra modale</button>
 				</div>
-				
+
 			</div>
-			
+
 			<div class="panel">
 				<div class="header">Messaggi modali</div>
 				I messaggi modali possono essere di due 4 tipologie differenti, <i> info, alert, error, bug </i> ed in pi&uacute; esiste un messaggio di conferma ed un custom.<br>
@@ -59,9 +59,9 @@
 							<td> <input type="text" class="full" value="Messaggio generico" id="msg"></td>
 						</tr>
 					</table>
-					
+
 				</div>
-				
+
 				<div class="footer">
 					<button onclick="pi.msg.info($(\'#msg\').val())" class="blue">Info</button>
 					<button onclick="pi.msg.alert($(\'#msg\').val())" class="orange">Alert</button>
@@ -70,7 +70,7 @@
 					<button onclick="pi.msg.confirm($(\'#msg\').val())" class="green">Confirm</button>
 				</div>
 			</div>
-			
+
 			<div class="panel">
 				<div class="header">Loader modale</div>
 				Il loader modale pu&oacute; essere attivato e disattivato tramite la funzione pi.loader:
@@ -82,9 +82,39 @@
 				<div class="footer">
 					<button onclick="pi.loader(true); setTimeout(function(){pi.loader(false)},5000)">Attiva loader per 5 secondi </button>
 				</div>
-			</div>';
+			</div>
+
+			<div class="panel">
+				<div class="header">Messaggi lato server</div>
+				Test per i messaggi lato srver
+				<div class="focus blue" id="TestDialog">
+					<input type="hidden" name="Q" value="TestDialog">
+						<table class="form">
+							<tr>
+								<th>Tipo messaggio : </th>
+								<td>
+									<select name="type" class="double">
+										<optgroup label="addMsgBox - derivati">
+											<option value="info"> (addInfoBox) Messaggio di informazione </option>
+											<option value="alert"> (addAlertBox) Messaggio di alert </option>
+											<option value="error"> (addErrorBox) Messaggio di errore </option>
+										</optgroup>
+										<optgroup label="addDialog - derivati">
+											<option value="okCancel"> (addOkCancelDialog) Finestra di dialogo "ok - cancel" </option>
+											<option value="yesNoCancel"> (addYesNoCancelDialog) Finestra di dialogo "Si - No - Annulla" </option>
+										</optgroup>
+									</select>
+								</td>
+							</tr>
+						</table>
+				</div>
+				<div class="footer">
+					<button onclick="pi.request(\'TestDialog\')"> Test </button>
+				</div>
+			</div>
+			';
 	$js="$('#actionOpenWin').click(function(){
-		var opt = {			
+		var opt = {
 			width : $('#width').val(),
 			height : $('#height').val(),
 			header : $('#header').val(),

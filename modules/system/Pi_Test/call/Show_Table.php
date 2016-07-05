@@ -82,12 +82,12 @@
 				<tr>
 					<th> .lite </th>
 					<td> <table id="TableLiteNormal" class="lite">'.$table.'</table> </td>
-					<td> <table id="TableLiteFix" class="lite fix">'.$table.'</table> </td>
+					<td> <table id="TableLiteFix" class="lite fix nohover">'.$table.'</table> </td>
 				</tr>
 				<tr>
 					<th> .bold </th>
 					<td> <table id="TableBoldNormal" class="bold">'.$table.'</table> </td>
-					<td> <table id="TableBoldFix" class="bold fix">'.$table.'</table> </td>
+					<td> <table id="TableBoldFix" class="bold fix nohover">'.$table.'</table> </td>
 				</tr>
 			</table>
 			<div class="panel">

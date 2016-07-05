@@ -12,7 +12,7 @@
 		<div data-event="start : \'2016-5-18\'"> Test di evento 5</div>
 		<div data-event="start : \'2016-5-18\'"> Test di evento 6</div>
 		<div data-event="start : \'2016-05-20\', class:\'green\' " > Fuffole</div>
-		<div data-event="start : \'2016-05-21\'"> Fuffole</div>
+		<div data-event="start : \'2016-05-21\'"> Fuffole lich weoic weuivch weurcvoiuwrev orqh weovherh vhvihoeiv hie hvieiovh ie hvio wvncerounvnen v evn ve b ev e v e je jv re jv ek</div>
 		<div data-event="start : \'2016-04-26\'"> Fuffole</div>
 		<div data-event="start : \'2016-06-01\'"> Fuffole dopo</div>
 	</div>
