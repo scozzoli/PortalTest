@@ -84,7 +84,7 @@
     "menu:iface:hidden": "Nascosto",
     "menu:iface:ico": "Ico",
     "menu:iface:idx": "Indice",
-    "menu:iface:infoVoice": "Sarebbe buona norma tenere conto di un paio di punti:\n* L'ordinamento \u00e8 la chiave primaria. **NON** sono ammessi duplicati\n* L'ordinamento \u00e8 di tipo alfabetico, ES : \"1\" - \"11\" - \"2\" - \"21\" - \"A1\" - ecc...\n* Sarebbe buona norma tenere la descrizione pi\u00f9 sintetica possbile (deve stare su di un pulsate e non c'\u00e8 solo lei)\n* Il men\u00f9 nascosto permette di eseguire i moduli in esso contenuto senza visualizzarli negli elenchi",
+    "menu:iface:infoVoice": "Sarebbe buona norma tenere conto di un paio di punti:\n* L'ordinamento \u00e8 la chiave primaria. **NON** sono ammessi duplicati\n* L'ordinamento \u00e8 di tipo alfabetico, ES : \"1\" - \"11\" - \"2\" - \"21\" - \"A1\" - ecc...\n* Sarebbe buona norma tenere la descrizione pi\u00f9 sintetica possbile (deve stare su di un pulsate e non c'\u00e8 solo lei)\n* Il men\u00f9 nascosto permette di eseguire i moduli in esso contenuti senza visualizzarli negli elenchi",
     "menu:iface:making": "Struttura",
     "menu:iface:menuName": "Nome menu",
     "menu:iface:miss": "Mancanti",
