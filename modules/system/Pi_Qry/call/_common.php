@@ -16,7 +16,7 @@
 			--- note : < note >
 			null : < valore al posto del null >
 			db : < id del db da usare (se null quello di default) >
-			html : < *disabled / show / sortable >
+			html : < *disabled / show / sortable / chart / charttab / chartsort >
 			xls : < *disabled / legacy / xls / xlsx / ods >
 			color : < *none / blue / red / orange / green / purple >
 			icon : < mdi-... >
@@ -41,6 +41,24 @@
 			php : {
 				enabled : < true / false* >
 				code : < codice php di fomattazione >
+			}
+			chartSize : < S / M* / L >  // Altezza dei grafici
+			charts : {
+				<nome> : {
+					des : < descrizione >
+					size : < S / M / L / - responsive > // larghezza dei grafici in formato responsive L = fullscreen
+					color : < blue / red / orange / green / purple >
+					type : < line / bar / area / radar / polar / pie / nut / mixed* >
+					labels : < nome colonna >
+					data : {
+						<nome> : {
+							src : < nome colonna (usata anche come descrizione) >
+							type : < line* / bar / area > // solo per mixed
+							color : < blue / red / orange / green / purple >
+						}
+					}
+				}
+				...
 			}
 		}
 	*/
@@ -129,6 +147,92 @@
 		}
 		$out .='</table>';
 		return($out);
+	}
+
+	function createChartTable($iCharts){
+
+		$getIcon = function($iType){
+			$icon = '';
+			switch ($iType) {
+				case 'mixed': $icon = 'mdi-chart-areaspline'; break;
+				case 'bar':  $icon = 'mdi-chart-bar'; break;
+				case 'line':
+				case 'area': $icon = 'mdi-chart-line'; break;
+				case 'polar':
+				case 'pie': $icon = 'mdi-chart-pie'; break;
+				case 'nut': $icon = 'mdi-chart-arc'; break;
+				case 'radar': $icon = 'mdi-vector-polygon'; break;
+			}
+			return $icon;
+		};
+
+		$isMultiChart = function($iType){
+			switch ($iType) {
+				case 'mixed':
+				case 'bar':
+				case 'line':
+				case 'radar':
+				case 'area':
+					return true;
+				case 'polar':
+				case 'pie':
+				case 'nut':
+					return false;
+			}
+		};
+
+		$out = '<table class="lite green fix">
+			<tr>
+				<th style="width:40px;"> <i18n>lbl:type</i18n> </th>
+				<th> <i18n>lbl:name</i18n> </th>
+				<th> <i18n>lbl:desc</i18n> </th>
+				<th> <i18n>lbl:size</i18n> </th>
+				<th> <i18n>lbl:labels</i18n> </th>
+				<th colspan="2"> <i18n>iface:edit</i18n> </th>
+			</tr>';
+		$idx = 0;
+		foreach($iCharts ?: [] as $k => $v){
+			$srcIdx = 0;
+			$out .= '<tr class="green">
+				<th style="text-align:center;" id="chart_data_'.$idx.'">
+					<i class="mdi '.$getIcon($v['type']).' l2"></i>
+					<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
+					<input type="hidden" name="idx" value="'.$idx.'">
+				</th>
+				<td>'.$k.'</td>
+				<td>'.$v['des'].'</td>
+				<td>'.$v['size'].'</td>
+				<td>'.$v['labels'].'</td>';
+
+				if($isMultiChart($v['type'])){
+					$out .= '<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>
+									<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart_Data\')"><i class="mdi mdi-plus l2 green"></i></td>';
+				}else{
+					$out .= '<td style="text-align:center; cursor:pointer;" class="green" colspan="2" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>';
+				}
+				$out .= '</tr>';
+
+				foreach ($v['data'] as $key => $val) {
+					$out.='<tr>
+						<td class="green" style="text-align:center;" id="chart_data_'.$idx.'_'.$srcIdx.'">
+							<i class="mdi '.$getIcon($val['type'] ?: $v['type']).' green"></i>
+							<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
+							<input type="hidden" name="idx" value="'.$idx.'">
+							<input type="hidden" name="srcidx" value="'.$srcIdx.'">
+						</td>
+						<td colspan="2">
+							'.$key.'
+						</td>
+						<td>'.$val['src'].'</td>
+						<td>'.$val['color'].'</td>
+						<td style="text-align:center; cursor:pointer;" class="green" colspan="2" onClick="pi.request(\'chart_data_'.$idx.'_'.$srcIdx.'\',\'Win_Edit_Chart_Data\')"><i class="mdi mdi-pencil green"></i></td>
+					</tr>';
+					$srcIdx++;
+				}
+				$idx++;
+		}
+		$out .= '</table>';
+		return $out;
 	}
 
 	function createMetadataTable($iMetadata){

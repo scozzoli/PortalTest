@@ -9,7 +9,7 @@
 //@font-face { font-family : OpenSans; src : url('./fonts/OpenSans-BoldItalic.ttf'); font-weight: bold; font-style: italic; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 body{
-	
+
 	//@Stripe-C1 = @Main-BG-Color;//lighten(@Main-C1,15%);
 	//@Stripe-C2 = #FFF;//lighten(@Main-C2,35%);
 
@@ -24,7 +24,7 @@ body{
     position: absolute;
 	height: 100%;
     width: 100%;
-	
+
 	//background: linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
 	//background: -webkit-linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
 	//background: -moz-linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
@@ -32,18 +32,18 @@ body{
 }
 
 .pi-wrapper{
-	padding: 0px;	
+	padding: 0px;
 	margin: 0px;
 	height: 100%;
 	position: absolute;
 	height: 100%;
     width: 100%;
 	top:0;
-	
+
 	&.lock{
 		//overflow:hidden;
 	}
-	
+
 	.pi-top{
 		position: fixed;
 		z-index:10;
@@ -57,7 +57,7 @@ body{
 		background-color: @Main-C3;
 		box-shadow: @Main-BoxShadow-2;
 		transition: @Main-Transition;
-	
+
 		.pi-logout{
 			position: absolute;
 			top: 0px;
@@ -74,14 +74,14 @@ body{
 				font-style: italic;
 				white-space: nowrap;
 				cursor: pointer;
-				i{ 
+				i{
 					font-size: 20px;
 					text-decoration: none;
 					margin-left: 5px;
 				}
 			}
 		}
-		
+
 		.pi-logo{
 			font-size: 49px;
 			> .mdi{
@@ -90,9 +90,9 @@ body{
 			}
 			color: @Main-Text-SubTitle;
 			position: absolute;
-			
+
 		}
-		
+
 		.pi-title{
 			color: @Main-Text-Title;
 			font-size: 24px;
@@ -113,17 +113,17 @@ body{
 			position:absolute;
 			top: 30px;
 			z-index:2;
-			
+
 			ul{
-				margin-right: 10px; 
+				margin-right: 10px;
 				margin-top: 2px;
 				float: right;
 				list-style-type: none;
-				
+
 				li{
 					float: left;
 					position: relative;
-					
+
 					padding: 0px;
 					vertical-align: top;
 					color: @Main-Text-Title;
@@ -133,7 +133,7 @@ body{
 					height: 25px;
 					min-width: 100px;
 					border: 0;
-					
+
 					&:hover{
 						ul{
 							display: block;
@@ -142,19 +142,19 @@ body{
 							//opacity: 1;
 						}
 					}
-					
+
 					&.pi-selected{
 						background-color: #FFF;
-						
+
 						a{
 							color: @Main-Text-Normal;
-							
+
 							&:hover{
 								background-color: inherit;
 							}
 						}
 					}
-					
+
 					a{
 						margin: 0px;
 						padding-top: 5px;
@@ -169,12 +169,12 @@ body{
 						display: block;
 						color: @Main-Text-Title;
 						background-color: transparent;
-						
+
 						&:hover{
 							background-color: @Main-C2;
 						}
 					}
-					
+
 					ul{
 
 						background: #FFF;
@@ -190,7 +190,7 @@ body{
 						//transition: @Main-Transition;
 						//height:0px;
 						//opacity: 1;
-						
+
 						li{
 							&:hover{
 								background-color: @Main-C3;
@@ -201,7 +201,7 @@ body{
 									}
 								}
 							}
-							
+
 							a{
 								text-decoration: none;
 								text-shadow: none;
@@ -211,12 +211,18 @@ body{
 								display: inline-block;
 								//padding:0;
 								//padding:5px 15px 8px 5px;
+								padding-top: 5px;
 								list-style: none;
 								list-style-type: none;
 								min-width: 200px;
 								text-align: left;
 								background: none;
-								
+
+								i.mdi{
+									float:left;
+									margin-left:-8px;
+								}
+
 								.pi-title{
 									display: inline-block;
 									font-size: 13px;
@@ -227,20 +233,20 @@ body{
 									height: auto;
 									font-weight: normal;
 								}
-								
+
 								.pi-descr{
 									display: none;
 								}
 							}
 						}
 					}
-					
+
 				}
-			
+
 			}
 		}
 	}
-	
+
 	.pi-body{
 		.pi-side-menu{
 			//float:left;
@@ -251,18 +257,18 @@ body{
 			z-index: 5;
 
 			transition: @Main-Transition;
-			
+
 			ul{
 				display: block;
 				padding: 0px;
-				
+
 				a{
 					text-decoration: none;
 					border: 0px;
-					padding: 0px;	
+					padding: 0px;
 					color: @Main-Text-Normal;
-					
-			
+
+
 					li{
 						display: inline-block;
 						height: 48px;
@@ -270,25 +276,25 @@ body{
 						padding-top: 14px;
 						padding-left: 6px;
 						border-radius: 0 3px 3px 0;
-						
+
 						&.pi-selected{
 							background: #FFF;
 							box-shadow: @Main-BoxShadow-1;
 						}
-						
+
 						&:hover{
 							background: #FFF;
 							box-shadow: @Main-BoxShadow-2;
-							
+
 							.pi-title, .pi-descr{
 								width: auto;
 								margin-right: 20px;
 								transition: @Main-Transition;
 								opacity: 1;
 							}
-							
+
 						}
-						
+
 						.pi-icon{
 							//display: inline;
 							float: left;
@@ -300,7 +306,7 @@ body{
 								font-size: 40px;
 							}
 						}
-						
+
 						.pi-title{
 							display: inline-block;
 							position: relative;
@@ -318,8 +324,8 @@ body{
 							overflow: hidden;
 							opacity: 0;
 						}
-						
-						.pi-descr{ 
+
+						.pi-descr{
 							display: inline-block;
 							height: 15px;
 							margin-left: 50px;
@@ -336,9 +342,9 @@ body{
 					}
 				}
 			}
-			
+
 		}
-		
+
 		.pi-content{
 			display: block;
 			position: relative;
@@ -349,7 +355,7 @@ body{
 			padding-right: 5px;
 			padding-bottom: 4px;
 		}
-		
+
 		&.pi-hide-menu{
 			.pi-side-menu{
 				display: none;
@@ -358,7 +364,7 @@ body{
 				padding-left: 5px;
 			}
 		}
-		
+
 		.pi-list{
 			padding-top: 5px;
 			display: inline-block;
@@ -375,7 +381,7 @@ body{
 				color: @Main-Text-Normal;
 				background-color: #FFF;
 				transition: @Main-Transition;
-				
+
 				.pi-icon{
 					display: inline;
 					float: left;
@@ -389,7 +395,7 @@ body{
 						font-size: 60px;
 					}
 				}
-				
+
 				.pi-name{
 					width: ~"calc(100% - 70px)";
 					display: inline-block;
@@ -414,12 +420,12 @@ body{
 					overflow: hidden;
 					width: ~"calc(100% - 70px)";
 				}
-				
+
 				&:hover{
 					box-shadow: @Main-BoxShadow-2;
 					transition: @Main-Transition;
 				}
-				
+
 				&.pi-state-att{	}
 				&.pi-state-dev{
 					//background-color: @Orange-C1;
@@ -451,36 +457,36 @@ body{
 						color: @Purple-C3;
 					}
 				}
-				
+
 				&.red{
 					color:@Red-C3;
 					background-color: @Red-C1;
 				}
-				
+
 				&.blue{
 					color:@Blue-C3;
 					background-color: @Blue-C1;
 				}
-				
+
 				&.green{
 					color:@Green-C3;
 					background-color: @Green-C1;
 				}
-				
+
 				&.orange{
 					color:@Orange-C3;
 					background-color: @Orange-C1;
 				}
-				
+
 				&.purple{
 					color:@Purple-C3;
 					background-color: @Purple-C1;
 				}
-				
+
 				&.disabled{
 					opacity: 0.5;
 				}
-				
+
 			}
 		}
 	}
@@ -498,14 +504,20 @@ body{
 	}
 }
 
+@pi-multi-size(@S,@M,@L){
+	.pi-size-s{ float: left; width: ~"calc(" @S ~" - 30px )"; }
+	.pi-size-m{ float: left; width: ~"calc(" @M ~" - 30px )"; }
+	.pi-size-l{ float: left; width: ~"calc(" @L ~" - 30px )"; }
+}
+
 @screen-xs-max = 767px;
 @screen-sm-min = 768px; @screen-sm-max = 991px;
 @screen-md-min = 992px; @screen-md-max = 1199px;
 @screen-lg-min = 1200px; @screen-lg-max = 1449px;
 @screen-xl-min = 1450px;
 
-@media (max-width: @screen-xs-max) { @pi-mod-width(100%); }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { @pi-mod-width(50%); }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { @pi-mod-width(33.33%); }
-@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { @pi-mod-width(25%); }
-@media (min-width: @screen-xl-min) { @pi-mod-width(20%); }
+@media (max-width: @screen-xs-max) { @pi-mod-width(100%); @pi-multi-size(100%,100%,100%); }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { @pi-mod-width(50%); @pi-multi-size(50%,100%,100%); }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { @pi-mod-width(33.33%); @pi-multi-size(50%,100%,100%); }
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { @pi-mod-width(25%); @pi-multi-size(33.33%,50%,100%); }
+@media (min-width: @screen-xl-min) { @pi-mod-width(20%); @pi-multi-size(33.33%,50%,100%); }

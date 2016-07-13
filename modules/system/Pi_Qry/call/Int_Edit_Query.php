@@ -71,11 +71,13 @@
 	$ddGrp.='</select>';
 
 	$inputs = createInputsTable($qryConf['inputs']);
+	$charts = createChartTable($qryConf['charts']);
 	$metadata = createMetadataTable($qryConf['metadata']);
 	$fill['inputs'] = json_encode($qryConf['inputs']);
 	$fill['metadata'] = json_encode($qryConf['metadata']);
 	$fill['php'] = json_encode($qryConf['php'] ?: Array('enabled' => false, 'code' => ''));
-
+	$fill['charts'] = json_encode($qryConf['charts'] ?: Array());
+	$fill['chartsize'] = $qryConf['chartsize'] ?: 'L';
 
 
 
@@ -129,10 +131,22 @@
 				<td>
 					<select name="html" class="double" data-i18n>
 						<option value="disabled"> opt:disabled </option>
-						<option value="show"> opt:htmlTable </option>
-						<option value="sortable"> opt:htmlSortable </option>
+						<optgroup label="optg:onlyData">
+							<option value="show"> opt:htmlTable </option>
+							<option value="sortable"> opt:htmlSortable </option>
+						</optgroup>
+						<optgroup label="optg:chart">
+							<option value="chart"> opt:htmlChart </option>
+							<option value="charttab"> opt:htmlChartTable </option>
+							<option value="chartsort"> opt:htmlChartSortable </option>
+						</optgroup>
 					</select>
-
+					<b><i18n>lbl:chartSize</i18n></b>
+					<select name="chartsize" data-i18n>
+						<option value="S"> opt:size:s </option>
+						<option value="M"> opt:size:m </option>
+						<option value="L"> opt:size:l </option>
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -170,10 +184,31 @@
 				</td>
 			</tr>
 			<tr>
+				<td colspan="2" >
+					<div class="focus green">
+					<table class="form">
+						<tr>
+							<td style="width: 30px"><i class="mdi mdi-chart-areaspline l3"></i></td>
+							<td><i18n>info:charts</i18n></td>
+							<th>
+								<button class="green" onclick="pi.request(\'qryDataFormChart\',\'Win_Edit_Chart\')"><i class="mdi mdi-plus"></i> <i18n>add</i18n> </button>
+							</th>
+						</tr>
+					</table>
+					</div>
+					<div id="chartsList">'.$charts.'</div>
+					<span id="qryDataFormChart">
+						<input type="hidden" name="charts" id="chartsData">
+						<input type="hidden" name=":LINK:ELEM" value="metadataInput">
+					</span>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2">
 					<div class="focus orange">
 						<table class="form">
 							<tr>
+								<td style="width: 30px"><i class="mdi mdi-shape-plus l3"></i></td>
 								<td><i18n>info:metadata</i18n></td>
 								<th>
 									<button class="orange" id="hideShowMetadataButton"><i class="mdi mdi-eye"></i> <i18n>btn:show</i18n> </button>

@@ -22,7 +22,9 @@
 		'qry' => $pr->post('qry'),
 		'inputs' => json_decode($pr->post('inputs'),true),
 		'metadata' => json_decode($pr->post('metadata'),true),
-		'php' => json_decode($pr->post('php'),true)
+		'php' => json_decode($pr->post('php'),true),
+		'chartsize' => $pr->post('chartsize'),
+		'charts'  => json_decode($pr->post('charts'),true)
 	);
 
 	if($filename != $newName){

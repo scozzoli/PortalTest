@@ -1,5 +1,7 @@
 <?php
+	$sd->includeLib('./lib/js/chart.bundle.min.js');
 	$sd->includeLib('./lib/Pi.Component.Calendar.js');
+	$sd->includeLib('./lib/Pi.Component.Chart.js');
 	$interface = '<div class="panel blue">
 				Elenco degli stili applicabili
 			</div>
@@ -11,7 +13,8 @@
 				<button onclick="pi.request(null,\'Show_Modal\')">Stili Finestre</button>
 				<button onclick="pi.request(null,\'Show_Icons\')">Material Icons</button>
 				<button onclick="pi.request(null,\'Show_Cal\')">Calendario</button>
-			</div>			
+				<button onclick="pi.request(null,\'Show_Chart\')">Grafici</button>
+			</div>
 			<div id="container" style="height:100%">
 				<div class="panel" data-pi-component="collapse">
 					<div class="header"> test </div>
@@ -45,7 +48,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div data-pic="tabstripe" class="panel">
 					<div data-pi-tab="primo">
 						<table class="lite" data-pi-component="tablesort">
@@ -80,25 +83,25 @@
 						<div class="panel blue"> BU! </div>
 					</div>
 				</div>
-				
+
 				<div class="panel" data-pic="collapse">
-					
+
 					fuffa varia
-					
+
 					<div class="panel" data-pic="collapse">
 						<div class="header"> hello </div>
 						<i18n>save</i18n> <br> <i18n>NK</i18n>
-						
+
 					</div>
-					
+
 					<div class="panel" data-pic="collapse">
 						<div class="header"> hi </div>
 						fuffa a caso
-						
+
 					</div>
-					
+
 				</div>
-					
+
 				<div class="panel">
 					<table class="form">
 						<tr>
