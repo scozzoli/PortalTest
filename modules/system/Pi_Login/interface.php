@@ -1,13 +1,13 @@
 <?php
 	$js = '$(document).ready(function(){$("#UID").focus();});';
 	$sd->includeScript($js);
-	
+
 	//if(!isset($_SESSION[MSID]['usr'])){
 	if(($_SESSION[MSID]['usr'] ?: 'guest') == 'guest'){
 		$interface = '<DIV class="panel blue">
 			<i18n>iface:infoNoLogin</i18n>
 		</DIV><br>
-		
+
 		<div style="position:relative; margin-left:50%; padding:0; text-align:center;"  id="login">
 			<input type="hidden" name="Q" value="LogIn">
 			<div class="panel" style="width : 340px; margin-left:-180px;">
@@ -16,7 +16,7 @@
 					<b style="font-size : 22px;">Portal 1</b><br>
 					<span style="font-size : 12px;"><i18n>iface:lblLogin</i18n>Login utente</apan>
 					<br>
-					
+
 					<div class="badge xlarge" style="width:190px;"><i class="mdi mdi-account"></i></div>
 				</div>
 				<input type="text" class="std" name="UID" id="UID" style="width:230px" placeholder="Nome Utente"><br><br>
@@ -25,8 +25,8 @@
 		</div>';
 	}else{
 		//$userlist = parse_ini_file('./settings/users.ini',true);
-		$dblist = parse_ini_file('./settings/db.ini',true);
-		
+		//$dblist = parse_ini_file('./settings/db.ini',true);
+
 		// Creo la dropdown degli stili
 		$themeDir = scandir('style/themes');
 		$currentStyle = $_SESSION[MSID]['config']["theme"].':'.$_SESSION[MSID]['config']["style"];
@@ -48,7 +48,7 @@
 			}
 		}
 		$ddTheme.='</select>';
-		
+
 		//$list_style = scandir('./style');
 		//$style_select= '<select class="std" name="style">';
 		//for($i=0;$i!=count($list_style);$i++){
@@ -58,7 +58,7 @@
 		//	}
 		//}
 		//$style_select .= '</select>';
-				
+
 		//$db_select = '<select class="std" name="db">';
 		//foreach($dblist as $k => $v){
 		//	if($v['hide']==1){continue;}

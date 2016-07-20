@@ -14,6 +14,7 @@
 				<button onclick="pi.request(null,\'Show_Icons\')">Material Icons</button>
 				<button onclick="pi.request(null,\'Show_Cal\')">Calendario</button>
 				<button onclick="pi.request(null,\'Show_Chart\')">Grafici</button>
+				<button onclick="pi.request(null,\'Show_Upload\')">Upload</button>
 			</div>
 			<div id="container" style="height:100%">
 				<div class="panel" data-pi-component="collapse">

@@ -1,7 +1,7 @@
 <?php
 define('PI_SD_TAG',				'./lib/Pi.Tag-1.0.class.php');
 define('PI_SD_SYSTEM',			'./lib/Pi.System.php');
-	
+
 include PI_SD_TAG;
 include PI_SD_SYSTEM;
 class PiSD{
@@ -16,7 +16,7 @@ class PiSD{
 	private $inited;
 	private $sysConfig;
 	public $usr;
-	
+
 	public function __construct(){
 		$this->opt = array(
 				"theme"		=> "material",
@@ -35,9 +35,9 @@ class PiSD{
 				"logoFont"	=> "mdi",
 				"i18n"		=> false // indica se i nomi di sistema siano gestiti con i18n lato client (OLD),
 		);
-		
+
 		$this->sysConfig = new PiSystem('./settings/');
-		
+
 		$this->menu = false;
 		$this->tags = array();
 		$this->modules = false;
@@ -55,7 +55,7 @@ class PiSD{
 	public function get($iKey){
 		if(!array_key_exists($iKey,$this->opt)){
 			return false;
-		}else{ 
+		}else{
 			return $this->opt[$iKey];
 		}
 	}
@@ -69,51 +69,56 @@ class PiSD{
 		$this->tags[$index_now]->set('src',$iSrc);
 		return $this;
 	}
-	
+
 	/**
 	 * Esegue uno script all'avvio
 	 */
 	public function includeScript($iSrc){
 		$index_now = count($this->tags);
 		$this->tags[] = new PiTAG('script');
-		$this->tags[$index_now]->set('language','javascript');		
+		$this->tags[$index_now]->set('language','javascript');
 		$this->tags[$index_now]->content($iSrc,false);
 		$this->tags[$index_now]->cdata(false);
-		
+
 		return $this;
 	}
 	/**
-	 * Funzione che esegue tutte le procedure necessarie per inizializzare l'ut
+	 * Funzione che esegue tutte le procedure necessarie per inizializzare l'utente
 	 */
-	public function initSession($iUsr){
-		
+	public function initSession($iUsr,$iAutologin = false){
+
 		$usr = $this->sysConfig->loadUsr();
-		
+
 		if(!isset($usr[$iUsr])){
 			$this->menu = false;
 			return false;
 		}
+
+		if($iAutologin && $usr[$iUsr]['use_pwd']){
+			return false;
+		}
+
 		$this->i18n = $this->sysConfig->loadI18n();
 		$grp = $this->sysConfig->loadGrp();
 		$mod = $this->sysConfig->loadMod();
 		$allMenus = $this->sysConfig->loadMenu();
 		$menu = $allMenus[$usr[$iUsr]["menu"]];
-		
+
 		ksort($menu);
-		
+
 		$this->opt["theme"] = $usr[$iUsr]["theme"];
 		$this->opt["style"] = $usr[$iUsr]["style"];
-		
+
 		$this->modules = $mod;
 		$this->usr = $usr[$iUsr];
-		
+
 		$out = array();
-		
+
 		foreach($menu as $k => $v){
-			
+
 			$tmpList = array();
 			$chkList = array();
-			
+
 			if(isset($v["list"])){
 				foreach($v["list"] as $kmod => $lMod){
 					if(!isset($mod[$lMod])){ continue; }
@@ -130,7 +135,7 @@ class PiSD{
 					$chkList[$lMod] = true;
 				}
 			}
-			
+
 			$out[$k] = array(
 				"des"	=>  $v["des"],
 				"list"	=> $tmpList,
@@ -138,28 +143,28 @@ class PiSD{
 				"hidden" => $v['hidden']
 			);
 		}
-		
+
 		$this->menu = $out;
 		$this->inited = true;
-		
+
 		$dblist = $this->sysConfig->loadDB();
-		
+
 		if(!isset($_SESSION[MSID])){
 			$_SESSION[MSID] = Array();
 		}
-		
-		$_SESSION[MSID]['usr'] = $iUsr; 
+
+		$_SESSION[MSID]['usr'] = $iUsr;
 		$_SESSION[MSID]['config'] = $usr[$iUsr];
 		$_SESSION[MSID]['db'] = $dblist;
-		
-		return $this;
+
+		return true;
 	}
-	
+
 	/**
 	 * Funzione per selezionare il modulo da caricare (e/o la sessione da visualizzare)
 	 */
 	public function select($iGID,$iMID){
-		
+
 		// Controllo che esista l'id del menù passato come parametro ... se no seleziono il primo disponibile
 		if($iGID && isset($this->menu[$iGID]) && ($this->menu[$iGID]['hidden'] ?: 0 == 0)){
 			$this->opt['GID'] = $iGID;
@@ -167,8 +172,8 @@ class PiSD{
 			reset($this->menu);
 			$this->opt['GID'] = key($this->menu);
 		}
-		
-		// Controllo che il moduolo passato sia presente nel menù 
+
+		// Controllo che il moduolo passato sia presente nel menù
 		$this->opt['MID'] = false;
 		if($iMID){
 			if(array_key_exists($iMID, $this->menu[$this->opt['GID']]['chklist'])){
@@ -184,17 +189,17 @@ class PiSD{
 				}
 			}
 		}
-		
+
 	}
-	
+
 	public function getModulePath(){
 		if($this->opt['GID'] === false || $this->opt['MID'] === false ){
 			return false;
-		}else{			
+		}else{
 			return './modules/'.$this->modules[$this->opt['MID']]['path'];
 		}
 	}
-	
+
 	public function getModule($iMID){
 		if (isset($this->mod[$iMID])){
 			return $this->mod[$iMID];
@@ -202,19 +207,19 @@ class PiSD{
 			return false;
 		}
 	}
-	
+
 	/// Metodi Privati
-	
+
 	private function getModuleIcon($iMID){
 		return('mdi '.$this->modules[$iMID]['icon']);
 	}
-	
+
 	private function getString($iStr,$iScope){
 		if($this->opt['i18n']){
 			if($iStr){
 				if($iScope == 'menu'){
 					return '<i18n scope="sys">menu:'.$this->usr['menu'].':'.$iStr.'</i18n>';
-				}else{					
+				}else{
 					return '<i18n scope="sys">'.$iScope.':'.$iStr.'</i18n>';
 				}
 			}else{
@@ -228,7 +233,7 @@ class PiSD{
 			}
 		}
 	}
-	
+
 	private function getLangString($iCfg){
 		$tr = $iCfg[$this->usr['lang']] ?: '';
 		if(trim($tr) == ''){
@@ -237,12 +242,12 @@ class PiSD{
 		return $tr;
 	}
 	/// Metodi pubblici di output
-	
+
 	public function renderList(){
 		$out = '<div class="pi-list">';
 		foreach($this->menu[$this->opt['GID']]['list'] as $k => $v){
 			$link = $this->opt["BaseURL"].$this->opt["BasePage"].'?GID='.$this->opt['GID'].'&MID='.$v["id"];
-			
+
 			$out .= '<a class="pi-mod pi-state-'.strtolower($v['stato']).'" href="'.$link.'">';
 			$out .= '<div class="pi-icon"><i class="'.$this->getModuleIcon($v['id']).'"></i></div>';
 			$out .= '<div class="pi-name">'.$this->getString($v['id'],'mod').'</div>';
@@ -252,11 +257,11 @@ class PiSD{
 		$out.='</div>';
 		return $out;
 	}
-	
+
 	public function render($iContent = ""){
 		$mod = $this->modules[$this->opt['MID']];
 		$sidemenu = $this->usr['showsidemenu'] == 0 ? 'pi-hide-menu' : '';
-		
+
 		$title = $this->opt["title"] ?: $this->getString($this->opt['MID'],'mod'); // $mod['nome'];
 		$title = $title ?: $this->getString($this->opt['GID'],'menu'); //$this->menu[$this->opt["GID"]]["des"];
 		$crlf = "\n";
@@ -341,9 +346,9 @@ class PiSD{
 		$out.= $crlf.'	</div>';
 		$out.= $crlf.'</body>';
 		$out.= $crlf.'</html>';
-	
+
 		return $out;
-		
+
 	}
 	public function __destruct(){}
 }
