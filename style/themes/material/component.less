@@ -2,7 +2,7 @@
 
 // TABSTRIPE
 
-@tab-voice-color(@c1,@c2,@c3){
+.tab-voice-color(@c1,@c2,@c3){
 	background-color: @c1;
 	color: @c3;
 	
@@ -28,7 +28,7 @@
 		.tabvoice{
 			flex: 1;
 			padding: 10px;
-			@tab-voice-color(@Main-C1,@Main-C2,@Main-C3);
+			.tab-voice-color(@Main-C1,@Main-C2,@Main-C3);
 			
 			&.selected{
 				font-weight:bold;
@@ -40,11 +40,11 @@
 			}
 			
 			
-			&.blue{ @tab-voice-color(@Blue-C1,@Blue-C2,@Blue-C3); }
-			&.red{ @tab-voice-color(@Red-C1,@Red-C2,@Red-C3); }
-			&.orange{ @tab-voice-color(@Orange-C1,@Orange-C2,@Orange-C3); }
-			&.green{ @tab-voice-color(@Green-C1,@Green-C2,@Green-C3); }
-			&.purple{ @tab-voice-color(@Purple-C1,@Purple-C2,@Purple-C3); }
+			&.blue{ .tab-voice-color(@Blue-C1,@Blue-C2,@Blue-C3); }
+			&.red{ .tab-voice-color(@Red-C1,@Red-C2,@Red-C3); }
+			&.orange{ .tab-voice-color(@Orange-C1,@Orange-C2,@Orange-C3); }
+			&.green{ .tab-voice-color(@Green-C1,@Green-C2,@Green-C3); }
+			&.purple{ .tab-voice-color(@Purple-C1,@Purple-C2,@Purple-C3); }
 		}
 	}
 }

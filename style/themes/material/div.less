@@ -1,4 +1,4 @@
-@div-color(@c1,@c2,@c3){
+.div-color(@c1,@c2,@c3){
 	background-color: @c1;
 	color: @c3;
 	&>.header{
@@ -26,15 +26,15 @@ div.panel{
 	color: @Main-Text-Normal;
 	background-color: #FFF;
 
-	&.blue{ @div-color(@Blue-C1,@Blue-C2,@Blue-C3);	}
+	&.blue{ .div-color(@Blue-C1,@Blue-C2,@Blue-C3);	}
 
-	&.red{ @div-color(@Red-C1,@Red-C2,@Red-C3); }
+	&.red{ .div-color(@Red-C1,@Red-C2,@Red-C3); }
 
-	&.orange{ @div-color(@Orange-C1,@Orange-C2,@Orange-C3); }
+	&.orange{ .div-color(@Orange-C1,@Orange-C2,@Orange-C3); }
 
-	&.green{ @div-color(@Green-C1,@Green-C2,@Green-C3); }
+	&.green{ .div-color(@Green-C1,@Green-C2,@Green-C3); }
 
-	&.purple{ @div-color(@Purple-C1,@Purple-C2,@Purple-C3); }
+	&.purple{ .div-color(@Purple-C1,@Purple-C2,@Purple-C3); }
 
 	&>.header{
 		margin-top: -10px;

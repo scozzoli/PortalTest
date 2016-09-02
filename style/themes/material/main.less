@@ -10,8 +10,11 @@
 
 body{
 
-	//@Stripe-C1 = @Main-BG-Color;//lighten(@Main-C1,15%);
-	//@Stripe-C2 = #FFF;//lighten(@Main-C2,35%);
+	//@Stripe-C1 : @Main-BG-Color;//lighten(@Main-C1,15%);
+	//@Stripe-C2 : #000;//lighten(@Main-C2,35%);
+	
+	//@StripePx1 : 25px;
+	//@StripePx2 : 50px;
 
 	color: @Main-Text-Normal;
 	//font-family: OpenSans, Verdana, Arial, Helvetica, sans-serif;
@@ -21,14 +24,21 @@ body{
 	padding: 0px ;
 	margin: 0px;
 	background-color : @Main-BG-Color;
+	//background-image: url('img/texture/subtle_white_feathers.png');
     position: absolute;
 	height: 100%;
     width: 100%;
-
-	//background: linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
-	//background: -webkit-linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
-	//background: -moz-linear-gradient(45deg, @Stripe-C1 25%,  @Stripe-C2 25%, @Stripe-C2 50%,  @Stripe-C1 50%, @Stripe-C1 75%,  @Stripe-C2 75%);
-	//background-size: 20px 20px;
+	
+	//background-color: fade(@Main-C1,40%);//@Main-BG-Color;//#ffecd0;
+	background-image: repeating-linear-gradient(
+			55deg, 
+			rgba(255, 255, 255, .3),
+			rgba(255, 255, 255, .3) 25px, //fade(@color,70%) 25%,//
+			transparent 25px, 
+			transparent 50px
+		);
+	background-attachment: fixed;
+	
 }
 
 .pi-wrapper{
@@ -139,6 +149,9 @@ body{
 							display: block;
 							height: auto;
 							transition: @Main-Transition;
+							max-height: ~"calc( 100vh - 80px )";
+							overflow-y: auto;
+							overflow-x: hidden;
 							//opacity: 1;
 						}
 					}
@@ -276,7 +289,8 @@ body{
 						padding-top: 14px;
 						padding-left: 6px;
 						border-radius: 0 3px 3px 0;
-
+						transition: @Main-Transition;
+						
 						&.pi-selected{
 							background: #FFF;
 							box-shadow: @Main-BoxShadow-1;
@@ -285,6 +299,7 @@ body{
 						&:hover{
 							background: #FFF;
 							box-shadow: @Main-BoxShadow-2;
+							transition: @Main-Transition;
 
 							.pi-title, .pi-descr{
 								width: auto;
@@ -492,7 +507,7 @@ body{
 	}
 }
 
-@pi-mod-width(@val) {
+.pi-mod-width(@val) {
 	.pi-wrapper{
 		.pi-body{
 			.pi-list{
@@ -504,20 +519,20 @@ body{
 	}
 }
 
-@pi-multi-size(@S,@M,@L){
+.pi-multi-size(@S,@M,@L){
 	.pi-size-s{ float: left; width: ~"calc(" @S ~" - 30px )"; }
 	.pi-size-m{ float: left; width: ~"calc(" @M ~" - 30px )"; }
 	.pi-size-l{ float: left; width: ~"calc(" @L ~" - 30px )"; }
 }
 
-@screen-xs-max = 767px;
-@screen-sm-min = 768px; @screen-sm-max = 991px;
-@screen-md-min = 992px; @screen-md-max = 1199px;
-@screen-lg-min = 1200px; @screen-lg-max = 1449px;
-@screen-xl-min = 1450px;
+@screen-xs-max : 767px;
+@screen-sm-min : 768px; @screen-sm-max : 991px;
+@screen-md-min : 992px; @screen-md-max : 1199px;
+@screen-lg-min : 1200px; @screen-lg-max : 1449px;
+@screen-xl-min : 1450px;
 
-@media (max-width: @screen-xs-max) { @pi-mod-width(100%); @pi-multi-size(100%,100%,100%); }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { @pi-mod-width(50%); @pi-multi-size(50%,100%,100%); }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { @pi-mod-width(33.33%); @pi-multi-size(50%,100%,100%); }
-@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { @pi-mod-width(25%); @pi-multi-size(33.33%,50%,100%); }
-@media (min-width: @screen-xl-min) { @pi-mod-width(20%); @pi-multi-size(33.33%,50%,100%); }
+@media (max-width: @screen-xs-max) { .pi-mod-width(100%); .pi-multi-size(100%,100%,100%); }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { .pi-mod-width(50%); .pi-multi-size(50%,100%,100%); }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { .pi-mod-width(33.33%); .pi-multi-size(50%,100%,100%); }
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { .pi-mod-width(25%); .pi-multi-size(33.33%,50%,100%); }
+@media (min-width: @screen-xl-min) { .pi-mod-width(20%); .pi-multi-size(33.33%,50%,100%); }

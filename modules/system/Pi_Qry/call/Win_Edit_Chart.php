@@ -26,7 +26,7 @@
 
 	$metaOpt ='<select name="labels">
 		<option value=""> --- </option>';
-	foreach ($metadata as $k => $v) {
+	foreach ($metadata ?: [] as $k => $v) {
 		$metaOpt.='<option value="'.$k.'"> '.$k.' </option>';
 	}
 	$metaOpt.='</select>';
