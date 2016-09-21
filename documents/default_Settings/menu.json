@@ -2,18 +2,25 @@
     "guest": {
         "A01": {
             "des": {
-                "it": "Benvenuto"
+                "it": "Benvenuto",
+                "en": "Wellcome",
+                "fr": "",
+                "es": ""
             },
             "icon": "",
             "list": [
                 "Pi_Login"
-            ]
+            ],
+            "hidden": 1
         }
     },
     "root": {
-        "A01": {
+   		"A01": {
             "des": {
-                "it": "Sistema"
+                "it": "Sistema",
+                "en": "System",
+                "fr": "",
+                "es": ""
             },
             "icon": "",
             "list": [
@@ -24,7 +31,8 @@
                 "Pi_DB_Utility",
                 "Pi_Info",
                 "Pi_I18n"
-            ]
+            ],
+            "hidden": 0
         }
     }
 }

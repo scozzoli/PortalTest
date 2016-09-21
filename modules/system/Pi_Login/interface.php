@@ -14,7 +14,7 @@
 				<div class="header" style="font-size : 16px; margin-bottom: 60px;">
 					<br>
 					<b style="font-size : 22px;">Portal 1</b><br>
-					<span style="font-size : 12px;"><i18n>iface:lblLogin</i18n>Login utente</apan>
+					<span style="font-size : 12px;"><i18n>iface:lblLogin</i18n></apan>
 					<br>
 
 					<div class="badge xlarge" style="width:190px;"><i class="mdi mdi-account"></i></div>

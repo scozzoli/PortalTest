@@ -1,8 +1,7 @@
 .DefineFormColor(){
 
 	border: 1px solid @Main-C1;
-
-
+	
 	&.ale{
 		border: 1px solid @Orange-C1;
 		background-color: @Orange-C1;
@@ -50,11 +49,14 @@
 .ButtonColor(@C1,@C2,@C3){
 	color: @C3;
 	//background-color: @C1;
+	//color: @C1;
+	background-color: @C2;
+	/*
 	&:hover, &:focus{
 		color: @C1;
 		background-color: @C3;
 	}
-	
+	*/
 	&:disabled{
 		background-color: @C1;
 		color: @C2;
@@ -73,7 +75,7 @@ input[type="password"],textarea{
 	box-sizing: content-box;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
-	padding : 8px;
+	padding : 4px;
 	margin : 2px;
 	width : 150px;
 	transition: @Main-Transition;
@@ -85,7 +87,7 @@ input[type="password"],textarea{
 }
 
 textarea{
-	font-family: Roboto;
+	font-family: @MainFont;
 	min-height: 32px;
 
 	.getSize();
@@ -99,7 +101,7 @@ select{
 	box-sizing: content-box;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
-	padding : 6px 8px;//8px;
+	padding : 2px 4px;//8px;
 	margin : 2px;
 	width : 150px;
 	transition: @Main-Transition;
@@ -122,17 +124,18 @@ button{
 	border: 0;
 	line-height: 16px;
 	font-size:14px;
-	font-weight : bold;
+	//font-weight : bold;
 	margin: 7px 10px;
-	border-radius : 2px;
+	border-radius : 1px;
 	transition: @Main-Transition;
+	box-shadow: @Main-BoxShadow-1;
 	padding: 0 10px;
 	min-height: 28px;
 	color : @Main-C3;
 	white-space:nowrap;
 	//min-width: 80px;
 	min-width: 28px;
-	text-transform: uppercase;
+	//text-transform: uppercase;
 	text-align: center;
 /*
 	&:not(.icon){
@@ -177,8 +180,8 @@ button{
 	&:hover{
 		transition: @Main-Transition;
 		box-shadow : @Main-BoxShadow-2;
-		color: @Main-C1;
-		background-color: @Main-C3;
+		//color: @Main-C1;
+		//background-color: @Main-C3;
 	}
 
 	&:focus{
@@ -197,12 +200,12 @@ button{
 
 	&:disabled{
 		color: @White-C2;
-		background-color: @Main-C1;
+		//background-color: @Main-C1;
 
 		&:hover{
-			box-shadow: unset;
+			box-shadow: @Main-BoxShadow-1;
 			color: @White-C2;
-			background-color: @Main-C1;
+			//background-color: @Main-C1;
 		}
 	}
 }
@@ -241,7 +244,7 @@ input[type="checkbox"]{
 			width: 14px;
 			height: 14px;
 			border: 2px solid @Main-C2;
-			border-radius: 3px;
+			border-radius: 1px;
 			cursor: pointer;
 			font-size: 1px;
 			margin: 0 3px;
@@ -407,10 +410,6 @@ input[type="radio"]{
 
 
 
-
-
-
-
 input[type="file"]{
 	width: 0.1px;
 	height: 0.1px;
@@ -427,7 +426,7 @@ input[type="file"]{
 		box-sizing: content-box;
 		-moz-box-sizing: content-box;
 		-webkit-box-sizing: content-box;
-		padding : 8px;
+		padding : 4px;
 		margin : 2px;
 		width : 150px;
 		transition: @Main-Transition;

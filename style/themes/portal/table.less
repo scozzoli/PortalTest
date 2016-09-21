@@ -1,0 +1,217 @@
+.TableColor(@C1,@C2,@C3){
+
+	border:1px solid @C2;
+	
+	& > tbody > tr {
+		& > td {
+			border-color: @C2;
+		}
+		& > th {
+			border-color: @C3;
+			background-color: @C2;
+			color: @C3;
+			padding: 4px 2px;
+		}
+		&:hover{
+			> td{
+				background-color: @C2;
+			}
+		}
+	}
+}
+
+.RowColor(@C1,@C2,@C3,@DisabledColor: @C2){
+	& > td {
+		background-color: @C1;
+		&.red{ background-color: @Red-C1; }
+		&.blue{ background-color: @Blue-C1; }
+		&.green{ background-color: @Green-C1; }
+		&.orange{ background-color: @Orange-C1; }
+		&.purple{ background-color: @Purple-C1; }
+		&.deleted{
+			text-decoration: line-through;
+			color:@C2;
+		}
+		&.disabled{ 
+			color:@C2;
+		}
+	}
+	&:hover{
+		> td{
+			background-color: @C2;
+			&.red{ background-color: @Red-C2; }
+			&.blue{ background-color: @Blue-C2; }
+			&.green{ background-color: @Green-C2; }
+			&.orange{ background-color: @Orange-C2; }
+			&.purple{ background-color: @Purple-C2; }
+		}
+	}
+	
+	&.deleted{
+		> td{
+			text-decoration: line-through;
+			color:@DisabledColor;
+		}
+	}
+	&.disabled{
+		> td{
+			color:@DisabledColor;
+		}
+	}
+}
+
+
+table{
+	padding: 0px ;
+	margin: 0px;
+  	border: 0px;
+	border-collapse: collapse;
+	
+	& > tbody > tr {
+		& > td{
+			padding:2px;
+		}
+		& > th{ 
+			padding:4px 2px;
+		}
+	}
+	
+	&.bold{
+		background-color:#FFF;
+		width : 100%;
+		
+		& > tbody > tr {
+			& > td {
+				border : 1px solid @Main-C2;
+				padding : 2px;
+			}
+			& > th {
+				border-color : @Main-C3;
+				background-color : @Main-C3;
+				text-align: left;
+				padding:4px 2px;
+			}
+			//&:hover{
+			//	> td{
+			//		background-color: @Main-C2;
+			//	}
+			//}
+			
+			.RowColor(#FFF,@Main-C1,"");
+			
+			&.red{ .RowColor(@Red-C1,@Red-C2,@Red-C3); }
+			&.blue{ .RowColor(@Blue-C1,@Blue-C2,@Blue-C3); }
+			&.green{ .RowColor(@Green-C1,@Green-C2,@Green-C3); }
+			&.orange{ .RowColor(@Orange-C1,@Orange-C2,@Orange-C3); }
+			&.purple{ .RowColor(@Purple-C1,@Purple-C2,@Purple-C3); }
+		}
+		
+	}
+	
+	&.red{ .TableColor(@Red-C1,@Red-C2,@Red-C3); }
+	&.blue{ .TableColor(@Blue-C1,@Blue-C2,@Blue-C3); }
+	&.green{ .TableColor(@Green-C1,@Green-C2,@Green-C3); }
+	&.orange{ .TableColor(@Orange-C1,@Orange-C2,@Orange-C3); }
+	&.purple{ .TableColor(@Purple-C1,@Purple-C2,@Purple-C3); }
+	
+	&.lite{
+		background-color:#FFF;
+		width: 100%;
+		border-collapse: separate;
+		border-spacing: 0px;
+		
+		& > tbody > tr {
+			> td {
+				border-bottom: 1px solid @White-C1;
+			}
+			
+			>th{
+				text-align:left;
+			}
+			//&:hover{
+			//	> td{
+			//		background-color: rgb(255, 255, 204);
+			//	}
+			//}
+			
+			.RowColor(#FFF,rgb(255, 255, 204),"",@White-C2);
+			
+			&.red{ .RowColor(@Red-C1,@Red-C2,@Red-C3); }
+			&.blue{ .RowColor(@Blue-C1,@Blue-C2,@Blue-C3); }
+			&.green{ .RowColor(@Green-C1,@Green-C2,@Green-C3); }
+			&.orange{ .RowColor(@Orange-C1,@Orange-C2,@Orange-C3); }
+			&.purple{ .RowColor(@Purple-C1,@Purple-C2,@Purple-C3); }
+		}
+	}
+	
+	&.fix{
+		
+		&.nohover > tbody > tr{
+			&:hover > td {
+				background-color:inherit; 
+			}
+			
+			&.red:hover > td { background-color:@Red-C1; }
+			&.blue:hover > td { background-color:@Blue-C1; }
+			&.green:hover > td { background-color:@Green-C1; }
+			&.orange:hover > td { background-color:@Orange-C1; }
+			&.purple:hover > td { background-color:@Purple-C1; }
+		}
+		
+		
+		& > tbody > tr {
+			&.red, &.blue, &.green, &.orange, &.purple, &{
+				&:hover{
+					& > td{
+						&.red{ 
+							background-color:@Red-C1; 
+							&:hover{ 
+								background-color:@Red-C2; 
+							}
+						}
+						&.blue{ 
+							background-color:@Blue-C1; 
+							&:hover{ 
+								background-color:@Blue-C2; 
+							}
+						}
+						&.green{ 
+							background-color:@Green-C1; 
+							&:hover{ 
+								background-color:@Green-C2; 
+							}
+						}
+						&.orange{ 
+							background-color:@Orange-C1; 
+							&:hover{ 
+								background-color:@Orange-C2; 
+							}
+						}
+						&.purple{ 
+							background-color:@Purple-C1; 
+							&:hover{ 
+								background-color:@Purple-C2; 
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	&.form{
+		width: 100%;
+		th{ 
+			text-align:right; 
+			font-weight:bold;
+		}
+		td{ 
+			text-align:left; 
+		}
+	}
+	
+	&.separate{
+		margin: 10px;
+		width: ~"calc( 100% - 20px )";
+	}
+}

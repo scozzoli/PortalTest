@@ -13,7 +13,7 @@ All'inizio pensavo di usare dei framework già belli che pronti ... ma o facevan
 
 Tutto questo è partito nel *lontano* 2000 (lontano perché era ancora considerato un browser **IE6** `<RandomBestemmia>`) ed ovviamente col tempo le esigenze dei vai datori di lavoro sono aumentate, e con loro il mio piccolo framework.
 
-Visto che nel panorama attuale esiste nulla che dia questo tipo di elasticità nello sviluppo, ho pensato di ripulirlo e di metterlo a disposizione di chi lo volesse.
+Visto che nel panorama attuale non esiste nulla che dia questo tipo di elasticità nello sviluppo, ho pensato di ripulirlo e di metterlo a disposizione di chi lo volesse.
 
 ### Che cos'è quindi?
 Portal1 è un framework facile da usare che punta ad uno sviluppo rapido di applicazioni web... che effettivamente vuol dire tutto e niente... Diciamo che 
@@ -21,7 +21,6 @@ Portal1 è un framework facile da usare che punta ad uno sviluppo rapido di appl
 * **è :**
 	* *Modulare* - Ossia ogni strumento è indipendente dagli altri, a meno che non si crei un modulo common ... ma questa è un'altra storia
 	* *Multilingua* - Supporto nativo delle traduzioni utilizzando il tag **non** html5 `<i18n>`
-	* *Stilizzabile* - I temi sono personalizzabili in nelle maniere più svariate (di base ho messo solo quello _material_)
 	* *DB free* - Non necessita di un DB per funzionare
 	* *Multi DB* - Si possono configurare un numero indefinito di connessioni a svariati DB
 	* *Personalizzabile* - Menù, permessi, stili, DB ... sono tutti configurabili per utente

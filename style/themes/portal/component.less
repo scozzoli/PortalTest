@@ -1,0 +1,294 @@
+// Getione degli stili personalizzati dei component:
+
+// TABSTRIPE
+
+.tab-voice-color(@c1,@c2,@c3){
+	//background-color: @c1;
+	color: @c3;
+	border-bottom:2px solid @c3;
+	
+	&:hover{
+		background-color: @c1;
+	}
+	
+	&.selected{
+		background-color: @c3;
+		color:@c1;
+		
+		&:hover{
+			background-color: @c3;
+		}
+	}
+}
+
+.pi-tabstripe{
+	.tablist{
+		display: flex;
+		align-items: stretch;
+		
+		.tabvoice{
+			flex: 1;
+			padding: 10px;
+			.tab-voice-color(@Main-C1,@Main-C2,@Main-C3);
+			
+			&.selected{
+				font-weight:bold;
+			}
+			
+			&:not(.selected),
+			&:not(.diabled){
+				cursor: pointer;
+			}
+			
+			
+			&.blue{ .tab-voice-color(@Blue-C1,@Blue-C2,@Blue-C3); }
+			&.red{ .tab-voice-color(@Red-C1,@Red-C2,@Red-C3); }
+			&.orange{ .tab-voice-color(@Orange-C1,@Orange-C2,@Orange-C3); }
+			&.green{ .tab-voice-color(@Green-C1,@Green-C2,@Green-C3); }
+			&.purple{ .tab-voice-color(@Purple-C1,@Purple-C2,@Purple-C3); }
+		}
+	}
+}
+
+// COLLAPSE PANNEL
+
+.pi-collapse{
+	
+	&.panel{
+		padding:0;
+		.header{
+			margin:0;
+			cursor: pointer;
+			&>.icons{
+				float: left;
+				margin-top: -1px;
+				margin-right: 5px;
+				.mdi{
+					&.l2{
+						font-size: 20px;
+					}
+				}
+				
+			}
+		}
+	}
+	
+	.content{
+		overflow: hidden;
+		padding: 10px;
+	}
+	
+	&.open{
+		.header{
+			&>.icons{
+				.icon-open{
+					display: inline;
+				}
+				.icon-close{
+					display: none;
+				}
+			}
+		}
+		.content{
+			padding: 10px;
+		}
+	}
+	
+	&.close{
+		.header{
+			&>.icons{
+				.icon-open{
+					display: none;
+				}
+				.icon-close{
+					display: inline;
+				}
+			}
+			//border-radius:3px;
+		}
+		.content{
+			padding: 10px;
+		}
+	}
+}
+
+// I18N 
+
+.i18n-miss{
+	border: 2px solid @Main-C3;
+	padding: 3px;
+	background-color: @Main-BG-Color;
+	color: @Main-C3;
+	//box-shadow: @Main-BoxShadow-1;
+	&:before{
+		content:attr(data-lang);
+		color: @Main-Text-Title;
+		background-color: @Main-C2;
+		margin: -3px 3px -3px -3px;
+		padding:3px 2px 3px 5px;
+	}
+}
+
+i18n{
+	opacity:0;
+}
+
+// Calendar
+.calendar{
+	table-layout:fixed;
+	& > tbody > tr {
+		& > td {
+			vertical-align: top;
+			width: 12%;
+			color:black;
+			height: 80px;
+			
+			&.thisday{
+				border-width: medium;
+				
+				&> .day {
+					font-weight:bold;
+				}
+			}
+			
+			&.nomonth{
+				color: @Main-C1;
+			}
+			
+			&> .day{
+				font-size: x-large;
+				text-align: right;
+				float: right;
+				font-style: italic;
+				margin-right: 5px;
+			}
+			& > .event {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				margin:3px;
+				width: 100%;
+				line-height: 16px;
+				//&:before{
+				//	content: " ";
+				//	float: left;
+				//	width: 6px;
+				//	height: 6px;
+				//	border-radius: 50%;
+				//	background-color: @Main-C3;
+				//	margin-top: 4px;
+				//	margin-right: 5px;
+				//}
+                //
+				
+				i{
+					//top: -2px;
+					float: left;
+				}
+				
+				&.red { 
+					color: @Red-C3; 
+					//&:before { background-color: @Red-C3; }
+				}
+				&.blue{ 
+					color: @Blue-C3; 
+					//&:before { background-color: @Blue-C3; }
+				}
+				&.green { 
+					color: @Green-C3; 
+					//&:before { background-color: @Green-C3; }
+				}
+				&.orange { 
+					color: @Orange-C3; 
+					//&:before { background-color: @Orange-C3; }
+				}
+				&.purple { 
+					color: @Purple-C3; 
+					//&:before { background-color: @Purple-C3; }
+				}
+			}
+			
+			& > .countEvents{
+				font-style:italic;
+				padding-left:3px;
+			}
+			
+			&.red > .day{ color: @Red-C3; }
+			&.blue > .day{ color: @Blue-C3; }
+			&.green > .day{ color: @Green-C3; }
+			&.orange > .day{ color: @Orange-C3; }
+			&.purple > .day{ color: @Purple-C3; }
+		}
+	}
+	
+	&.red > tbody > tr > td { 
+		&.nomonth{
+			color:@Red-C1; 
+		}
+		
+		& > .countEvents{
+			color:@Red-C3; 
+		}
+		
+		&.thisday{
+			border-color: @Red-C3;
+			border-width: 3px;
+		}
+	}
+	&.blue > tbody > tr > td { 
+		&.nomonth{
+			color:@Blue-C1; 
+		}
+		
+		& > .countEvents{
+			color:@Blue-C3; 
+		}
+		
+		&.thisday{
+			border-color: @Blue-C3;
+			border-width: 3px;
+		}
+	}
+	&.green > tbody > tr > td { 
+		&.nomonth{
+			color:@Green-C1; 
+		}
+		
+		& > .countEvents{
+			color:@Green-C3; 
+		}
+		
+		&.thisday{
+			border-color: @Green-C3;
+			border-width: 3px;
+		}
+	}
+	&.orange > tbody > tr > td { 
+		&.nomonth{
+			color:@Orange-C1; 
+		}
+		
+		& > .countEvents{
+			color:@Orange-C3; 
+		}
+		
+		&.thisday{
+			border-color: @Orange-C3;
+			border-width: 3px;
+		}
+	}
+	&.purple > tbody > tr > td { 
+		&.nomonth{
+			color:@Purple-C1; 
+		}
+		
+		& > .countEvents{
+			color:@Purple-C3; 
+		}
+		
+		&.thisday{
+			border-color: @Purple-C3;
+			border-width: 3px;
+		}
+	}
+}

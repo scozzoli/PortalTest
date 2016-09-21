@@ -36,7 +36,7 @@ class PiDB{
 	
 	/**
 	 * Costruttore della classe
-	 * @param string $iDbSource Connessione al DB nel formato PmDB
+	 * @param string $iDbSource Connessione al DB nel formato PiDB
 	 */
 	public function __construct($iDbSource){
 		$this->src = $iDbSource;

@@ -123,7 +123,7 @@
 				<th> <i18n>lbl:icon</i18n> </th>
 				<td>
 					<input type="hidden" name="icon" id="icon_icon">
-					<button onClick="pi.request(\'qryDataForm\',\'Win_Load_Icons\')"> <i class="mdi l2 '.$icon.'" id="icon_show"></i> </button>
+					<button onClick="pi.request(\'qryDataForm\',\'Win_Load_Icons\')" class="icon"> <i class="mdi l2 '.$icon.'" id="icon_show"></i> </button>
 				</td>
 			</tr>
 			<tr>
