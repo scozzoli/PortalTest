@@ -138,7 +138,7 @@
 							break;
 							case 'text' :
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" onclick="pi.win.open({ content: $(\'#'.$k.'_'.$vk.'\').html(), title:\''.$vk.'\'});">
-									<div style="display:none" id="'.$k.'_'.$vk.'"><div style="padding:10px;">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</div></div>
+									<div style="display:none" id="'.$k.'_'.$vk.'"><div style="padding:10px; word-wrap: break-word;">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</div></div>
 									<i class="mdi mdi-comment-text-outline"></i> '.$vk.'
 								</td>';
 							break;

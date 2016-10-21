@@ -25,7 +25,7 @@
 
 	</div>';
 	$js = '$("#save_php_button").click(function(){
-		$("#php_qry_value").val(JSON.stringify(pi.getInputsByName("winEdit")));
+		$("#php_qry_value").val(JSON.stringify(pi.getInputsByName("winEdit").call));
 		pi.win.close();
 	});';
 	$footer = '<button class="red" onClick="pi.win.close();"> <i18n>cancel</i18n> </button> <button class="green" id="save_php_button"> <i18n>save</i18n> </button>';
