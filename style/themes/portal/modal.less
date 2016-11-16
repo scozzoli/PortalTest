@@ -1,4 +1,4 @@
-@keyframe pi-move-loader{
+@keyframes pi-move-loader{
 	0% {
 		-ms-transform: rotate(0deg); /* IE 9 */
 		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
@@ -220,10 +220,11 @@
 			transition-property: width, height, opacity;
 			
 			.header{
-				color:@Main-Text-Title;
-				background-color: @Main-C3;
+				color: @Main-C3;//@Main-Text-Title;
+				background-color: #FFF;//@Main-C3;
+				font-weight: bold;
 				border-radius: 3px 3px 0 0;
-				font-size: 18px;
+				font-size: 16px;
 				padding: 10px;
 				height: 20px;
 				
@@ -240,8 +241,8 @@
 					&:hover{
 						transition: @Main-Transition;
 						transition-property: width, height, opacity;
-						background-color: @Red-C3;
-						//color: @Red-C3;
+						//background-color: @Red-C3;
+						color: @Red-C3;
 						cursor: pointer;
 						border-radius: 0 3px 0 0;
 					}

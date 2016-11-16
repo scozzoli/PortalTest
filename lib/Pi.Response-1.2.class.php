@@ -75,7 +75,6 @@
 	private $actions;
 	private $actionsFill;
 	private $actionsFinally;
-	private $array_clean;
 	private $postPi;
 	private $postCall;
 	private $usr;
@@ -111,17 +110,17 @@
 		$this->actions = array();
 		$this->actionsFill = array();
 		$this->actionsFinally = array();
-    $this->fileList = array();
+		$this->fileList = array();
 
-    foreach ($_FILES ?: [] as $key => $value) {
-      if(strpos($key,'file_') == 0){
-        $comp = explode('_',$key);
-        if(!isset($this->fileList[$comp[1]])){
-          $this->fileList[$comp[1]] = array();
-        }
-        $this->fileList[$comp[1]][intval($comp[2])] = $value;
-      }
-    }
+		foreach ($_FILES ?: [] as $key => $value) {
+		  if(strpos($key,'file_') == 0){
+			$comp = explode('_',$key);
+			if(!isset($this->fileList[$comp[1]])){
+			  $this->fileList[$comp[1]] = array();
+			}
+			$this->fileList[$comp[1]][intval($comp[2])] = $value;
+		  }
+		}
 	}
 
 	public function post(){	//$iVar,$iDefault
@@ -138,15 +137,15 @@
 
 	}
 
-  public function files($iName){
-    return count($this->fileList[$iName] ?: []);
-  }
+	public function files($iName){
+		return count($this->fileList[$iName] ?: []);
+	}
 
-  public function file($iName,$iFileId = 0){
-    $file = new PiFile($this->fileList[$iName][$iFileId]);
-    $file->printError($this);
-    return $file;
-  }
+	public function file($iName,$iFileId = 0){
+		$file = new PiFile($this->fileList[$iName][$iFileId]);
+		$file->printError($this);
+		return $file;
+	}
 
 	public function getString($iVar,$iFlags = 0){
 		$out = $this->post($iVar);
@@ -166,8 +165,12 @@
 	public function getNumber($iVar,$iFlags = 0){
 		$out = $this->post($iVar);
 		$out = str_replace(',','.',$out);
-		if($iFlags & PiRespose::GET_NUM_INT){ $out = intval($out); }
-		return floatval($out);
+		if($iFlags & PiRespose::GET_NUM_INT){ 
+			$out = intval($out); 
+		}else{
+			$out = floatval($out); 
+		}
+		return $out;
 	}
 
 	public function getDate($iVar,$iDateFormat=0){
@@ -223,7 +226,7 @@
 	}
 
 	public function chkGrp($iGrp){
-		if($this->usr == 'root') return true;
+		if($this->usr == 'root'){ return true; }
 		return (isset($this->config['grp'][$iGrp]) ? $this->config['grp'][$iGrp] : $this->config['grpdef']) == 1;
 	}
 

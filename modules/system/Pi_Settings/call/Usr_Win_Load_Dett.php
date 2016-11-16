@@ -3,6 +3,7 @@
 	$grp_list = $sysConfig->loadGrp();
 	$usr_list = $sysConfig->loadUsr();
 	$menu_list = $sysConfig->loadMenu();
+	$ext_list = $sysConfig->loadUsrExt() ?: [];
 	
 	$lang_list = getLangList($pr);
 	
@@ -11,7 +12,7 @@
 		$usr = false;
 		$usr_list[$usr] = array(
 			'nome' => 'Nuovo Utente',
-			'pwd' => 'd41d8cd98f00b204e9800998ecf8427e', // è l'MD5 della pasword vuota
+			'pwd' => 'd41d8cd98f00b204e9800998ecf8427e', // l'MD5 della pasword vuota
 			'email' => '',
 			'use_pwd' => '0',
 			'menu' => '',
@@ -31,7 +32,7 @@
 		);
 	}
 	
-	// Creo la dropdown del menù
+	// Creo la dropdown del menÃ¹
 	
 	$ddMenu='<select name="menu">';
 	foreach($menu_list as $k => $v){
@@ -110,21 +111,53 @@
 	
 	$extList='';
 	$extListIdx = 0;
-	foreach($usr_list[$usr]['extension'] ?: array() as $k => $v){
+	
+	$userExtList = $usr_list[$usr]['extension'] ?: [];
+	$fixedExt = [];
+	
+	foreach($ext_list as $k => $v ){
+		$fillVars['ext_key_'.$extListIdx] = $k;
+		$fillVars['ext_val_'.$extListIdx] = $userExtList[$k] ?: '';
+		$fixedExt[$extListIdx] = $k;
+		$extListIdx++;
+	}
+	
+	foreach($userExtList as $k => $v){
+		if(isset($ext_list[$k])){ continue; }
 		$fillVars['ext_key_'.$extListIdx] = $k;
 		$fillVars['ext_val_'.$extListIdx] = $v;
+		$extListIdx++;
 	}
-	$extListIdx = count($usr_list[$usr]['extension'] ?: array()) + 1; // --> aggiungo sempre una riga in più
-	
-	for($i = 0; $i< $extListIdx; $i++){
-		$extList .= '<tr>
-				<td style="text-align: center;">
-					<input type="text" class="small" name="ext_key_'.$i.'" placeholder="Chiave">
+	for($i = 0; $i <= $extListIdx; $i++){
+		if(isset($fixedExt[$i])){ 
+//			$extList.='<tr>
+//					<td style="text-align: right;">
+//						<b class="purple">'.$fixedExt[$i].' :</b> 
+//						<input type="hidden" name="ext_key_'.$i.'">
+//					</td>
+//					<td>
+//						<i> '.htmlentities($sysConfig->i18nGet($ext_list[$fixedExt[$i]])).'</i><br>
+//						<input type="text" class="full" name="ext_val_'.$i.'" placeholder="Valore">
+//					</td>
+//				</tr>';
+			$extList.='<tr>
+					<td colspan="2">
+						<b class="purple">'.$fixedExt[$i].' : </b> <i> '.htmlentities($sysConfig->i18nGet($ext_list[$fixedExt[$i]])).'</i><br>
+						<input type="hidden" name="ext_key_'.$i.'">
+						<input type="text" class="full" name="ext_val_'.$i.'" placeholder="Valore">
+					</td>
+				</tr>';
+		}else{
+			$extList .= '<tr>
+				<td style="text-align: right;">
+					<input type="text" class="small" name="ext_key_'.$i.'" placeholder="Chiave"> 
 				</td>
-				<td style="text-align: center;">
-					<input type="text" class="double" name="ext_val_'.$i.'" placeholder="Valore">
+				<td width="100%">
+					<input type="text" class="full" name="ext_val_'.$i.'" placeholder="Valore">
 				</td>
 			</tr>';
+		}
+		
 	}
 	
 	$tb_grp.='</table>';
@@ -249,8 +282,8 @@
 	$js = "$('#addExtensionOnClick').click(function(e){
 		var idx = $('#ExtenzionCounter').val() * 1; 
 		
-		var htm = '<td style=\"text-align: center;\"><input type=\"text\" class=\"small\" name=\"ext_key_'+idx+'\" placeholder=\"Chiave\"></td>';
-			htm += '<td style=\"text-align: center;\"><input type=\"text\" class=\"double\" name=\"ext_val_'+idx+'\" placeholder=\"Valore\"></td>';
+		var htm = '<td style=\"text-align: right;\"><input type=\"text\" class=\"small\" name=\"ext_key_'+idx+'\" placeholder=\"Chiave\"></td>';
+			htm += '<td style=\"text-align: left;\"><input type=\"text\" class=\"full\" name=\"ext_val_'+idx+'\" placeholder=\"Valore\"></td>';
 		
 		$('#ExtensionTable tr:last').after('<tr>'+htm+'</tr>');
 		$(window).resize();

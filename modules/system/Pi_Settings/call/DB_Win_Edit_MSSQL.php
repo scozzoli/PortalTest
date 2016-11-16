@@ -3,7 +3,7 @@
 		$oldID = '<input type="hidden" name="old_id" value="'.($id ?: '').'">';
 		$fill = $db_list[$id];
 		unset($fill['dbpwd']);
-		$delButton='<button class="red" onclick="pi.chk(\'<i18n>db:chk:delete</i18n>\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> <i18n>cancel</i18n> </button>';
+		$delButton='<button class="red" onclick="pi.chk(\'<i18n>db:chk:delete</i18n>\').requestOnModal(\'Win_Edit\',\'DB_Del\');" '.($isUsed ? 'disabled' : '').'> <i18n>delete</i18n> </button>';
 	}else{
 		$oldID = '';
 		$fill = Array(

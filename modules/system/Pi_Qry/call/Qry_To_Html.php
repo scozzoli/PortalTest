@@ -60,6 +60,40 @@
 
 		return $out;
 	}
+	
+	function parseJson($iNode,$iDepth = 0){
+		$out = '';
+		foreach($iNode as $k => $v){
+			if(is_array($v)){
+				$out .= '<b class="orange">'.$k.'</b>';
+				$out .= '<div class="focus" style="border-left:1px solid;">'.parseJson($v, $iDepth + 1).'</div>';
+			}else if ($v === null){
+				$out.='<b>'.$k.' : </b> <i class="disabled"> null </i><br>';
+			}else if ($v === false || $v === true){
+				$out.='<b>'.$k.' : </b> <i class="mdi '.($v ? 'green mdi-checkbox-marked-circle' : 'red mdi-circle-circle').'"></i><br>';
+			}else{
+				$out.='<b>'.$k.' : </b> '.htmlentities($v).'<br>';
+			}
+//			$out.='<b>'.$k.'</b>';
+//			if(is_array($v)){
+//				$out .= '<div class="focus" style="border-left:1px solid;">'.parseJson($v, $iDepth + 1).'</div>';
+//			} else {
+//				$out .= ' : '.htmlentities($v) . '<br>';
+//			}
+		}
+		return $out;
+	}
+	
+	function GetLongTextFormat($iTxt,$iNull){
+		
+		$json = json_decode(str_replace('[[null]]','!!',$iTxt),true);
+		
+		if(json_last_error() === JSON_ERROR_NONE){
+			return '<div class="focus green"><b>Json</b></div><div style="padding:10px;">'.parseJson($json).'</div>';
+		}else{
+			return '<div style="padding:10px">'.nvl($iTxt,$iNull).'</div>';
+		}
+	}
 
 	$pr->addHtml('containerList','<div class="panel green" style="text-align:center;"> <i18n>info:htmlResult</i18n> </div>');
 
@@ -133,13 +167,13 @@
 									<input type="hidden" name="Q" value="Win_Execute_Sql">
 									<input type="hidden" name="db" value="'.$qryConf['db'].'">
 									<input type="hidden" name="sql" value="'.htmlentities($vv).'">
-									<i class="mdi mdi-database"></i> '.$vk.'
+									<i class="mdi mdi-database"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
 								</td>';
 							break;
 							case 'text' :
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" onclick="pi.win.open({ content: $(\'#'.$k.'_'.$vk.'\').html(), title:\''.$vk.'\'});">
-									<div style="display:none" id="'.$k.'_'.$vk.'"><div style="padding:10px; word-wrap: break-word;">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</div></div>
-									<i class="mdi mdi-comment-text-outline"></i> '.$vk.'
+									<div style="display:none" id="'.$k.'_'.$vk.'"><div style="word-wrap: break-word;">'.GetLongTextFormat($vv,$myNull).'</div></div>
+									<i class="mdi mdi-comment-text-outline"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
 								</td>';
 							break;
 							case 'link' :

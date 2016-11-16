@@ -11,7 +11,6 @@
 		Classe per la gestione dei file di configurazione.
 		Le possibili opzioni per il salvataggio dei dati sono : 
 		json -> il più lento (ma permette una struttura complessa e facilmente editabile anche a mano)
-		ini -> veloce e facile da editare a mano ma limitante nell'uso dei caratteri e nella complessita dei dati (max 2 livelli nativi + 1 con notazioe var[x] = valore e codifica base64 se ci  sono caratteri speciali)
 		serialize -> 'na scheggia di guerra che permette la massima complessita... MOLTO difficile da leggere e scrive a mano
 		encripted -> lo stesso di serialize ma con la cifratura (il più sicuro)
 	*/
@@ -47,9 +46,6 @@
 	
 	private function _load($iSetting){
 		switch($this->opt['type']){
-			case 'ini' : 
-				$out = parse_ini_file($this->path.$iSetting.'.ini', true);
-				break;
 			case 'json'	: 
 				$out = json_decode(file_get_contents($this->path.$iSetting.'.json'),true);
 				break;
@@ -66,9 +62,6 @@
 	
 	private function _save($iSetting,$iData){
 		switch($this->opt['type']){
-			case 'ini' :
-				$this->createIniFile($iData,$this->path.$iSetting.'.ini', true);
-			break;
 			case 'json'	:
 				file_put_contents($this->path.$iSetting.'.json', json_encode($iData,JSON_PRETTY_PRINT));
 			break;
@@ -126,7 +119,7 @@
 	} 
 	
 	public function saveFormat($iFormat){
-		if($iFormat == 'ini' || $iFormat == 'json' || $iFormat == 'serialize' || $iFormat == 'encripted'){
+		if($iFormat == 'json' || $iFormat == 'serialize' || $iFormat == 'encripted'){
 			$config = array('format' => $iFormat);
 			$this->createIniFile($config,$this->path.'system.ini',false);
 		}else{
@@ -155,20 +148,7 @@
 	}
 	
 	public function loadMenu(){ 
-		if(!$this->opt['menu']){ 
-			if($this->opt['type'] == 'ini'){
-				$dir = scandir($this->path.'menu');
-				$this->opt['menu'] = Array();
-				foreach($dir as $k => $v){
-					if(strpos($v,'.ini')){
-						$file = substr($v,0,-4);
-						$this->opt['menu'][$file] = $this->_load("menu/{$file}");
-					}
-				}
-			}else{
-				$this->opt['menu'] = $this->_load('menu'); 
-			}
-		}
+		if(!$this->opt['menu']){ $this->opt['menu'] = $this->_load('menu'); }
 		return $this->opt['menu'];
 	}
 	
@@ -192,25 +172,24 @@
 	}
 	public function saveMenu($iData){ 
 		$this->opt['menu'] = $iData;
-		if($this->opt['type'] == 'ini'){
-			if(!file_exists($this->path.'menu')){
-				mkdir($this->path.'menu');
-			}
-			foreach($iData as $k => $v){
-				$this->_save("menu/{$k}", $v);
-			}
-			$dir = scandir($this->path.'menu');
-			foreach($dir as $k => $v){
-				if(strpos($v,'.ini') && !isset($this->opt['menu'][substr($v,0,-4)])){
-					unlink($this->path."menu/{$v}");
-				}
-			}
-		}else{
-			$this->_save('menu', $iData); 
-		}
+		$this->_save('menu', $iData); 
 	}
 	
-	// la configurazione di i18n non � sensibile e necessita di essere modifcata anche a mano, per questo � l'unica che rimane sempre in JSON
+	// le estensioni "Consigliate" non sono dati sensisbili, quinid vengono sempre salfati in JSON 
+	
+	public function loadUsrExt(){
+		if(!$this->opt['ext']){ 
+			$this->opt['ext'] = json_decode(file_get_contents($this->path.'extensions.json'),true);}
+		return $this->opt['ext'];
+	}
+	
+	public function saveUsrExt($iData){
+		$this->opt['ext'] = $iData;
+		file_put_contents($this->path.'extensions.json', json_encode($iData,JSON_PRETTY_PRINT));
+	}
+
+
+	// la configurazione di i18n non è sensibile e necessita di essere modifcata anche a mano, per questo è l'unica che rimane sempre in JSON
 	
 	public function loadI18n(){
 		if(!$this->opt['i18n']){ 
@@ -259,17 +238,6 @@
 	public function clean($iFormat){
 		if($iFormat == $this->opt['type']){ return false; }
 		switch($iFormat){
-			case 'ini' :
-				unlink($this->path.'users.ini');
-				unlink($this->path.'groups.ini');
-				unlink($this->path.'db.ini');
-				unlink($this->path.'modules.ini');
-				foreach(scandir($this->path.'menu') as $f){
-					if($f == '.' || $f == '..'){ continue; }
-					unlink($this->path.'menu/'.$f);
-				}
-				rmdir($this->path.'menu');
-			break;
 			case 'json':
 				unlink($this->path.'users.json');
 				unlink($this->path.'groups.json');

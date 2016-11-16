@@ -1,3 +1,3 @@
 <?php
-	include 'Pi.System-1.0.class.php';
+	include 'Pi.System-1.1.class.php';
 ?>
