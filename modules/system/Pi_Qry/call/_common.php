@@ -48,7 +48,8 @@
 					des : < descrizione >
 					size : < S / M / L / - responsive > // larghezza dei grafici in formato responsive L = fullscreen
 					color : < blue / red / orange / green / purple >
-					type : < line / bar / area / radar / polar / pie / nut / mixed* >
+					type : < line / bar / area / radar / polar / pie / nut / mixed* > //  validi per righe: ( line / radar / bar / area )
+	 				collection : < row / col* >
 					labels : < nome colonna >
 					data : {
 						<nome> : {
@@ -57,6 +58,7 @@
 							color : < blue / red / orange / green / purple >
 						}
 					}
+					cols : [ <nome delle colonne> ] // per i grafici di tipo "r:" indica i valori da visualizzare per ogni serie
 				}
 				...
 			}
@@ -154,10 +156,10 @@
 		$getIcon = function($iType){
 			$icon = '';
 			switch ($iType) {
+				case 'area': 
 				case 'mixed': $icon = 'mdi-chart-areaspline'; break;
 				case 'bar':  $icon = 'mdi-chart-bar'; break;
-				case 'line':
-				case 'area': $icon = 'mdi-chart-line'; break;
+				case 'line': $icon = 'mdi-chart-line'; break;
 				case 'polar':
 				case 'pie': $icon = 'mdi-chart-pie'; break;
 				case 'nut': $icon = 'mdi-chart-arc'; break;
@@ -181,55 +183,85 @@
 			}
 		};
 
-		$out = '<table class="lite green fix">
-			<tr>
-				<th style="width:40px;"> <i18n>lbl:type</i18n> </th>
-				<th> <i18n>lbl:name</i18n> </th>
-				<th> <i18n>lbl:desc</i18n> </th>
-				<th> <i18n>lbl:size</i18n> </th>
-				<th> <i18n>lbl:labels</i18n> </th>
-				<th colspan="2"> <i18n>iface:edit</i18n> </th>
-			</tr>';
+		$out = '<table class="lite green fix">';
 		$idx = 0;
 		foreach($iCharts ?: [] as $k => $v){
 			$srcIdx = 0;
+			
 			$out .= '<tr class="green">
-				<th style="text-align:center;" id="chart_data_'.$idx.'">
-					<i class="mdi '.$getIcon($v['type']).' l2"></i>
+				<td style="text-align:center;" id="chart_data_'.$idx.'">
+					<i class="mdi '.$getIcon($v['type']).' l3 green"></i>
 					<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
 					<input type="hidden" name="idx" value="'.$idx.'">
-				</th>
-				<td>'.$k.'</td>
-				<td>'.$v['des'].'</td>
-				<td>'.$v['size'].'</td>
-				<td>'.$v['labels'].'</td>';
+				</td>
+				<td> 
+					<div class="pi-line">
+						<i class="mdi mdi-swap-'.(($v['collection'] ?: 'col') == 'col' ? 'horizontal' : 'vertical' ).' green"></i> 
+						<i18n>opt:chart:'.$v['type'].'</i18n>
+					</div>
+				</td>
+				<td> <b>'.$k.'</b> - <i>'.$v['des'].'</i></td>
+				<td> 
+					[ <b><i18n>lbl:size</i18n></b> :  <i18n>opt:size:'.strtolower($v['size']).'</i18n> ]
+					[ <b><i18n>lbl:labels</i18n></b> : '.$v['labels'].']
+					[ <b><i18n>lbl:color</i18n></b> : <i18n>opt:'.($v['color'] != '' ? 'color'.  ucfirst($v['color']) : 'noColor'  ).'</i18n> ]
+				</td>';
+			
+//			$out .= '<tr class="green">
+//				<th style="text-align:center;" id="chart_data_'.$idx.'">
+//					<i class="mdi '.$getIcon($v['type']).' l2"></i>
+//					<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
+//					<input type="hidden" name="idx" value="'.$idx.'">
+//				</th>
+//				<td>'.$k.'</td>
+//				<td>'.$v['des'].'</td>
+//				<td><i18n>opt:size:'.strtolower($v['size']).'</i18n></td>
+//				<td>'.$v['labels'].'</td>';
 
-				if($isMultiChart($v['type'])){
-					$out .= '<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>
-									<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart_Data\')"><i class="mdi mdi-plus l2 green"></i></td>';
-				}else{
-					$out .= '<td style="text-align:center; cursor:pointer;" class="green" colspan="2" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>';
-				}
-				$out .= '</tr>';
+			if($isMultiChart($v['type']) && (($v['collection'] ?: 'col') == 'col')){
+				$out .= '<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>';
+				$out .=	'<td style="text-align:center; cursor:pointer;" class="green" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart_Data\')"><i class="mdi mdi-plus l2 green"></i></td>';
+			}else{
+				$out .= '<td style="text-align:center; cursor:pointer;" class="green" colspan="2" onClick="pi.request(\'chart_data_'.$idx.'\',\'Win_Edit_Chart\')"><i class="mdi mdi-pencil l2 green"></i></td>';
+			}
+			$out .= '</tr>';
 
-				foreach ($v['data'] as $key => $val) {
-					$out.='<tr>
-						<td class="green" style="text-align:center;" id="chart_data_'.$idx.'_'.$srcIdx.'">
-							<i class="mdi '.$getIcon($val['type'] ?: $v['type']).' green"></i>
+			foreach ($v['data'] as $key => $val) {
+				if(($v['collection'] ?: 'col') == 'col'){
+					$out.='<tr style="cursor:pointer;" onClick="pi.request(\'chart_data_'.$idx.'_'.$srcIdx.'\',\'Win_Edit_Chart_Data\')">
+						<td style="text-align:right;" id="chart_data_'.$idx.'_'.$srcIdx.'">
+							<i class="mdi '.$getIcon($val['type'] ?: $v['type']).' green l2"></i>
 							<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
 							<input type="hidden" name="idx" value="'.$idx.'">
 							<input type="hidden" name="srcidx" value="'.$srcIdx.'">
 						</td>
 						<td colspan="2">
-							'.$key.'
+							<b>'.$key.'</b>
 						</td>
-						<td>'.$val['src'].'</td>
-						<td>'.$val['color'].'</td>
-						<td style="text-align:center; cursor:pointer;" class="green" colspan="2" onClick="pi.request(\'chart_data_'.$idx.'_'.$srcIdx.'\',\'Win_Edit_Chart_Data\')"><i class="mdi mdi-pencil green"></i></td>
+						<td colspan="3"> 
+							[ <b><i18n>lbl:src</i18n></b> : '.$val['src'].' ]
+							[ <b><i18n>lbl:color</i18n></b> : <i18n>opt:'.($val['color'] != '' ? 'color'.  ucfirst($val['color']) : 'noColor'  ).'</i18n> ]
+						</td>
 					</tr>';
 					$srcIdx++;
+				}else{
+					$out.='<tr style="cursor:pointer;" onClick="pi.request(\'chart_data_'.$idx.'_'.$srcIdx.'\',\'Win_Edit_Chart_Data_Row\')">
+						<td style="text-align:right;" id="chart_data_'.$idx.'_'.$srcIdx.'">
+							<i class="mdi '.$getIcon($val['type'] ?: $v['type']).' green l2"></i>
+							<input type="hidden" name=":LINK:GRP" value="qryDataFormChart">
+							<input type="hidden" name="idx" value="'.$idx.'">
+							<input type="hidden" name="srcidx" value="'.$srcIdx.'">
+						</td>
+						<td colspan="2">
+							<b>'.$key.'</b>
+						</td>
+						<td colspan="3"> 
+							[ <b><i18n>lbl:src</i18n></b> : '.join(', ',$v['cols'] ?: []).' ]
+						</td>
+					</tr>';
 				}
-				$idx++;
+			}
+			$idx++;
 		}
 		$out .= '</table>';
 		return $out;
@@ -239,25 +271,44 @@
 		$out='<table class="orange lite fix">
 			<tr>
 				<th><i18n>iface:colum</i18n></th>
-				<th><i18n>iface:type</i18n></th>
+				<th style="text-align:center;"><i18n>opt:simpleText</i18n></th>
+				<th style="text-align:center;"><i18n>opt:number</i18n></th>
+				<th style="text-align:center;"><i18n>opt:date</i18n></th>
+				<th style="text-align:center;"><i18n>opt:dateCobol</i18n></th>
+				<th style="text-align:center;"><i18n>opt:sql</i18n></th>
+				<th style="text-align:center;"><i18n>opt:link</i18n></th>
+				<th style="text-align:center;"><i18n>opt:longText</i18n></th>
+				<th style="text-align:center;"><i18n>opt:hidden</i18n></th>
 				<th style="width:80px;"><i18n>iface:remove</i18n></th>
 			</tr>';
 		foreach($iMetadata ?: [] as $k => $v){
-
-			$tipologia = '<select id="metatype" class="double j-select" data-pi-id="'.$k.'" data-i18n>
-							<option value="string" '.($v=='string' ? 'selected':'').'> opt:simpleText </option>
-							<option value="numeric" '.($v=='numeric' ? 'selected':'').'> opt:number </option>
-							<option value="date" '.($v=='date' ? 'selected':'').'> opt:date </option>
-							<option value="datecobol" '.($v=='datecobol' ? 'selected':'').'> opt:dateCobol </option>
-							<option value="qry" '.($v=='qry' ? 'selected':'').'> opt:sql </option>
-							<option value="link" '.($v=='link' ? 'selected':'').'> opt:link </option>
-							<option value="text" '.($v=='text' ? 'selected':'').'> opt:longText </option>
-							<option value="hidden" '.($v=='hidden' ? 'selected':'').'> opt:hidden </option>
-						</select>';
-
+			$style = ' style="text-align:center; cursor:pointer;"';
 			$out.='<tr>
 				<td style="text-align:right"><b>'.$k.'</b></td>
-				<td>'.$tipologia.'</td>
+				<td class="j-select '.($v=='string' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="string" '.$style.'>
+					<i class="l2 mdi mdi-format-size '.($v=='string' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='numeric' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="numeric" '.$style.'>
+					<i class="l2 mdi mdi-numeric '.($v=='numeric' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='date' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="date" '.$style.'>
+					<i class="l2 mdi mdi-calendar '.($v=='date' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='datecobol' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="datecobol" '.$style.'>
+					<i class="l2 mdi mdi-calendar-range '.($v=='datecobol' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='qry' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="qry" '.$style.'>
+					<i class="l2 mdi mdi-database '.($v=='qry' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='link' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="link" '.$style.'>
+					<i class="l2 mdi mdi-link '.($v=='link' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='text' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="text" '.$style.'>
+					<i class="l2 mdi mdi-comment-text-outline '.($v=='text' ? 'orange':'disabled').'"></i>
+				</td>
+				<td class="j-select '.($v=='hidden' ? 'orange':'').'" data-pi-id="'.$k.'" data-pi-val="hidden" '.$style.'>
+					<i class="l2 mdi mdi-eye-off '.($v=='hidden' ? 'orange':'disabled').'"></i>
+				</td>
 				<td class="red j-delete" style="cursor:pointer; text-align:center;" data-pi-id="'.$k.'">
 					<span class="red"><i class="mdi mdi-close"></i> <i18n>delete</i18n></span>
 				</td>

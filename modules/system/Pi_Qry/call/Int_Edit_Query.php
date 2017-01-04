@@ -178,7 +178,14 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div class="focus blue"> <i18n>info:paramList</i18n> </div>
+					<div class="focus blue"> 
+						<table class="form">
+							<tr>
+								<td style="width: 30px"><i class="mdi mdi-pencil-box-outline l3"></i></td>
+								<td> <i18n>info:paramList</i18n> </td>
+							</tr>
+						</table>
+					</div>
 					<div id="inputList">'.$inputs.'</div>
 					<input type="hidden" name="inputs">
 				</td>
@@ -277,12 +284,21 @@
 		tr.remove();
 	});
 
-	$('#metadataTable').on('click','.j-select',function(e){
+	$('#metadataTable').on('click','.j-select-old',function(e){
 		var val = JSON.parse($('#metadataInput').val()) || {};
 		var key = $(e.target).attr('data-pi-id');
 		val[key] = $(e.target).val();
 		$('#metadataInput').val(JSON.stringify(val));
-	});";
+	});
+	
+	$('#metadataTable').on('click','.j-select',function(e){
+		var val = JSON.parse($('#metadataInput').val()) || {};
+		var key = $(e.target).closest('td').attr('data-pi-id');
+		val[key] = $(e.target).closest('td').attr('data-pi-val');
+		$('#metadataInput').val(JSON.stringify(val));
+		pi.silent().request('qryDataForm','Calc_Add_Metadata');
+	});
+	";
 
 	$pr->addHtml('containerRes','')->addHtml('containerList',$out)->addScript($js)->addFill('qryDataForm',$fill)->response();
 ?>

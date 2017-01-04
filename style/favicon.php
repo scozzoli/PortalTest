@@ -12,7 +12,7 @@
 				'font'	=>	'fonts/materialdesignicons-webfont.ttf',	// font
 				'size'	=>	16,											// Dimensione icone
 				'color' =>	'black',									// Colore dell'icona (deve esserte codificato)
-				'cache'	=>	'favincon',									// Direcotory dove salvare la cache
+				'cache'	=>	'favicon',									// Direcotory dove salvare la cache
 				'schema'=>	strtolower($iSchema)						// Schema per il parsing degli stili	
 			);
 			

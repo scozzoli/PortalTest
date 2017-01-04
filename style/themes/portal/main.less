@@ -23,6 +23,18 @@ body{
     position: absolute;
 	height: 100%;
     width: 100%;
+	
+	.mdi{
+		line-height: 0;
+	}
+	
+	.pi-line{
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+		vertical-align: middle;
+	}
 }
 
 .pi-wrapper{
@@ -219,6 +231,7 @@ body{
 								i.mdi{
 									float:left;
 									margin-left:-8px;
+									line-height: 0;
 								}
 
 								.pi-title{
@@ -383,16 +396,17 @@ body{
 				transition: @Main-Transition;
 
 				.pi-icon{
-					display: inline;
+					display: inline-block;
 					float: left;
-					//height: 40px;
 					//margin-top: -3px;
 					margin-left: 3px;
 					opacity: 0.8;
 					text-shadow: @Main-BoxShadow-1;
 					color: @Main-C3;
 					i{
+						display: inline-block;
 						font-size: 60px;
+						line-height: 60px;
 					}
 				}
 
@@ -527,3 +541,4 @@ body{
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { .pi-mod-width(33.33%); .pi-multi-size(50%,100%,100%); }
 @media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) { .pi-mod-width(25%); .pi-multi-size(33.33%,50%,100%); }
 @media (min-width: @screen-xl-min) { .pi-mod-width(20%); .pi-multi-size(33.33%,50%,100%); }
+

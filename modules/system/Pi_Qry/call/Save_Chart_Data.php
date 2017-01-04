@@ -14,7 +14,16 @@
 		unset($charts[$pr->post('chartKey')]['data'][$oldName]);
 	}
 
-
+	$idx = 0;
+	$cols = [];
+	while($pr->post('md-'.$idx,false) !== false){
+		if($pr->post('md-'.$idx) == 1){
+			$cols[] = $pr->post('mdv-'.$idx);
+		}
+		$idx++;
+	}
+	
+	$charts[$pr->post('chartKey')]['cols'] = $cols;
 
 	$charts[$pr->post('chartKey')]['data'][$pr->post('name')] = Array(
 		'src' => $pr->post('src'),

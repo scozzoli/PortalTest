@@ -95,6 +95,15 @@
 		}
 	}
 
+	function GetValueFromRes($iCols,$iRow,$iIdx,$iNull){
+		$out = [];
+		
+		foreach($iCols as $k => $v){
+			$out[] = $iRow[$iIdx[$v]] == $iNull ? 'null' : $iRow[$iIdx[$v]];
+		}
+		return implode(',',$out);
+	}
+	
 	$pr->addHtml('containerList','<div class="panel green" style="text-align:center;"> <i18n>info:htmlResult</i18n> </div>');
 
 	if($toTable){
@@ -130,7 +139,7 @@
 					}
 				}
 				if(!$isHidden){
-					$table.='<th '.$dataType.' >'.$k.'</th>';
+					$table.='<th '.$dataType.'>'.$k.'</th>';
 				}
 			}
 
@@ -164,16 +173,16 @@
 							break;
 							case 'qry' :
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" id="'.$k.'_'.$vk.'" onclick="pi.request(\''.$k.'_'.$vk.'\');">
-									<input type="hidden" name="Q" value="Win_Execute_Sql">
-									<input type="hidden" name="db" value="'.$qryConf['db'].'">
-									<input type="hidden" name="sql" value="'.htmlentities($vv).'">
-									<i class="mdi mdi-database"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
+										<input type="hidden" name="Q" value="Win_Execute_Sql">
+										<input type="hidden" name="db" value="'.$qryConf['db'].'">
+										<input type="hidden" name="sql" value="'.htmlentities($vv).'">
+										<i class="mdi mdi-database"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
 								</td>';
 							break;
 							case 'text' :
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; cursor:pointer; '.$phpClass['style'].'" onclick="pi.win.open({ content: $(\'#'.$k.'_'.$vk.'\').html(), title:\''.$vk.'\'});">
-									<div style="display:none" id="'.$k.'_'.$vk.'"><div style="word-wrap: break-word;">'.GetLongTextFormat($vv,$myNull).'</div></div>
-									<i class="mdi mdi-comment-text-outline"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
+										<div style="display:none" id="'.$k.'_'.$vk.'"><div style="word-wrap: break-word;">'.GetLongTextFormat($vv,$myNull).'</div></div>
+										<i class="mdi mdi-comment-text-outline"></i> '.GetTXTfromPHPFormat($format,$vk,$vk,$myNull).'
 								</td>';
 							break;
 							case 'link' :
@@ -198,7 +207,12 @@
 	}
 
 	if($toChart){
-
+		/*
+		 * I grafici normali necessitano di una matrice "invertita"
+		 * QRY[<numero riga>][<nome colonna>] = valore
+		 * DATA[<nome colonna>][<numero riga>] = valore
+		 * Questo a meno che il grafico non si ti tipo "per riga"
+		 */
 		$reverse = Array();
 		foreach ($qryConf['metadata'] as $key => $val) { $reverse[$key] = Array();	}
 		foreach($res as $k => $v){
@@ -220,13 +234,28 @@
 		foreach ($qryConf['charts'] as $key => $val) {
 			$chart .='<div class="panel pi-size-'.strtolower($val['size']).'">';
 			$chart .='<div class="focus nopad-top '.($val['color'] ? :'').'"><span class="'.($val['color'] ? :'').'"><b>'.htmlentities($key).'</b> - '.htmlentities($val['des']).' </span></div>';
-			$chart .= '<div data-pic="chart : { type : \''.$val['type'].'\'}" style="height:'.$chartsize.';">';
-			if($val['labels'] != ''){
-				$chart .= '<div data-labels="separator:\'!:!\'">'.implode('!:!',$reverse[$val['labels']]).'</div>';
+			
+			if(($val['collection'] ?: 'col') == 'col'){
+				$chart .= '<div data-pic="chart : { type : \''.$val['type'].'\'}" style="height:'.$chartsize.';">';
+				if($val['labels'] != ''){
+					$chart .= '<div data-labels="separator:\'!:!\'">'.implode('!:!',$reverse[$val['labels']]).'</div>';
+				}
+				foreach($val['data'] as $kd => $vd){
+					$chart .='<div data-chart=" type :\''.$vd['type'].'\' , data : { color : \''.$vd['color'].'\', values : ['.implode(',',$reverse[$vd['src']]).']}">'.$kd.'</div>';
+				}
+			}else{
+				$chart .= '<div data-pic="chart : { type : \''.$val['type'].'\'}" style="height:'.$chartsize.';">';
+				$chart .= '<div data-labels="separator:\'!:!\'">'.implode('!:!',$val['cols']).'</div>';
+				
+				$revIdx = [];
+				foreach(($res[0] ?: []) as $jKey => $jVal){
+					$revIdx[strtolower($jKey)] = $jKey; 
+				}
+				foreach($res as $jKey => $jVal){
+					$chart .='<div data-chart=" type :\''.$val['type'].'\' , data : { values : ['.GetValueFromRes($val['cols'],$jVal,$revIdx,$db->opt('null')).']}">'.$jVal[$revIdx[$val['labels']]].'</div>';
+				}
 			}
-			foreach($val['data'] as $kd => $vd){
-				$chart .='<div data-chart=" type :\''.$vd['type'].'\' , data : { color : \''.$vd['color'].'\', values : ['.implode(',',$reverse[$vd['src']]).']}">'.$kd.'</div>';
-			}
+			
 			$chart .= '</div> </div>';
 		}
 

@@ -9,17 +9,20 @@
 	if($idx !== false){
 		$footer = '<button class="red" onClick="pi.chk(\'<i18n>chk:removeChart</i18n>\').requestOnModal(\'winEdit\',\'Remove_Chart\');"><i18n>delete</i18n></button>';
 		$keys = array_keys($charts);
+		$fill['collection'] = $charts[$keys[$idx]]['collection'] ?: 'col';
 		$fill['oldName'] = $keys[$idx];
 		$fill['name'] = $keys[$idx];
 		$fill['des'] = $charts[$keys[$idx]]['des'];
 		$fill['size'] = $charts[$keys[$idx]]['size'];
-		$fill['type'] = $charts[$keys[$idx]]['type'];
+		$fill['type'] = $fill['collection'].':'.$charts[$keys[$idx]]['type'];
 		$fill['labels'] = $charts[$keys[$idx]]['labels'];
 		$fill['color'] = $charts[$keys[$idx]]['color'];
+		$fill['cols'] = $charts[$keys[$idx]]['cols'];
 	}else{
 		$footer = '';
 		$fill['size'] = 'L';
 		$fill['labels'] = '';
+		$fill['cols'] = [];
 	}
 
 	$footer .= '<button class="red" onClick="pi.win.close();"> <i18n>cancel</i18n> </button><button class="green" onClick="pi.requestOnModal(\'winEdit\');"> <i18n>save</i18n> </button>';
@@ -45,6 +48,7 @@
 				<td>
 					<input type="text" class="ale" name="name" id="autofocusme">
 					<input type="hidden" name="oldName">
+					<input type="hidden" name="cols">
 				</td>
 			</tr>
 			<tr>
@@ -56,16 +60,22 @@
 				<td>
 					<select name="type" data-i18n>
 						<optgroup label="optg:monoData">
-							<option value="pie"> opt:chart:pie </option>
-							<option value="nut"> opt:chart:nut </option>
-							<option value="polar"> opt:chart:polar </option>
+							<option value="col:pie"> opt:chart:pie </option>
+							<option value="col:nut"> opt:chart:nut </option>
+							<option value="col:polar"> opt:chart:polar </option>
 						</optgroup>
 						<optgroup label="optg:multiData">
-							<option value="mixed"> opt:chart:mixed </option>
-							<option value="bar"> opt:chart:bar </option>
-							<option value="line"> opt:chart:line </option>
-							<option value="area"> opt:chart:area </option>
-							<option value="radar"> opt:chart:radar </option>
+							<option value="col:mixed"> opt:chart:mixed </option>
+							<option value="col:bar"> opt:chart:bar </option>
+							<option value="col:line"> opt:chart:line </option>
+							<option value="col:area"> opt:chart:area </option>
+							<option value="col:radar"> opt:chart:radar </option>
+						</optgroup>
+						<optgroup label="optg:multiDataRow">
+							<option value="row:bar"> opt:chart:bar </option>
+							<option value="row:line"> opt:chart:line </option>
+							<option value="row:area"> opt:chart:area </option>
+							<option value="row:radar"> opt:chart:radar </option>
 						</optgroup>
 					</select>
 				</td>

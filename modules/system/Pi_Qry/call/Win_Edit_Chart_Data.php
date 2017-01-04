@@ -30,6 +30,8 @@
 
 	if($fill['oldName'] != '' && ($chartType != 'pie' && $chartType != 'nut' && $chartType != 'polar') ){
 		$footer = '<button class="red" onClick="pi.chk(\'<i18n>chk:removeChart</i18n>\').requestOnModal(\'winEdit\',\'Remove_Chart_Data\');"><i18n>delete</i18n></button>';
+	}else{
+		$footer = '';
 	}
 
 	$footer .= '<button class="red" onClick="pi.win.close();"> <i18n>cancel</i18n> </button><button class="green" onClick="pi.requestOnModal(\'winEdit\');"> <i18n>save</i18n> </button>';
