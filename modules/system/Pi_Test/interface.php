@@ -2,6 +2,7 @@
 	$sd->includeLib('./lib/js/chart.bundle.min.js');
 	$sd->includeLib('./lib/Pi.Component.Calendar.js');
 	$sd->includeLib('./lib/Pi.Component.Chart.js');
+	$sd->includeLib('./lib/Pi.Component.Grid.js');
 	$interface = '<div class="panel blue">
 				Elenco degli stili applicabili
 			</div>
@@ -103,7 +104,91 @@
 
 				</div>
 
-				<div class="panel">
+				<div class="panel blue">
+					
+					<flexbox>
+						<row>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
+						</row>
+						<row>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+							<box size="s">	<label>S</label>	<input type="text"/> </box>
+						</row>
+						<row>
+							<box size="m">	<label>M</label>	<input type="text"/> </box>
+							<box size="m">	<label>M</label>	<input type="text"/> </box>
+							<box size="m">	<label>M</label>	<input type="text"/> </box>
+							<box size="m">	<label>M</label>	<input type="text"/> </box>
+						</row>
+						<row>
+							<box size="l">	<label>L</label>	<input type="text"/> </box>
+							<box size="l">	<label>L</label>	<input type="text"/> </box>
+							<box size="l">	<label>L</label>	<input type="text"/> </box>
+						</row>
+						<row>
+							<box size="xl">	<label>XL</label>	<input type="text"/> </box>
+							<box size="xl">	<label>XL</label>	<input type="text"/> </box>
+						</row>
+						<row>
+							<box size="f">	<label>F</label>	<input type="text"/> </box>
+						</row>
+						
+						<row>
+							<box size="xs">
+								<i18n>save</i18n>
+								<input type="TEXT" value="text" class="ale" id="xxx"/>
+							</box>
+							<box size="s">
+								
+								<input type="text" value="text"/>
+							</box>
+							<box size="l">
+								<label>ciao (L)</label>
+								<input type="text" value="text"/>
+							</box>
+							<box size="xl">
+								<label>ciao (XL)</label>
+								<input type="text" value="text"/>
+							</box>
+							<box size="m">
+								<label>ciao (M)</label>
+								<input type="text" value="text"/>
+							</box>
+							<box size="m">
+								<label>ciao (M)</label>
+								<input type="text" value="text"/>
+							</box>
+							<box size="m">
+								<input type="checkbox" value="text"/>
+								<i18n>save</i18n>
+							</box>
+							<box size="m">
+								<label>ciao (M)</label>
+								<select>
+									<option> opt 1</option>
+									<option> opt 1</option>
+									<option> opt 1</option>
+									<option> opt 1</option>
+								</select>
+							</box>
+						</row>
+					</flexbox>
+
 					<table class="form">
 						<tr>
 							<th> Server IP </th>

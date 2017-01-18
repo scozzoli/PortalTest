@@ -181,7 +181,7 @@
 					<div class="focus blue"> 
 						<table class="form">
 							<tr>
-								<td style="width: 30px"><i class="mdi mdi-pencil-box-outline l3"></i></td>
+								<td style="width: 30px"><i class="mdi mdi-textbox l3"></i></td>
 								<td> <i18n>info:paramList</i18n> </td>
 							</tr>
 						</table>

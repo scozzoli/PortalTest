@@ -528,3 +528,44 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	padding: 0px 0px 0px 0px;
 	border:0px;
 }
+
+.pi-flexbox{
+	
+	padding:0;
+	
+	&.blue{ .pi-label{color:@Blue-C3;} }
+	&.red{ .pi-label{color:@Red-C3;} }
+	&.orange{ .pi-label{color:@Orange-C3;} }
+	&.green{ .pi-label{color:@Green-C3;} }
+	&.purple{ .pi-label{color:@Purple-C3;} }
+	
+	.box{
+		min-height: 46px;
+		&.radio, &.checkbox{
+			padding-top: 15px;
+			//padding-bottom: 16px;
+			
+			.pi-label{
+				width: ~"calc( 100% - 34px )";
+				display: inline-block;
+				color: @Main-Text-Normal;
+				margin-top: -4px;
+			}
+		}
+	}
+	
+	.pi-label{
+		height: 16px;
+		font-size: 12px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+		vertical-align: middle;
+		padding-left: 6px;
+		text-align: left;
+		color: @Main-C3;//@Main-Text-Normal;
+		//font-style: italic;
+	}
+	
+}

@@ -10,7 +10,7 @@
 			$this->opt = Array(
 				'css'	=>	'common/materialdesignicons.min.css',		// css da cui estrapolare gli stili
 				'font'	=>	'fonts/materialdesignicons-webfont.ttf',	// font
-				'size'	=>	16,											// Dimensione icone
+				'size'	=>	32,											// Dimensione icone
 				'color' =>	'black',									// Colore dell'icona (deve esserte codificato)
 				'cache'	=>	'favicon',									// Direcotory dove salvare la cache
 				'schema'=>	strtolower($iSchema)						// Schema per il parsing degli stili	
@@ -56,6 +56,7 @@
 			switch($this->opt['schema']){
 				case 'mdi' :
 					if($this->opt['size'] == 16) { return -2; }
+					if($this->opt['size'] == 32) { return -4; }
 				break;
 				default : 
 					return 0;
@@ -66,6 +67,7 @@
 			switch($this->opt['schema']){
 				case 'mdi' :
 					if($this->opt['size'] == 16) { return 1; }
+					if($this->opt['size'] == 32) { return 2; }
 				break;
 				default : 
 					return 0;

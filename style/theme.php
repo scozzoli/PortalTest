@@ -10,11 +10,21 @@
 	
 	if(!file_exists("themes/{$theme}/style.{$style}.less")){ $style = ''; }
 	
-	function getLess($less, $dir,$theme,$style){
+	function getLess($less, $dir, $theme, $style){
 			
 		$styleLess = $style != '' ? "@import url('{$dir}/themes/{$theme}/style.{$style}.less');" : '';
 		
-		$out = "@import url('{$dir}/themes/{$theme}/defaults.less');
+		$out = '';
+		if(file_exists('common/less')){
+			$commonDir = scandir('common/less');
+			foreach($commonDir as $k => $v){
+				if(substr(strtolower($v),-5) == '.less'){
+					$out .= "@import url('{$dir}/common/less/{$v}');";
+				}
+			}
+		}
+		
+		$out .= "@import url('{$dir}/themes/{$theme}/defaults.less');
 		{$styleLess}
 		@import url('{$dir}/themes/{$theme}/main.less');
 		@import url('{$dir}/themes/{$theme}/modal.less');
@@ -22,7 +32,6 @@
 		@import url('{$dir}/themes/{$theme}/table.less');
 		@import url('{$dir}/themes/{$theme}/form.less');
 		@import url('{$dir}/themes/{$theme}/component.less');";
-		
 		return $out;
 	}
 	
