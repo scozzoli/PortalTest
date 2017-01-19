@@ -1,4 +1,4 @@
-<?
+<?php
 	$usr = strtolower($pr->post("UID"));
 	if(!isset($userlist[$usr])){$pr->addAlertBox('<i18n>ale:noprofile;'.$usr.'</i18n>')->response();}
 	if($userlist[$usr]['use_pwd']=='0'){

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Estensione di Connection per MS SQL Server (per PHP 7.0)
  */

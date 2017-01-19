@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Estensione di Connection per Postgre SQL 
  */

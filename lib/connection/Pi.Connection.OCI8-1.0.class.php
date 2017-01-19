@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Estensione di Connection per Oracle (driver nuovi... quasi)
  */
@@ -18,7 +18,11 @@ class PiConnectionOCI8 extends PiConnection{
 	public function get($iQry){
 		$this->opt['numrow'] = false;
 		$this->cur = oci_parse($this->link,$iQry);
-		oci_execute($this->cur);
+		$myres = oci_execute($this->cur);
+		if(!$myres){
+			$e = oci_error();
+			$this->error('OCI8 Errore Query: '.$e["message"]); 
+		}
 		$n_col = oci_num_fields($this->cur);
 		$row = 0;
 		$flag = OCI_RETURN_NULLS + ($this->opt["associative"] ? OCI_ASSOC : OCI_NUM);

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Classe Astratta per la gestione delle connessioni
  */
@@ -10,9 +10,10 @@ abstract class PiConnection{
 	protected $opt = array(
 		'associative' 	=> true,	// Crea una Matrice associativa
 		'null'			=> ' --- ', // Al posto di 'null'
-		'lowercase'		=> false,	// Esegue un lowercase delel intestazioni (solo oci8 per ora)
+		'lowercase'		=> true,	// Esegue un lowercase delel intestazioni (solo oci8 per ora)
 		'numrow'		=> false, 	// numero di righe su cui ha avuto effetto l'operazione (solo oci8 per ora)
-		'utf8'			=> false		// Decodifica in utf8 i dati del DB
+		'utf8'			=> false,	// Decodifica in utf8 i dati del DB
+		'catchErros'	=> false	// Indica se deve lanciare un'eccezione su errore o uscire con un die() o  pr->error()
 		//'arrayindex'	=> false,	// [DEPRECATO] Crea un Array assoviatvo ed una matrice numerica $d[<0>][<0>] $d['rid']['id'] = <0>
 		//'rowindex' 	=> true,	// [DEPRECATO] crea una voce con il numero di righe $d["row"] = <0>
 		//'reverse'		=> false,   // [DEPRECATO] inverte righe con colonne [da implementare]
@@ -46,10 +47,14 @@ abstract class PiConnection{
 	}
 	
 	protected function error($iMsg){
-		if($this->pr){
-			$this->pr->error('Portal 1 <i>Connection</i> : '.$iMsg);
+		if($this->opt['catchErros']){
+			if($this->pr){
+				$this->pr->error('Portal 1 <i>Connection</i> : '.$iMsg);
+			}else{
+				die('Portal 1 Connection : '.$iMsg);
+			}
 		}else{
-			die('Portal 1 Connection : '.$iMsg);
+			throw new Exception('Portal 1 Connection : '.$iMsg);
 		}
 	}
 	

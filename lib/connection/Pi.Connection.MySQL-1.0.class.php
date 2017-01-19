@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Estensione di Connection per My SQL 
  */

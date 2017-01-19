@@ -1,30 +1,39 @@
-<?
+<?php
 /**
  * Definizioni delle costanti (usate per recuperare le sottoclassi)
  */
-
+$PHPversion = explode('.',PHP_VERSION);
 //define('PM_DB_INI_FILE',				__DIR__.'/../../settings/db.ini');
 define('PI_DB_CLASS_CONNECTION',			    'connection/Pi.Connection-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_ORACLE',			'connection/Pi.Connection.Oracle-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_OCI8',			'connection/Pi.Connection.OCI8-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_MSSQL',			'connection/Pi.Connection.MSSQL-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_ODBC',			'connection/Pi.Connection.ODBC-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_SQLITE3',		'connection/Pi.Connection.SQLite3-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_MYSQL',			'connection/Pi.Connection.MySQL-1.0.class.php');
-define('PI_DB_CLASS_CONNECTION_PostgreSQL',		'connection/Pi.Connection.PostgreSQL-1.0.class.php');
+
+define('PI_DB_CLASS_CONNECTION_ORACLE',			'connection/php'.$PHPversion[0].'/Pi.Connection.Oracle-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_OCI8',			'connection/php'.$PHPversion[0].'/Pi.Connection.OCI8-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_MSSQL',			'connection/php'.$PHPversion[0].'/Pi.Connection.MSSQL-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_ODBC',			'connection/php'.$PHPversion[0].'/Pi.Connection.ODBC-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_SQLITE3',		'connection/php'.$PHPversion[0].'/Pi.Connection.SQLite3-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_MYSQL',			'connection/php'.$PHPversion[0].'/Pi.Connection.MySQL-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_PostgreSQL',		'connection/php'.$PHPversion[0].'/Pi.Connection.PostgreSQL-1.0.class.php');
+
+define('PI_DB_CLASS_CONNECTION_DEF_ORACLE',			'connection/Pi.Connection.Oracle-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_OCI8',			'connection/Pi.Connection.OCI8-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_MSSQL',			'connection/Pi.Connection.MSSQL-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_ODBC',			'connection/Pi.Connection.ODBC-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_SQLITE3',		'connection/Pi.Connection.SQLite3-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_MYSQL',			'connection/Pi.Connection.MySQL-1.0.class.php');
+define('PI_DB_CLASS_CONNECTION_DEF_PostgreSQL',		'connection/Pi.Connection.PostgreSQL-1.0.class.php');
 
 /**
  * Inclusioni delle Sotto Classi necessarie per la connessione
  */
-
+ 
 include PI_DB_CLASS_CONNECTION;						// Indispensabile
-//include PI_DB_CLASS_CONNECTION_ORACLE; 			// Oracle PRE oci8 (obsoleto)
-include PI_DB_CLASS_CONNECTION_OCI8; 				// OD Oracle dall' 8i in poi
-include PI_DB_CLASS_CONNECTION_MSSQL;				// il DB è in SQLSERVER 
-//include PI_DB_CLASS_CONNECTION_ODBC;				// Connessione ODBC ... n'a merda ... ma in caso di emenrgenza
-include PI_DB_CLASS_CONNECTION_SQLITE3;				// Connessione SQLite ancora sperimentale
-include PI_DB_CLASS_CONNECTION_MYSQL;				// il DB è in MySQL
-include PI_DB_CLASS_CONNECTION_PostgreSQL;			// il DB è in PostgreSQL
+//if(file_exists(PI_DB_CLASS_CONNECTION_ORACLE)){ include PI_DB_CLASS_CONNECTION_ORACLE; }else{ include PI_DB_CLASS_CONNECTION_DEF_ORACLE; }
+if(file_exists(PI_DB_CLASS_CONNECTION_OCI8)){ include PI_DB_CLASS_CONNECTION_OCI8; }else{ include PI_DB_CLASS_CONNECTION_DEF_OCI8; }
+if(file_exists(PI_DB_CLASS_CONNECTION_MSSQL)){ include PI_DB_CLASS_CONNECTION_MSSQL; }else{ include PI_DB_CLASS_CONNECTION_DEF_MSSQL; }
+//if(file_exists(PI_DB_CLASS_CONNECTION_ODBC)){ include PI_DB_CLASS_CONNECTION_ODBC; }else{ include PI_DB_CLASS_CONNECTION_DEF_ODBC; }
+if(file_exists(PI_DB_CLASS_CONNECTION_SQLITE3)){ include PI_DB_CLASS_CONNECTION_SQLITE3; }else{ include PI_DB_CLASS_CONNECTION_DEF_SQLITE3; }
+if(file_exists(PI_DB_CLASS_CONNECTION_MYSQL)){ include PI_DB_CLASS_CONNECTION_MYSQL; }else{ include PI_DB_CLASS_CONNECTION_DEF_MYSQL; }
+if(file_exists(PI_DB_CLASS_CONNECTION_PostgreSQL)){ include PI_DB_CLASS_CONNECTION_PostgreSQL; }else{ include PI_DB_CLASS_CONNECTION_DEF_PostgreSQL; }
 
 /**
  * Classe vera e propria utilizzata per la connessione alle basi di dati
@@ -36,7 +45,7 @@ class PiDB{
 	
 	/**
 	 * Costruttore della classe
-	 * @param string $iDbSource Connessione al DB nel formato PiDB
+	 * @param string $iDbSource Connessione al DB nel formato PmDB
 	 */
 	public function __construct($iDbSource){
 		$this->src = $iDbSource;

@@ -6,7 +6,7 @@
 	$qry ="select
 				P.spid as spid,   
 				right(convert(varchar, 
-						dateadd(s, datediff(s, P.last_batch, getdate()), '1900-01-01'), 
+						getdate() - P.last_batch, 
 						121), 12) as 'batch_duration',   
 				P.program_name as program,   
 				P.hostname as hostname,
