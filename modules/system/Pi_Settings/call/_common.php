@@ -1,6 +1,6 @@
 <?php
 	include $pr->getRootPath('lib/Pi.DB.php');
-	include $pr->getRootPath('lib/Pi.Custom.php');
+	//include $pr->getRootPath('lib/Pi.Custom.php');
 	include $pr->getRootPath('lib/Pi.System.php');
 	
 	$db = new PiDB($pr->getDB());
