@@ -58,7 +58,6 @@
 		padding:0;
 		.header{
 			margin:0;
-			cursor: pointer;
 			&>.icons{
 				float: left;
 				margin-top: -1px;
@@ -69,6 +68,24 @@
 					}
 				}
 				
+			}
+		}
+	}
+	
+	&.triggerIcon{
+		&.panel{
+			.header{
+				&>.icons{					
+					cursor: pointer;	
+				}
+			}
+		}
+	}
+	
+	&.triggerBar{
+		&.panel{
+			.header{
+				cursor: pointer;	
 			}
 		}
 	}
