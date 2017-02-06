@@ -85,7 +85,7 @@
 		$key .= str_repeat('<i class="mdi mdi-key-variant orange" title="Chiave Primaria"></i>',$v['IdxPrimary']);
 		$key .= str_repeat('<i class="mdi mdi-key-variant" title="Indice"></i>',$v['IdxSec']);
 		
-		$aIndex = $v['indici']==$db->opt('null') ? array() : explode('!!', str_replace('?','_',utf8_decode($v['indici'])));
+		$aIndex = $v['indici']==$db->opt('null') ? array() : explode('!!', str_replace('?','_',$v['indici']));
 		$aclass='j-row';
 		$index = '';
 		for($i = 0; $i < count($aIndex); $i++){
