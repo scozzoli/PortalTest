@@ -11,6 +11,29 @@
 					</tr>
 				</table>
 				<input type="text" data-pic=" datepicker : { timepicker : true, format: \'d/m/Y H:i\' } ">
+				
+			</div>
+			
+			<div class="panel" id="test_multi">
+				<select name="cars" multiple style="height: 200px;">
+					<option value="volvo">Volvo</option>
+					<option value="saab">Saab</option>
+					<option value="opel">Opel</option>
+					<option value="audi">Audi</option>
+				</select>
+				<input type="text" name="text" value="uno">
+				<input type="text" name="text" value="due">
+				
+				<input type="radio" name="radio" value="uno">
+				<input type="radio" name="radio" value="due">
+				<input type="text" name="radio" value="tre">
+
+				<input type="checkbox" name="chk">
+				<input type="checkbox" name="chk">
+				<input type="checkbox" name="chk">
+				
+<button onclick="pi.request(\'test_multi\',\'Multi\')"> test </button>
+
 			</div>
 
 			<table class="lite green" >
@@ -76,6 +99,12 @@
 					</tr>
 				</table>
 			</div>
-			';
+			<br>
+			<div class="blue lite" data-pic=" grid : {filtersId : \'data\', call : \'Udate_Grid\', id : \'PiGrid\', pages:[25,50,75,100], startPage : 3} ">
+				<div data-col=" name: \'c1\' "> nome colonna </div>
+				<div data-col=" name: \'c2\' "> nome colonna 2 </div>
+				<div class="green" data-col=" name: \'c3\' "> nome colonna 3 </div>
+				<div data-col=" name: \'c4\' "> nome colonna 4 </div>
+			</div>';
 	$pr->addHtml('container',$out)->response();
 ?>

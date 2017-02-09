@@ -1,4 +1,4 @@
-<?
+<?php
 	include $pr->getRootPath('lib/Pi.DB.php');
 	include $pr->getRootPath('lib/Pi.Custom.php');
 	//include $pr->get('root').'../lib/php.i18n.php';

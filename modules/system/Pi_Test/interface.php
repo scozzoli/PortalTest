@@ -16,6 +16,7 @@
 				<button onclick="pi.request(null,\'Show_Cal\')">Calendario</button>
 				<button onclick="pi.request(null,\'Show_Chart\')">Grafici</button>
 				<button onclick="pi.request(null,\'Show_Upload\')">Upload</button>
+				<button onclick="pi.download(null,\'Get_File\')">file</button>
 			</div>
 			<div id="container" style="height:100%">
 				<div class="panel" data-pi-component="collapse">
@@ -72,7 +73,7 @@
 						</table>
 					</div>
 					<div data-pi-tab="secondo">
-						<div class="panel" data-pic="collapse" id="xx">
+						<div class="panel" data-pic="collapse: { triggerOnIcon : true }" id="xx">
 							<div class="header">Collapse ME!</div>
 							fuffa fuffa<br>fuffa fuffa
 							<div class="footer">
@@ -105,7 +106,7 @@
 				</div>
 
 				<div class="panel blue">
-					
+				
 					<flexbox>
 						<row>
 							<box size="xs">	<label>XS</label>	<input type="text"/> </box>

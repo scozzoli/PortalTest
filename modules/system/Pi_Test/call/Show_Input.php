@@ -4,7 +4,7 @@
 				<div class="header">Campi di input</div>
 				I campi di input sono formattati in automatico (senza la necessit&aacute; di impostare stili particolari).<br>
 				Gli stili vengono impostati solo per defininire il livello di "importanza del campo"<br><br>
-								
+
 				<table width="100%" style="text-align:center;">
 					<tr>
 						<th> Tipologia </th>
@@ -23,6 +23,15 @@
 						<td> <input type="text" value="testo" disabled> </td>
 						<td> <input type="text" class="ale" value="testo" disabled> </td>
 						<td> <input type="text" class="err" value="testo" disabled> </td>
+					</tr>
+					<tr>
+						<th> input file </th>
+						<td id="ciao"> <input type="file" name="test" multiple> </td>
+						<td> <input type="file" class="ale" "> </td>
+						<td> <input type="file" class="err" > </td>
+						<td> <input type="file"  disabled> </td>
+						<td> <input type="file" class="ale"  disabled> </td>
+						<td> <input type="file" class="err"  disabled> </td>
 					</tr>
 					<tr>
 						<th> select </th>
@@ -44,14 +53,14 @@
 					</tr>
 					<tr>
 						<th> checkbox </th>
-						<td> 
-							<input type="checkbox" id="chk1"> Checkbox <br/> 
+						<td>
+							<input type="checkbox" id="chk1"> Checkbox <br/>
 							<input type="checkbox" id="chk2" checked> Checkbox <br/>
 						</td>
 						<td>  </td>
 						<td>  </td>
-						<td> 
-							<input type="checkbox" id="chk3" disabled> Checkbox <br/> 
+						<td>
+							<input type="checkbox" id="chk3" disabled> Checkbox <br/>
 							<input type="checkbox" id="chk4" disabled checked> Checkbox <br/>
 						</td>
 						<td>  </td>
@@ -59,14 +68,14 @@
 					</tr>
 					<tr>
 						<th> radio </th>
-						<td> 
-							<input type="radio" id="rad1" name="radio"> Radio <br/> 
+						<td>
+							<input type="radio" id="rad1" name="radio"> Radio <br/>
 							<input type="radio" id="rad2" name="radio" checked> Radio <br/>
 						</td>
 						<td>  </td>
 						<td>  </td>
-						<td> 
-							<input type="radio" name="radio2" disabled> Radio <br/> 
+						<td>
+							<input type="radio" name="radio2" disabled> Radio <br/>
 							<input type="radio" name="radio2" disabled checked> Radio <br/>
 						</td>
 						<td>  </td>
@@ -93,24 +102,24 @@
 						</tr>
 					</table>
 				</div>
-				
-				
+
+
 			</div>
-			
-			
-			
+
+
+
 			<div class="panel">
 				<div class="header"> Stili dei pulsanti </div>
 				I pulsanti sono stilizzati di default e non richiedono elementi aggiuntivi, quindi sono solo del tipo:<br><br>
-				
+
 				<div class="focus blue">
 					&lt;button&gt; <i>testo bottone</i> &lt;/button&gt;<br>
 					&lt;button class="icon"&gt; &lt;i class="<b>mdi mdi-<i style="color:#888;">nome icona</i></b>"&gt; &lt;/i&gt; &lt;/button&gt;<br>
 				</div>
 				<br>
-				
+
 				<table width="100%" style="text-align:center;">
-					<tr> 
+					<tr>
 						<th>tipologia</th>
 						<th>Normale</th>
 						<th>Normale + immagine</th>
@@ -119,7 +128,7 @@
 						<th>Disattivato + immagine</th>
 						<th>.icon Disattivato</th>
 					</tr>
-					<tr> 
+					<tr>
 						<th>nessuno stile</th>
 						<td><button>Pulsante</button></td>
 						<td><button><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
@@ -128,7 +137,7 @@
 						<td><button disabled><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
 						<td><button class="icon" disabled><i class="mdi mdi-camera-iris"></i></button></td>
 					</tr>
-					<tr> 
+					<tr>
 						<th>.blue</th>
 						<td><button class="blue">Pulsante</button></td>
 						<td><button class="blue"><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
@@ -137,7 +146,7 @@
 						<td><button class="blue" disabled><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
 						<td><button class="blue icon" disabled><i class="mdi mdi-camera-iris"></i></button></td>
 					</tr>
-					<tr> 
+					<tr>
 						<th>.orange</th>
 						<td><button class="orange">Pulsante</button></td>
 						<td><button class="orange"><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
@@ -146,7 +155,7 @@
 						<td><button class="orange" disabled><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
 						<td><button class="orange icon" disabled><i class="mdi mdi-camera-iris"></i></button></td>
 					</tr>
-					<tr> 
+					<tr>
 						<th>.red</th>
 						<td><button class="red">Pulsante</button></td>
 						<td><button class="red"><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
@@ -155,7 +164,7 @@
 						<td><button class="red" disabled><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
 						<td><button class="red icon" disabled><i class="mdi mdi-camera-iris"></i></button></td>
 					</tr>
-					<tr> 
+					<tr>
 						<th>.green</th>
 						<td><button class="green">Pulsante</button></td>
 						<td><button class="green"><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
@@ -164,7 +173,7 @@
 						<td><button class="green" disabled><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
 						<td><button class="green icon" disabled><i class="mdi mdi-camera-iris"></i></button></td>
 					</tr>
-					<tr> 
+					<tr>
 						<th>.purple</th>
 						<td><button class="purple">Pulsante</button></td>
 						<td><button class="purple"><i class="mdi mdi-camera-iris"></i> Pulsante</button></td>
