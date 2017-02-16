@@ -1,6 +1,6 @@
 <?php
 	include $pr->getRootPath('lib/Pi.DB.php');
-	//include $pr->getRootPath('lib/Pi.Custom.php');
+	//include $pr->getRootPath('lib/Pi.Custom.php'); --> la usavo solo per array_put
 	include $pr->getRootPath('lib/Pi.System.php');
 	
 	$db = new PiDB($pr->getDB());
@@ -71,6 +71,27 @@
 		//else
 		//	$pr->alert($pr->getRootPath('i18n/settings.json'));
 		return json_decode(file_get_contents($pr->getRootPath('i18n/settings.json')),true);
+	}
+	
+	function array_put(&$array, $key, $pos){
+		if(is_string($key)){
+			$index = 0;
+			foreach($array as $k => $v){
+				if($index == $pos){$new[$key] = $array[$key];}
+				if($k == $key){continue;}
+				$new[$k] = $array[$k];
+				$index++;
+			}
+		}else{
+			$new =$array;
+			$new[$pos] = $array[$key];
+			$inc = ($pos>$key) ? 1 : -1;
+			//die("E: $key - $pos - $inc");
+			for($i=$key;$i!=$pos;$i+=$inc){
+				$new[$i] = $array[$i+$inc];
+			}
+		}
+		$array = $new;
 	}
 
 ?>
