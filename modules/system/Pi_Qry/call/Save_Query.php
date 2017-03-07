@@ -9,7 +9,7 @@
 	if(trim($newName) == ''){
 		$pr->alert("<i18n>err:required;Nome</i18n>");
 	}
-
+	
 	$interrogazione = Array(
 		'des' => $pr->post('des'),
 		'enabled' => $pr->post('enabled') == 1,
@@ -21,7 +21,7 @@
 		'icon' => $pr->post('icon'),
 		'qry' => $pr->post('qry'),
 		'inputs' => json_decode($pr->post('inputs'),true),
-		'metadata' => json_decode($pr->post('metadata'),true),
+		'metadata' => json_decode($pr->post('metadata'),true), 
 		'php' => json_decode($pr->post('php'),true),
 		'chartsize' => $pr->post('chartsize'),
 		'charts'  => json_decode($pr->post('charts'),true)

@@ -365,6 +365,9 @@
 	}
 
 	function nvl($iVal,$iNotNull,$iNull = '[[null]]'){
+		if(!is_string($iVal)){
+			return $iNotNull;
+		}
 		if($iVal == $iNull){
 			return $iNotNull;
 		}else{
