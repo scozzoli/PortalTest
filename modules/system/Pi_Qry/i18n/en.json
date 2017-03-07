@@ -54,6 +54,7 @@
     "info:metadata": "**Columns types.** The columns are of type *string* (plain text) unless otherwise noted.\nYou can also upload the complete list of the columns by running the query.",
     "info:paramList": "Params list (generated automatically by the query)",
     "info:phpInstruction": "Columns areaccessible as **php** variables. Spaces are sobtituited by underscors and are lowercased:  \n\"Hello World\" == **$hello_world**  \n<br>\nAviable functions are:\n**$VAL**(*$column*)  \n*return value*  \n**$NULL**(*$column*)  \n*return true if value is null*  \n**$FG**(*$column*, \"colore\")\t \n*set column foreground color*  \n**$BG**(*$column*, \"colore\")  \n*set column background color*  \n**$B**(*$column*, **true**\/false)  \n*set text bold (default:**true**)*  \n**$I**(*$column*,  **true**\/false)  \n*set text italic (default:**true**)*  \n<br>\nFor set the row default tou can use the special var **$ROW**\nAviable colors are :\n**black, white, blue, orange, purple, green, red**",
+    "info:unformatted": "Unformatted",
     "info:winParam": "Details of input fields.  \nValues for multiselect can be edited from another interface",
     "info:winSelectValue": "insert selectable values.  \nValues will be ordered by key avter save.  \nInserting a pre existing key, description will be updated.",
     "lbl:chartSize": "Chart size",
