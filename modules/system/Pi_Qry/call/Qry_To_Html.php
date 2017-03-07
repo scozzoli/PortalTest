@@ -164,7 +164,8 @@
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:right; '.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
 							break;
 							case 'date' :
-								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$vv,$myNull).'</td>';
+								$timeVal = is_object($vv) ? $vv->format('d/m/Y') : $vv;
+								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'">'.GetTXTfromPHPFormat($format,$vk,$timeVal,$myNull).'</td>';
 							break;
 							case 'datecobol' :
 								$table.='<td class="'.$phpClass['class'].'" style="text-align:center; '.$phpClass['style'].'">

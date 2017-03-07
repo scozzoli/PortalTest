@@ -366,7 +366,7 @@
 
 	function nvl($iVal,$iNotNull,$iNull = '[[null]]'){
 		if(!is_string($iVal)){
-			return $iNotNull;
+			return '<i class="disabled"><i18n>info:unformatted</i18n></i>';
 		}
 		if($iVal == $iNull){
 			return $iNotNull;
@@ -376,7 +376,20 @@
 	}
 
 	function excelNull($iVal,$iNull = '[[null]]'){
+		if(!is_string($iVal)){
+			return '';
+		}
 		if($iVal == $iNull){
+			return '';
+		}else{
+			return $iVal;
+		}
+	}
+
+	function excelDateNull($iVal,$iNull = '[[null]]'){
+		if(!is_string($iVal)){
+			return $iVal;
+		}elseif($iVal == $iNull){
 			return '';
 		}else{
 			return $iVal;

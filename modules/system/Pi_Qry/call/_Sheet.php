@@ -68,8 +68,11 @@
 					$xls->setActiveSheetIndex(0)->getCellByColumnAndRow($j++,$idx+2)->setValueExplicit(str_replace(',','.',excelNull($v)),PHPExcel_Cell_DataType::TYPE_NUMERIC);
 					break;
 				case 'date' :
-					$xls->setActiveSheetIndex(0)->getCellByColumnAndRow($j,$idx+2)->setValueExplicit(ExcelDate(excelNull($v),$qryConf['null']),PHPExcel_Cell_DataType::TYPE_NUMERIC);
-					$xls->setActiveSheetIndex(0)->getStyleByColumnAndRow($j++,$idx+2)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_DDMMYYYY);
+					$xls->setActiveSheetIndex(0)->setCellValueByColumnAndRow($j,$idx+2,PHPExcel_Shared_Date::PHPToExcel( ExcelDateObj(excelDateNull($v),$qryConf['null']) ));
+					$xls->setActiveSheetIndex(0)->getStyleByColumnAndRow($j++,$idx+2)->getNumberFormat()->setFormatCode('dd/mm/yyyy');
+
+					//$xls->setActiveSheetIndex(0)->getCellByColumnAndRow($j,$idx+2)->setValueExplicit(ExcelDate(excelDateNull($v),$qryConf['null']),PHPExcel_Cell_DataType::TYPE_NUMERIC);
+					//$xls->setActiveSheetIndex(0)->getStyleByColumnAndRow($j++,$idx+2)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_DDMMYYYY);
 					break;
 				case 'datecobol' :
 					$xls->setActiveSheetIndex(0)->getCellByColumnAndRow($j,$idx+2)->setValueExplicit(ExcelDateCobol(excelNull($v),$qryConf['null']),PHPExcel_Cell_DataType::TYPE_NUMERIC);
