@@ -365,7 +365,7 @@
 	}
 
 	function nvl($iVal,$iNotNull,$iNull = '[[null]]'){
-		if(!is_string($iVal)){
+		if(is_object($iVal)){
 			return '<i class="disabled"><i18n>info:unformatted</i18n></i>';
 		}
 		if($iVal == $iNull){
