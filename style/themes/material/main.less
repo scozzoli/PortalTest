@@ -61,6 +61,7 @@ body{
 	height: 100%;
     width: 100%;
 	top:0;
+	transition: @Main-Transition;
 
 	&.lock{
 		//overflow:hidden;
@@ -580,4 +581,8 @@ body{
 @media (min-width: @screen-xl-min) { 
 	.pi-mod-width(20%); 
 	.pi-multi-size(33.33%,50%,100%); 
+}
+
+.blur{
+	filter: blur(3px);
 }
