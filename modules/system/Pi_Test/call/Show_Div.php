@@ -1,4 +1,4 @@
-<?
+<?php
 	function panelColor($color){
 		$focus = '<div class="focus"> .focus </div>
 							<div class="focus blue"> .focus .blue</div>

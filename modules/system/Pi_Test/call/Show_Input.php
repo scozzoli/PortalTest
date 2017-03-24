@@ -1,4 +1,4 @@
-<?
+<?php
 	$option = '<option> Option 1 </option><option> Option 2 </option><option> Option 3 </option>';
 	$out = '<div class="panel">
 				<div class="header">Campi di input</div>

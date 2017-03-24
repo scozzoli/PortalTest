@@ -1,4 +1,4 @@
-<?
+<?php
 	function getStyle($style){
 		$out = '<span class="'.$style.'"> Normale (span) </span>';
 		$out.= '<i class="'.$style.'"> Corsivo (i) </i>';

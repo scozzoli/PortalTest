@@ -135,7 +135,7 @@
 						<td>Palanca</td>
 						<td class="red">0</td>
 						<td>01/01/2015</td>
-						<td> dati a caso </td>
+						<td>  <table><tr><td>XXXX</td></tr></table>  dati a caso </td>
 					</tr>
 				</table>
 			</div>';

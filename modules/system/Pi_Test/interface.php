@@ -3,6 +3,7 @@
 	$sd->includeLib('./lib/Pi.Component.Calendar.js');
 	$sd->includeLib('./lib/Pi.Component.Chart.js');
 	$sd->includeLib('./lib/Pi.Component.Grid.js');
+	$sd->includeLib('./lib/Pi.Component.Gantt.js');
 	$interface = '<div class="panel blue">
 				Elenco degli stili applicabili
 			</div>
@@ -106,6 +107,15 @@
 				</div>
 
 				<div class="panel blue">
+					<div id="mytest">
+						<input list="ciao" type="text" name="list">
+						<input type="time" name="time">
+					</div>
+					<datalist id="ciao">
+						<option value="uno"> Primo </option>
+						<option value="due">
+						<option value="tre">
+					</datalist>
 				
 					<flexbox>
 						<row>

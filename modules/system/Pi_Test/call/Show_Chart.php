@@ -15,7 +15,20 @@
 		),
 	);
 	//, height: \'600px\', width:\'200px\' <div data-labels="separator : \'!!\'"> Primo!!Secondo!!Terzo!!Quarto!!Quinto </div>
-	$out = '<div data-pic="chart : { type : \'mixed\'}" style="width:30%; height:200px; float:left">
+	$out = '
+	<div class="panel">
+		<div data-pic="gantt : {legendSize : 300}">
+			<task id="01" start="2017-03-01" end="2017-03-15"> Ciao bello lkh fiowh viuhv ipuh vipuhvq piuh fquiv hevuipr </task>
+			<task id="02" start="2017-03-5" end="2017-04-05" class="blue"> Altro </task>
+			<task id="03" start="2017-03-8" end="2017-04-05" class="red"> Altro </task>
+			<task id="04" start="2017-03-20" end="2017-04-01" class="purple"> Altro </task>
+			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"> <b>Altro</b> </task>
+			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"><span style="text-align:center"> 1 </span></task>
+			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"> xx </task>
+		</div>
+	<div>
+	<br>
+	<div data-pic="chart : { type : \'mixed\'}" style="width:30%; height:200px; float:left">
 		<div data-labels="separator : \'!!\'"> Primo!!Secondo!!Terzo </div>
 		<div data-chart=" type : \'bar\', data : { color : \'blue\', values : [1,2,3,4,5] } "> Serie 1 </div>
 		<div data-chart=" type : \'bar\', data : { color : \'red\', values : [10,5,6,0,5] } "> Serie 2 </div>
