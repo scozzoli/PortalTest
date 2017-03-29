@@ -18,13 +18,23 @@
 	$out = '
 	<div class="panel">
 		<div data-pic="gantt : {legendSize : 300}">
-			<task id="01" start="2017-03-01" end="2017-03-15"> Ciao bello lkh fiowh viuhv ipuh vipuhvq piuh fquiv hevuipr </task>
-			<task id="02" start="2017-03-5" end="2017-04-05" class="blue"> Altro </task>
-			<task id="03" start="2017-03-8" end="2017-04-05" class="red"> Altro </task>
-			<task id="04" start="2017-03-20" end="2017-04-01" class="purple"> Altro </task>
-			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"> <b>Altro</b> </task>
-			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"><span style="text-align:center"> 1 </span></task>
-			<task id="xx" start="2017-03-21" end="2017-03-22" class="green"> xx </task>
+			<c-line title="prova di titolo">
+				<c-title><b>Prova</b> di titlo</c-title>
+				<c-task id="01" start="2017-03-01" end="2017-03-15"> Ciao bello lkh fiowh viuhv ipuh vipuhvq piuh fquiv hevuipr </c-task>
+			</c-line>
+			<c-line>
+				<c-task id="02" start="2017-03-5" end="2017-04-05" class="blue"> Altro </c-task>
+				<c-task id="03" start="2017-03-8" end="2017-04-05" class="red"> Altro </c-task>
+			</c-line>
+			<c-line>
+				<c-task id="04" start="2017-03-20" end="2017-04-01" class="purple"> Altro </c-task>
+			</c-line>
+			<c-line onclick="alert(\'ciao\')">
+				<c-title>Sequenza</c-title>
+				<c-task id="xx" start="2017-03-21" end="2017-03-22" class="green"> <b>Altro</b> </c-task>
+				<c-task id="xx" start="2017-03-22" end="2017-03-23" class="green"><span style="text-align:center"> 1 </span></c-task>
+				<c-task id="xx" start="2017-03-23" end="2017-03-24" class="green" onclick="pi.msg.info(\'ciao\')"> xx </c-task>
+			</c-line>
 		</div>
 	<div>
 	<br>

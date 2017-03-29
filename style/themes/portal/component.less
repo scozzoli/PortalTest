@@ -309,3 +309,202 @@ i18n{
 		}
 	}
 }
+
+.pi-gantt{
+
+	@cellWidth : 25px;
+	@cellHeight : 30px;
+
+	.pi-legend{
+		display: inline-block;
+		overflow-x: scroll;
+		border-right: 1px solid @White-C2;
+		box-sizing: border-box;
+
+		.pi-legend-header{
+			height: (@cellHeight * 2) + 2px;
+			border-bottom: 1px solid @White-C2;
+		}
+
+		.pi-legend-voice{
+			height: @cellHeight - 1px;
+			border-bottom: 1px solid @White-C2;
+			margin-top: 2px;
+			padding: 4px;
+			box-sizing: border-box;
+
+			&.pi-link{
+				cursor: pointer;
+			}
+		}
+
+		
+	}
+
+	.pi-chart{
+		display: inline-block;
+		width: 100%;
+		position: relative;
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: nowrap;
+
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none; 
+		
+		
+
+		ul{
+			//overflow: hidden;
+			font-weight: normal;
+			margin: 0;
+			padding: 0;
+			display: block;
+			list-style-type: disc;
+
+			li{
+				text-align: center;
+				list-style: none;
+				//float: left;
+				display: inline-block;
+			}
+			&.pi-legend{
+				position: fixed;
+			}
+			&.pi-month{
+				li{
+					border-top: 1px solid @White-C2; 
+					border-right: 1px solid @White-C2; 
+					border-bottom: 1px solid @White-C2; 
+					height: @cellHeight - 6px;
+					padding-top:6px;
+					&:first-child{
+						border-left: 1px solid @White-C2; 
+					}
+				}
+				.length-1{ width: @cellWidth; }
+				.length-2{ width: (@cellWidth * 2) + 1px; }
+				.length-3{ width: (@cellWidth * 3) + 2px; }
+				.length-4{ width: (@cellWidth * 4) + 3px; }
+				.length-5{ width: (@cellWidth * 5) + 4px; }
+				.length-6{ width: (@cellWidth * 6) + 5px; }
+				.length-7{ width: (@cellWidth * 7) + 6px; }
+				.length-8{ width: (@cellWidth * 8) + 7px; }
+				.length-9{ width: (@cellWidth * 9) + 8px; }
+				.length-10{ width: (@cellWidth * 10 ) + 9px; }
+				.length-11{ width: (@cellWidth * 11) + 10px; }
+				.length-12{ width: (@cellWidth * 12) + 11px; }
+				.length-13{ width: (@cellWidth * 13) + 12px; }
+				.length-14{ width: (@cellWidth * 14) + 13px; }
+				.length-15{ width: (@cellWidth * 15) + 14px; }
+				.length-16{ width: (@cellWidth * 16) + 15px; }
+				.length-17{ width: (@cellWidth * 17) + 16px; }
+				.length-18{ width: (@cellWidth * 18) + 17px; }
+				.length-19{ width: (@cellWidth * 19) + 18px; }
+				.length-20{ width: (@cellWidth * 20) + 19px; }
+				.length-21{ width: (@cellWidth * 21) + 20px; }
+				.length-22{ width: (@cellWidth * 22) + 21px; }
+				.length-23{ width: (@cellWidth * 23) + 22px; }
+				.length-24{ width: (@cellWidth * 24) + 23px; }
+				.length-25{ width: (@cellWidth * 25) + 24px; }
+				.length-26{ width: (@cellWidth * 26) + 25px; }
+				.length-27{ width: (@cellWidth * 27) + 26px; }
+				.length-28{ width: (@cellWidth * 28) + 27px; }
+				.length-29{ width: (@cellWidth * 29) + 28px; }
+				.length-30{ width: (@cellWidth * 30) + 29px; }
+				.length-31{ width: (@cellWidth * 31) + 30px; }
+			}
+			&.pi-taskRow{
+				height: @cellHeight + 1px;
+				li{
+					height: @cellHeight;
+				}
+
+				.pi-task{
+					//float: left;
+					//box-shadow: @Main-BoxShadow-1;
+					display: inline-block;
+					height: @cellHeight - 4px;
+					background: @White-C1;
+					//background: #FF0;
+					position: absolute;
+					margin-top: 2px;
+					padding: 4px;
+					box-sizing: border-box;
+					border: 1px solid @White-C2;
+					
+					.SetColor(@c1,@c2,@c3){
+						background-color: @c1;
+						color:@c3;
+						border-color: @c2;
+
+						&.pi-link{
+							background-color: @c3;
+							border-color: @c3;
+							color: @c1;
+						}
+					}
+
+					&.red{ .SetColor(@Red-C1,@Red-C2,@Red-C3); }
+					&.blue{ .SetColor(@Blue-C1,@Blue-C2,@Blue-C3); }
+					&.green{ .SetColor(@Green-C1,@Green-C2,@Green-C3); }
+					&.orange{ .SetColor(@Orange-C1,@Orange-C2,@Orange-C3); }
+					&.purple{ .SetColor(@Purple-C1,@Purple-C2,@Purple-C3); }
+
+					&.pi-link{
+						cursor: pointer;
+						transition: @Main-Transition;
+
+						background-color: @White-C2;
+						border-color: @White-C2;
+						color: @White-C1;
+
+						&:hover {
+							transition: @Main-Transition;
+							box-shadow: @Main-BoxShadow-1;
+						}
+					}
+
+				}
+			}
+			&.pi-days{
+				li{
+					width: @cellWidth;
+					border-right: 1px solid @White-C2; 
+					border-bottom: 1px solid @White-C2; 
+					//height: @cellHeight;
+					height: @cellHeight - 6px;
+					padding-top:6px;
+					
+					&:first-child{
+						border-left: 1px solid @White-C2; 
+					}
+
+					.SetColor(@c1,@c2,@c3){
+						background-color: @c1;
+						color:@c3;
+					}
+
+					&.red{ .SetColor(@Red-C1,@Red-C2,@Red-C3); }
+					&.blue{ .SetColor(@Blue-C1,@Blue-C2,@Blue-C3); }
+					&.green{ .SetColor(@Green-C1,@Green-C2,@Green-C3); }
+					&.orange{ .SetColor(@Orange-C1,@Orange-C2,@Orange-C3); }
+					&.purple{ .SetColor(@Purple-C1,@Purple-C2,@Purple-C3); }
+				}
+			}
+		}
+	}
+
+	.pi-legend+.pi-chart{
+		ul{
+			li:first-child{
+				border-left: 0; 
+			}
+		}
+	}
+	
+}
