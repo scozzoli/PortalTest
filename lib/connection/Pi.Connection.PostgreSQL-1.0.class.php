@@ -6,7 +6,7 @@ class PiConnectionPostgreSQL extends PiConnection{
 	
 
 	public function connect(){
-		$this->link = pg_connect(' "host='.$this->src["server"].' user='.$this->src["dbuser"].' password='.$this->src["dbpwd"].' dbname='.$this->src["dbname"].' "');
+		$this->link = pg_connect(' host='.$this->src["server"].' user='.$this->src["dbuser"].' password='.$this->src["dbpwd"].' dbname='.$this->src["dbname"].' ');
 		if($this->link === false){
 			$this->error('Errore nella selezione del db del server PostgreSQL '.$this->src["server"].'\\<b>'.$this->src["dbname"].'</b>');
 		}
