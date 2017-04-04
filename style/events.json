@@ -1,0 +1,30 @@
+{
+	"default": {
+		"default": "",
+		"1": {
+			"default": "pi-gennaio",
+			"1": "pi-holidays newyear"
+		},
+		"2": { "default": "pi-febbario" },
+		"3": { "default": "pi-marzo" },
+		"4": { "default": "pi-aprile" },
+		"5": { "default": "pi-maggio" },
+		"6": { "default": "pi-giugno" },
+		"7": { "default": "pi-luglio" },
+		"8": { "default": "pi-agosto" },
+		"9": { "default": "pi-settembre" },
+		"10": { "default": "pi-ottobre" },
+		"11": { "default": "pi-novembre" },
+		"12": { 
+			"default": "pi-dicembre",
+			"25": "pi-holidays cristmas",
+			"31": "pi-holidays newyear"
+		}
+	},
+	
+	"1980": {
+		"5": {
+			"2": "yhea!"
+		}
+	}
+}

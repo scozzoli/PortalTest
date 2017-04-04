@@ -258,6 +258,31 @@ class PiSD{
 		return $out;
 	}
 
+	public function getCalendarStyle(){
+		$events = json_decode(file_get_contents('./style/events.json'),true);
+		$today = explode('-',date('Y-m-d'));
+		$Y = intval($today[0]);
+		$M = intval($today[1]);
+		$D = intval($today[2]);
+		$def = '';
+		/// Recupero il default generale
+		if(isset($events['default'])){
+			$def = $events['default']['default'] ?: '';
+			if(isset($events['default'][$M])){
+				$def = $events['default'][$M][$D] ?: ( $events['default'][$M]['default'] ?: $def );
+			}
+		}
+		/// Recupero il valore specifico del giorno (oppure rilascio il default)
+		if(isset($events[$Y])){
+			$def = $events[$Y]['default'] ?: $def;
+			if(isset($events[$Y][$M])){
+				$def = $events[$Y][$M][$D] ?: ( $events[$Y][$M]['default'] ?: $def );
+			}
+		}
+		
+		return $def;
+	}
+
 	public function render($iContent = ""){
 		$mod = $this->modules[$this->opt['MID']];
 		$sidemenu = $this->usr['showsidemenu'] == 0 ? 'pi-hide-menu' : '';
@@ -282,7 +307,7 @@ class PiSD{
 		$out.= $crlf.'	<div class="pi-modal pi-win hide"><div class="pi-modal-content hide"></div></div>';
 		$out.= $crlf.'	<div class="pi-modal pi-message hide"><div class="pi-modal-content hide"></div></div>';
 		$out.= $crlf.'	<div class="pi-modal pi-loader hide"><div class="pi-modal-content hide"></div></div>';
-		$out.= $crlf.'	<div class="pi-wrapper">';
+		$out.= $crlf.'	<div class="pi-wrapper '.$this->getCalendarStyle().'">';
 		$out.= $crlf.'		<div class="pi-top">';
 		$out.= $crlf.'			<div class="pi-logout" onclick="window.location=\'./logout.php\'">';
 		$out.= $crlf.'				<div class="pi-user">'.$this->usr["nome"].' <i class="mdi mdi-logout"></i> </div>';
