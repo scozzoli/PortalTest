@@ -1,40 +1,40 @@
-.pi-wrapper{
+.pi-body{
     background-attachment: fixed;
 	background-size: cover; 
 }
-.pi-wrapper.pi-gennaio{ 
+.pi-body.pi-gennaio{ 
     background-image: url('../img/meterial/january.jpg');
 }
-.pi-wrapper.pi-febbraio{ 
+.pi-body.pi-febbraio{ 
     background-image: url('../img/meterial/february.jpg');
 }
-.pi-wrapper.pi-marzo{ 
+.pi-body.pi-marzo{ 
     background-image: url('../img/meterial/march.jpg');
 }
-.pi-wrapper.pi-aprile{ 
+.pi-body.pi-aprile{ 
     background-image: url('../img/meterial/april.jpg');
 }
-.pi-wrapper.pi-maggio{ 
+.pi-body.pi-maggio{ 
     background-image: url('../img/meterial/may.jpg');
 }
-.pi-wrapper.pi-giugno{ 
+.pi-body.pi-giugno{ 
     background-image: url('../img/meterial/june.jpg');
 }
-.pi-wrapper.pi-luglio{ 
+.pi-body.pi-luglio{ 
     background-image: url('../img/meterial/july.jpg');
 }
-.pi-wrapper.pi-agosto{ 
+.pi-body.pi-agosto{ 
     background-image: url('../img/meterial/august.jpg');
 }
-.pi-wrapper.pi-settembre{ 
+.pi-body.pi-settembre{ 
     background-image: url('../img/meterial/september.jpg');
 }
-.pi-wrapper.pi-ottobre{ 
+.pi-body.pi-ottobre{ 
     background-image: url('../img/meterial/october.jpg');
 }
-.pi-wrapper.pi-novembre{ 
+.pi-body.pi-novembre{ 
     background-image: url('../img/meterial/november.jpg');
 }
-.pi-wrapper.pi-dicembre{ 
+.pi-body.pi-dicembre{ 
     background-image: url('../img/meterial/december.jpg');
 }

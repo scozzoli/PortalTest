@@ -303,11 +303,11 @@ class PiSD{
 		$out.= $crlf.'<link href="./style/theme.php?theme='.$this->opt["theme"].'&style='.$this->opt["style"].'" rel="stylesheet" type="text/css" />';
 		for($i=0; $i!=count($this->tags);$i++){ $out.=$crlf.$this->tags[$i]->render(); }
 		$out.= $crlf.'</head>';
-		$out.= $crlf.'<body>';
+		$out.= $crlf.'<body class="pi-body '.$this->getCalendarStyle().'">';
 		$out.= $crlf.'	<div class="pi-modal pi-win hide"><div class="pi-modal-content hide"></div></div>';
 		$out.= $crlf.'	<div class="pi-modal pi-message hide"><div class="pi-modal-content hide"></div></div>';
 		$out.= $crlf.'	<div class="pi-modal pi-loader hide"><div class="pi-modal-content hide"></div></div>';
-		$out.= $crlf.'	<div class="pi-wrapper '.$this->getCalendarStyle().'">';
+		$out.= $crlf.'	<div class="pi-wrapper">';
 		$out.= $crlf.'		<div class="pi-top">';
 		$out.= $crlf.'			<div class="pi-logout" onclick="window.location=\'./logout.php\'">';
 		$out.= $crlf.'				<div class="pi-user">'.$this->usr["nome"].' <i class="mdi mdi-logout"></i> </div>';
