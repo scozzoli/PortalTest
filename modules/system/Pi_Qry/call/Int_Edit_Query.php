@@ -19,6 +19,7 @@
 		$icon = 'mdi-comment-text-outline';
 
 		$shodel = '';
+		$saveAsButton = '';
 	}else{
 		$qryConf = json_decode(file_get_contents($pr->getLocalPath("script/".$pr->post('qry'))),true);
 		$parts = explode('.',$pr->post('qry'));
@@ -34,7 +35,16 @@
 					<th><button class="red" onclick="pi.chk(\'<i18n>chk:removeQry</i18n>\').request(\'qryDataForm\',\'Delete_Query\')"><i class="mdi mdi-delete"></i><i18n>btn:removeQry</i18n></button></th>
 				</tr>
 			</table>
+			<div id="SaveAs">
+				<input type="hidden" name="filename" value="">
+				<input type="hidden" name=":LINK:GRP" value="qryDataForm">
+			</div>
 		</div>';
+
+		$saveAsButton = '<button class="green" onClick="pi.chk(\'<i18n>chk:saveAs</i18n>\').request(\'SaveAs\',\'Save_Query\')">
+			<i class="mdi mdi-content-save-settings"></i> 
+			<i18n>btn:saveAs</i18n>
+		</button>';
 	}
 
 	$db_list = $sysConfig->loadDB();
@@ -245,6 +255,7 @@
 		</table>
 		<div class="footer">
 			<button onClick="pi.request(\'data\',\'Cerca\')"><i class="mdi mdi-arrow-left"></i> <i18n>cancel</i18n> </button>
+			'.$saveAsButton.'
 			<button class="green" onClick="pi.request(\'qryDataForm\',\'Save_Query\')"><i class="mdi mdi-content-save"></i> <i18n>save</i18n></button>
 		</div>
 	</div>';

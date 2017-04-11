@@ -35,7 +35,6 @@
 			<tr>
 				<th><i18n>iface:default</i18n></th>
 				<td>
-					<input type="hidden" name="default">
 					<input type="text" name="'.($input['type'] == 'string' ? 'default' : '').'" id="def_str" style="display:none;">
 					<input type="text" name="'.($input['type'] == 'numeric' ? 'default' : '').'" id="def_num" style="display:none; text-align:right">
 					<input type="text" name="'.($input['type'] == 'date' ? 'default' : '').'" id="def_data" style="display:none;" data-pic="datepicker">

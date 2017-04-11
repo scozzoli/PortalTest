@@ -7,7 +7,7 @@
 	$inputs[$idSel]['default'] = $pr->post('default');
 	$inputs[$idSel]['required'] = $pr->post('required') == 1;
 	$inputs[$idSel]['note'] = $pr->post('note');
-	
+
 	$htmlInputs = createInputsTable($inputs);
 	
 	$fill = Array( 'inputs' => json_encode($inputs) );

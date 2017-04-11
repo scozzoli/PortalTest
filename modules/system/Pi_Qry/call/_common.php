@@ -131,7 +131,7 @@
 					<i class="mdi mdi-pencil blue"></i>
 				</td>';
 			}
-
+			
 			$out .= '<tr>
 				<th>'.$k.'</th>
 				<td>'.$v['des'].'</td>
