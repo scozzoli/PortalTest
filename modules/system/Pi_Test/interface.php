@@ -117,78 +117,78 @@
 						<option value="tre">
 					</datalist>
 				
-					<flexbox>
-						<row>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-							<box size="xs">	<label>XS</label>	<input type="text"/> </box>
-						</row>
-						<row>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-							<box size="s">	<label>S</label>	<input type="text"/> </box>
-						</row>
-						<row>
-							<box size="m">	<label>M</label>	<input type="text"/> </box>
-							<box size="m">	<label>M</label>	<input type="text"/> </box>
-							<box size="m">	<label>M</label>	<input type="text"/> </box>
-							<box size="m">	<label>M</label>	<input type="text"/> </box>
-						</row>
-						<row>
-							<box size="l">	<label>L</label>	<input type="text"/> </box>
-							<box size="l">	<label>L</label>	<input type="text"/> </box>
-							<box size="l">	<label>L</label>	<input type="text"/> </box>
-						</row>
-						<row>
-							<box size="xl">	<label>XL</label>	<input type="text"/> </box>
-							<box size="xl">	<label>XL</label>	<input type="text"/> </box>
-						</row>
-						<row>
-							<box size="f">	<label>F</label>	<input type="text"/> </box>
-						</row>
+					<f-grid>
+						<f-row>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+							<f-box size="xs">	<label>XS</label>	<input type="text"/> </f-box>
+						</f-row>
+						<f-row>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+							<f-box size="s">	<label>S</label>	<input type="text"/> </f-box>
+						</f-row>
+						<f-row>
+							<f-box size="m">	<label>M</label>	<input type="text"/> </f-box>
+							<f-box size="m">	<label>M</label>	<input type="text"/> </f-box>
+							<f-box size="m">	<label>M</label>	<input type="text"/> </f-box>
+							<f-box size="m">	<label>M</label>	<input type="text"/> </f-box>
+						</f-row>
+						<f-row>
+							<f-box size="l">	<label>L</label>	<input type="text"/> </f-box>
+							<f-box size="l">	<label>L</label>	<input type="text"/> </f-box>
+							<f-box size="l">	<label>L</label>	<input type="text"/> </f-box>
+						</f-row>
+						<f-row>
+							<f-box size="xl">	<label>XL</label>	<input type="text"/> </f-box>
+							<f-box size="xl">	<label>XL</label>	<input type="text"/> </f-box>
+						</f-row>
+						<f-row>
+							<f-box size="f">	<label>F</label>	<input type="text"/> </f-box>
+						</f-row>
 						
-						<row>
-							<box size="xs">
+						<f-row>
+							<f-box size="xs">
 								<i18n>save</i18n>
 								<input type="TEXT" value="text" class="ale" id="xxx"/>
-							</box>
-							<box size="s">
+							</f-box>
+							<f-box size="s">
 								
 								<input type="text" value="text"/>
-							</box>
-							<box size="l">
+							</f-box>
+							<f-box size="l">
 								<label>ciao (L)</label>
 								<input type="text" value="text"/>
-							</box>
-							<box size="xl">
+							</f-box>
+							<f-box size="xl">
 								<label>ciao (XL)</label>
 								<input type="text" value="text"/>
-							</box>
-							<box size="m">
+							</f-box>
+							<f-box size="m">
 								<label>ciao (M)</label>
 								<input type="text" value="text"/>
-							</box>
-							<box size="m">
+							</f-box>
+							<f-box size="m">
 								<label>ciao (M)</label>
 								<input type="text" value="text"/>
-							</box>
-							<box size="m">
+							</f-box>
+							<f-box size="m">
 								<input type="checkbox" value="text"/>
 								<i18n>save</i18n>
-							</box>
-							<box size="m">
+							</f-box>
+							<f-box size="m">
 								<label>ciao (M)</label>
 								<select>
 									<option> opt 1</option>
@@ -196,9 +196,9 @@
 									<option> opt 1</option>
 									<option> opt 1</option>
 								</select>
-							</box>
-						</row>
-					</flexbox>
+							</f-box>
+						</f-row>
+					</f-grid>
 
 					<table class="form">
 						<tr>
