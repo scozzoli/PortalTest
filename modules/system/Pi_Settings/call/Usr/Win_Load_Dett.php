@@ -28,7 +28,8 @@
 			'acc_dis' => '0',
 			'acc_priv' => '0',
 			'lang' => $lang_List['defaultLang'],
-			'extension' => array()
+			'extension' => array(),
+			'events' => '1' // applico gli stili personalizzati per eventi
 		);
 	}
 	
@@ -200,8 +201,19 @@
 						<td> '.$ddTheme.'</td>
 					</tr>
 					<tr>
-						<th style="text-align:right" > <i18n>usr:win:lblSideMenu</i18n></th>
-						<td> <input type="checkbox" name="showsidemenu" > </td>
+						<th></th>
+						<td>
+							<table>
+								<tr>
+									<td><input type="checkbox" name="showsidemenu" ></td>
+									<td><i18n>usr:win:lblSideMenu</i18n></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="events" ></td>
+									<td><i18n>usr:win:lblEvents</i18n></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th style="text-align:right" > <i18n>usr:win:lblDBDef</i18n></th>

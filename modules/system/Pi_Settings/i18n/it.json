@@ -159,6 +159,7 @@
     "usr:win:lblDisModules": "Accedi ai moduli **disabilitati**",
     "usr:win:lblEmail": "Email",
     "usr:win:lblErrModules": "Accedi ai moduli con **errori**",
+    "usr:win:lblEvents": "Usa stili personalizzati per eventi",
     "usr:win:lblHttpDes": "Abilita il **Protocollo HTTP (uso interno)**",
     "usr:win:lblHttpsDes": "Abilita il **Protocollo HTTPS (per accesso esterno)**",
     "usr:win:lblLang": "Lingua",

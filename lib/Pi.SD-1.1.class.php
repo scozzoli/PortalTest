@@ -259,25 +259,29 @@ class PiSD{
 	}
 
 	public function getCalendarStyle(){
-		$events = json_decode(file_get_contents('./style/events.json'),true);
-		$today = explode('-',date('Y-m-d'));
-		$Y = intval($today[0]);
-		$M = intval($today[1]);
-		$D = intval($today[2]);
-		$def = '';
-		/// Recupero il default generale
-		if(isset($events['default'])){
-			$def = $events['default']['default'] ?: '';
-			if(isset($events['default'][$M])){
-				$def = $events['default'][$M][$D] ?: ( $events['default'][$M]['default'] ?: $def );
+		if( $this->usr['events'] == 1){
+			$events = json_decode(file_get_contents('./style/events.json'),true);
+			$today = explode('-',date('Y-m-d'));
+			$Y = intval($today[0]);
+			$M = intval($today[1]);
+			$D = intval($today[2]);
+			$def = '';
+			/// Recupero il default generale
+			if(isset($events['default'])){
+				$def = $events['default']['default'] ?: '';
+				if(isset($events['default'][$M])){
+					$def = $events['default'][$M][$D] ?: ( $events['default'][$M]['default'] ?: $def );
+				}
 			}
-		}
-		/// Recupero il valore specifico del giorno (oppure rilascio il default)
-		if(isset($events[$Y])){
-			$def = $events[$Y]['default'] ?: $def;
-			if(isset($events[$Y][$M])){
-				$def = $events[$Y][$M][$D] ?: ( $events[$Y][$M]['default'] ?: $def );
+			/// Recupero il valore specifico del giorno (oppure rilascio il default)
+			if(isset($events[$Y])){
+				$def = $events[$Y]['default'] ?: $def;
+				if(isset($events[$Y][$M])){
+					$def = $events[$Y][$M][$D] ?: ( $events[$Y][$M]['default'] ?: $def );
+				}
 			}
+		}else{
+			$def = '';
 		}
 		
 		return $def;

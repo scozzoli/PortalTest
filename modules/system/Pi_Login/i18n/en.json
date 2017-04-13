@@ -14,6 +14,7 @@
     "lbl:DB": "Data base",
     "lbl:askPwd": "This profile need a password:",
     "lbl:email": "Email",
+    "lbl:events": "Use custom style for events",
     "lbl:newPwd": "New password",
     "lbl:newPwdConfirm": "Confirm password",
     "lbl:oldPwd": "Old password",

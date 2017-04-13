@@ -175,7 +175,7 @@
 		$this->_save('menu', $iData); 
 	}
 	
-	// le estensioni "Consigliate" non sono dati sensisbili, quinid vengono sempre salfati in JSON 
+	// le estensioni "Consigliate" non sono dati sensisbili, quinid vengono sempre salvati in JSON 
 	
 	public function loadUsrExt(){
 		if(!$this->opt['ext']){ 

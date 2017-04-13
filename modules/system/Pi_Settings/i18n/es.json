@@ -159,6 +159,7 @@
     "usr:win:lblDisModules": "",
     "usr:win:lblEmail": "",
     "usr:win:lblErrModules": "",
+    "usr:win:lblEvents": "",
     "usr:win:lblHttpDes": "",
     "usr:win:lblHttpsDes": "",
     "usr:win:lblLang": "",

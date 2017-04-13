@@ -10,6 +10,7 @@
 	$userlist[$usr]['nome'] = $pr->getString('nome');
 	$userlist[$usr]['email'] = $pr->getString('email');
 	$userlist[$usr]['showsidemenu'] = $pr->post('showsidemenu');
+	$userlist[$usr]['events'] = $pr->post('events');
 	$userlist[$usr]['theme'] = $style[0];
 	$userlist[$usr]['style'] = $style[1];	
 	

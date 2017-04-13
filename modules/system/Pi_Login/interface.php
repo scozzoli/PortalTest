@@ -110,6 +110,13 @@
 					</td>
 					<td style="color: #888;"></td>
 				</tr>
+				<tr>
+					<th align="right"><i18n>lbl:events</i18n></th>
+					<td>
+						<input type="checkbox" name="events" '.($_SESSION[MSID]['config']['events']==1 ? 'checked' : '').'>
+					</td>
+					<td style="color: #888;"></td>
+				</tr>
 			</table>
 			<div class="footer">
 				<button onclick="pi.request(\'data\',\'ChangePassword\')" '.($_SESSION[MSID]['config']['use_pwd']==0 ? 'disabled' : '').'><i class="mdi mdi-key-change"></i> <i18n>btn:changePwd</i18n></button>
