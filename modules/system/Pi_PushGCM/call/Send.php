@@ -15,7 +15,7 @@
 	
 	include $pr->getLocalPath('/lib/adp.php');
 	
-	$pusher = new \AndroidPusher\Pusher($apiKey);//$apiKey 'AIzaSyAxvr46w5IGL6oiU5Qz9DPB1cDHRPkfLkk'
+	$pusher = new \AndroidPusher\Pusher($apiKey);
 	
 	//$obj['message'] = $msg;
 	//$obj['title'] = 'Rts Notify';
