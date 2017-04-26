@@ -283,8 +283,8 @@
 				<th> <i18n>iface:queryName</i18n> </th>
 				<td>'.str_replace('_',' ',$name[1]).'</td>
 				<th rowspan="'.(count($qryConf['inputs']) + 1).'" id="exec_again">
-					<button onclick="$(\'#containerRes\').html(\'\'); pi.request(\'data\',\'Cerca\');"><i class="mdi mdi-close"></i> Chiudi i risulati</button><br>
-					<button onclick="pi.request(\'exec_again\')"><i class="mdi mdi-reload"></i> <i18n>btn:execQry</i18n></button>
+					<button onclick="$(\'#containerRes\').html(\'\'); pi.request(\'data\',\'Cerca\');" class="red"><i class="mdi mdi-close"></i> <i18n>btn:closeResult</i18n></button><br>
+					<button onclick="pi.request(\'exec_again\')" class="blue"><i class="mdi mdi-reload"></i> <i18n>btn:execQry</i18n></button>
 
 					<input type="hidden" name="Q" value="Win_Qry_Launcher_Int">
 					<input type="hidden" name="qry" value="'.$pr->post('qry').'">

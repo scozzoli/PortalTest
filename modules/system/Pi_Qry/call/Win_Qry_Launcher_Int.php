@@ -34,7 +34,10 @@
 				case "select" :
 					$typeIco = '<i class="mdi l2 mdi-playlist-play orange" title="Seleziona una voce"></i>';
 					$input = '<select  name="'.$k.'" class="'.$style.'">';
-					$input .= '<option value=""><i18n>iface:noValue</i18n></option>';
+					//$input .= '<option value=""><i18n>iface:noValue</i18n></option>';
+					if(!$v['required']){
+						$input .= '<option value=""> --- </option>';
+					}
 					foreach($v['select'] as $selKey => $selVal){
 						$input .= '<option value="'.$selKey.'">'.$selKey.' - '.$selVal.'</option>';
 					}
