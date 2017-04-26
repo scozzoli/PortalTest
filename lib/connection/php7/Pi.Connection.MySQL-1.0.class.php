@@ -31,7 +31,7 @@ class PiConnectionMySQL extends PiConnection{
 	
 	public function exec($iQry){
 		$raw_data = mysqli_query($this->link,$iQry);
-		$this->opt['numrow'] = mysqli_affected_rows();//mysql_num_rows($raw_data);
+		$this->opt['numrow'] = mysqli_affected_rows($this->link);//mysql_num_rows($raw_data);
 	}
 	
 	public function __destruct(){
