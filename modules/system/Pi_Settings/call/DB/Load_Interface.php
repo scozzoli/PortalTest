@@ -51,6 +51,8 @@
 	}
 	
 	$db_dis = $db_abil = '';
+
+	$idx = 0;
 	
 	foreach($db_list as $k => $v){
 		
@@ -89,9 +91,9 @@
 			break;
 		}
 		
-		$$db_out .='<tr style="cursor:pointer; '.$style.'" onclick="pi.request(\'edit_'.$k.'\');">
+		$$db_out .='<tr style="cursor:pointer; '.$style.'" onclick="pi.request(\'edit_'.$idx.'\');">
 			<td>
-				<div id="edit_'.$k.'">
+				<div id="edit_'.$idx.'">
 					<input type="hidden" name="Q" value="DB/Win_Edit"> 
 					<input type="hidden" name="id" value="'.$k.'">
 					<input type="hidden" name="used" value="'.(isset($count_db[$k]) ? '1' : '0').'">
@@ -104,6 +106,7 @@
 			<td>'.$ico.' '.$vis.'</td>
 			<td>'.(isset($count_db[$k]) ? '<i class="mdi mdi-account" /> '.$count_db[$k] : '').'</td>
 		</tr>';
+		$idx++;
 	}
 	
 	$out .= $db_abil.$db_dis.'</table>';
