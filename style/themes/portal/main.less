@@ -20,6 +20,9 @@ body{
 	margin: 0px;
 	background-color : @Main-BG-Color;
 	//background-image: url('img/texture/subtle_white_feathers.png');
+	//background-image: url('img/meterial/april.jpg');
+	//background-attachment: fixed;
+	//background-size: cover;
     position: absolute;
 	height: 100%;
     width: 100%;
@@ -402,19 +405,25 @@ body{
 					display: inline-block;
 					float: left;
 					//margin-top: -3px;
-					margin-left: 3px;
-					opacity: 0.8;
-					text-shadow: @Main-BoxShadow-1;
-					color: @Main-C3;
+					//margin-left: 3px;
+					margin: -10px 8px -10px -10px;
+					//opacity: 0.8;
+					//text-shadow: @Main-BoxShadow-1;
+					color: #FFF;//@Main-C3;
+					background-color: @Main-C3;
+					padding: 10px;
+					border-radius: 1px 0 0 1px;
 					i{
 						display: inline-block;
-						font-size: 60px;
+						font-size: 50px;
 						line-height: 60px;
+						text-align: center;
+						width: 60px;
 					}
 				}
 
 				.pi-name{
-					width: ~"calc(100% - 70px)";
+					width: ~"calc(100% - 88px)"; //70
 					display: inline-block;
 					position: relative;
 					margin-left: 7px; //50px;
@@ -435,7 +444,7 @@ body{
 					position: relative;
 					//white-space: nowrap;
 					overflow: hidden;
-					width: ~"calc(100% - 70px)";
+					width: ~"calc(100% - 88px)";
 				}
 
 				&:hover{
@@ -445,12 +454,12 @@ body{
 
 				&.pi-state-att{	}
 				&.pi-state-dev{
-					background-color: @Orange-C3;
+					//background-color: @Orange-C3;
 					//color: @Orange-C3;
-					color: @Main-Text-Title;
+					//color: @Main-Text-Title;
 					.pi-icon{
-						color: @Main-Text-Title;
-						//color: @Orange-C3;
+						//color: @Main-Text-Title;
+						background-color: @Orange-C3;
 					}
 				}
 				&.pi-state-dis{
@@ -463,21 +472,21 @@ body{
 					}
 				}
 				&.pi-state-err{
-					background-color: @Red-C3;
+					//background-color: @Red-C3;
 					//color: @Red-C3;
-					color: @Main-Text-Title;
+					//color: @Main-Text-Title;
 					.pi-icon{
-						color: @Main-Text-Title;
-						//color: @Red-C3;
+						//color: @Main-Text-Title;
+						background-color: @Red-C3;
 					}
 				}
 				&.pi-state-priv{
-					background-color: @Purple-C3;
+					//background-color: @Purple-C3;
 					//color: @Purple-C3;
-					color: @Main-Text-Title;
+					//color: @Main-Text-Title;
 					.pi-icon{
-						//color: @Purple-C3;
-						color: @Main-Text-Title;
+						background-color: @Purple-C3;
+						//color: @Main-Text-Title;
 					}
 				}
 
