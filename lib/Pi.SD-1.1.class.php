@@ -373,6 +373,7 @@ class PiSD{
 		$out.= $crlf.'		</span>';
 		$out.= $crlf.'		<div class="pi-content">'.$iContent.'</div>';
 		$out.= $crlf.'	</div>';
+		$out.= $crlf.'	</div>';
 		$out.= $crlf.'</body>';
 		$out.= $crlf.'</html>';
 
