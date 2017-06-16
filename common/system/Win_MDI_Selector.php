@@ -50,8 +50,14 @@
 			</span>';
 	}
 	$out.='</div>';
-	$footer = '<button class="red" onclick="pi.win.close();">Annulla</button>
-			<button class="green" onclick="pi.requestOnModal(\'Set_Icon\')">Salva</button>';
+
+	if($callSelector){
+		$footer = '<button class="red" onclick="pi.win.close();">Annulla</button>
+				<button class="green" onclick="pi.requestOnModal(\'Set_Icon\')">Salva</button>';
+	}else{
+		$footer = null;
+	}
+
 			
 	$js = "function MDISelectorIcons(){
 		var root = $('#icon_list');
