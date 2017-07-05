@@ -3,7 +3,14 @@
 	$idSel = $pr->post('inputIdForMod');
 	
 	$inputs[$idSel]['select'] = json_decode($pr->post('select'),true);
-	ksort($inputs[$idSel]['select']);
+	$inputs[$idSel]['sort'] = $pr->post('sort','key');
+	$inputs[$idSel]['showKey'] = $pr->post('showKey','1') == '1';
+
+	if( $inputs[$idSel]['sort'] == 'key'){
+		ksort($inputs[$idSel]['select'], SORT_NATURAL);
+	}else{
+		asort($inputs[$idSel]['select'], SORT_NATURAL);
+	}
 	
 	if(!$inputs[$idSel]['select'][$inputs[$idSel]['default']]){
 		$inputs[$idSel]['default'] = '';

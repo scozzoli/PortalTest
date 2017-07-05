@@ -38,8 +38,15 @@
 					if(!$v['required']){
 						$input .= '<option value=""> --- </option>';
 					}
-					foreach($v['select'] as $selKey => $selVal){
-						$input .= '<option value="'.$selKey.'">'.$selKey.' - '.$selVal.'</option>';
+					$showKey = isset($v['showKey']) ? $v['showKey'] : true;
+					if($showKey){
+						foreach($v['select'] as $selKey => $selVal){
+							$input .= '<option value="'.$selKey.'">'.$selKey.' - '.$selVal.'</option>';
+						}
+					}else{
+						foreach($v['select'] as $selKey => $selVal){
+							$input .= '<option value="'.$selKey.'">'.$selVal.'</option>';
+						}
 					}
 					$input .= '</select>';
 				break;

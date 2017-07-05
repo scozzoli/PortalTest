@@ -15,13 +15,29 @@
 		}
 	}
 
+	$defShowKey = isset($input['showKey']) ? $input['showKey'] : true;
+	$defSort = $input['sort'] ?: 'key';
+
 	$content = '<div class="focus blue">
-	<i18n>info:winSelectValue</i18n>
-			<table width="100%">
+			<i18n>info:winSelectValue</i18n>
+			<table class="form" id="ExtendedVars">
 				<tr>
 					<td><input type="text" id="key" placeholder="Chiave" class="small"></td>
 					<td><input type="text" id="value" placeholder="Valore" class="full"></td>
 					<td><button class="icon blue" onClick="addVoice();"><i class="mdi mdi-playlist-plus"></i></button></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td colspan="2">
+						<input type="checkbox" name="showKey" '.($defShowKey ? 'checked' : '').'> <i18n>lbl:showKey</i18n>
+					</td>
+				</tr>
+				<tr>
+					<th><i18n>lbl:sort</i18n></th>
+					<td colspan="2">
+						<input type="radio" name="sort" value="key" '.($defSort == 'key' ? 'checked' : '').'> <i18n>lbl:key</i18n> &nbsp;&nbsp;
+						<input type="radio" name="sort" value="des" '.($defSort == 'des' ? 'checked' : '').'> <i18n>lbl:value</i18n>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -30,6 +46,7 @@
 			<input type="hidden" name="select" id="inputSelect">
 			<input type="hidden" name="inputIdForMod">
 			<input type="hidden" name="inputs">
+			<input type="hidden" name=":LINK:GRP" value="ExtendedVars">
 			<table class="lite orange" id="valueList">
 				<tr>
 					<th><i18n>iface:key</i18n></th>
@@ -52,7 +69,7 @@
 
 			$('#inputSelect').val(JSON.stringify(iSelect));
 
-			var htm = '<td><b>'+key+'</b></td>';
+			var htm = '<td style=\"text-align: center;\"><b>'+key+'</b></td>';
 			htm += '<td>'+value+'</td>';
 			htm += '<td class=\"red j-del\" style=\"text-align:center; cursor:pointer;\"><i class=\"mdi mdi-close l2 red\"></i></td>';
 

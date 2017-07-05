@@ -29,6 +29,8 @@
 					required : < true / *false >
 					default : < valore di default >
 					type : < *string / numeric / date / select >
+					sort : < *key / des >
+					showKey : < *true / false >
 					select : { des : val  ... }
 				},
 				...
