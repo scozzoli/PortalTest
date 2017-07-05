@@ -12,20 +12,7 @@
 	$countGroup = count($grp_list);
 	$filter = $pr->post('cerca','');
 	
-	$out='<div class="blue panel" style="text-align:center;">
-		<table class="form" id="cerca_utente">
-			<tr>
-				<th>
-					<input type="hidden" name="Q" value="Usr/Load_Interface">
-					<i18n>usr:iface:lblUser</i18n>
-				</th>
-				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_utente"> </td>
-				<td> <button class="blue" onclick="pi.request(\'cerca_utente\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
-				<th> <button class="blue" onclick="pi.request(null,\'Usr/Win_Load_Dett\');"><i class="mdi mdi-account-plus"></i> <i18n>usr:btn:newUser</i18n> </button></th>
-			</tr>
-		</table>
-	</div> 
-	<div id="usrContainer">
+	$out='<div id="usrContainer">
 		<table class="lite blue">
 		<tr>
 			<th style="width:36px;">  </th>
@@ -109,5 +96,5 @@
 	
 	$out.='</table></div>';
 	
-	$pr->addHtml('container',$out)->addScript('$("#input_cerca_utente").focus(); $("#input_cerca_utente").select(); shortcut("enter", onEnterUsr,{"propagate":false, target:"input_cerca_utente"} );')->response();
+	$pr->addHtml('container-user',$out)->addScript('$("#input_cerca_utente").focus(); $("#input_cerca_utente").select(); shortcut("enter", onEnterUsr,{"propagate":false, target:"input_cerca_utente"} );')->response();
 ?>

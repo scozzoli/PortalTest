@@ -88,5 +88,5 @@
 		//<button class="del" onclick="pi.request(\'Del_Voice_'.$k.'\',\'Eliminare la voce del menu?\');"><div>Elimina voce</div></button>
 	}
 	$out.='</table><br><div id="menu_container"></div>';
-	$pr->addHtml('container',$out)->response();
+	$pr->addHtml('container-menu',$out)->response();
 ?>

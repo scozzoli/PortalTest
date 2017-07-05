@@ -5,19 +5,7 @@
 	
 	$filter = strtolower($pr->post('cerca',''));
 
-	$out='<div class="panel green" style="text-align:center;">
-		<table class="form" id="cerca_modulo">
-			<tr>
-				<th>
-					<input type="hidden" name="Q" value="Mod/Load_Interface">
-					<i18n>mod:iface:nameModule</i18n>
-				</th>
-				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_modulo"> </td>
-				<td> <button class="green" onclick="pi.request(\'cerca_modulo\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
-				<th> <button class="green" onclick="pi.request(null,\'Mod/Win_Load_Dett\');"><i class="mdi mdi-plus-box"></i> <i18n>mod:iface:newMod</i18n> </button> </th>
-			</tr>
-		</table>
-	</div>
+	$out='
 	<table class="lite green">
 		<tr>
 			<th style="width:30px;"> <i18n>mod:iface:icon</i18n> </th>
@@ -69,5 +57,5 @@
 			</tr>';
 	}
 	$out.='</table>';
-	$pr->addHtml('container',$out)->addScript('$("#input_cerca_modulo").focus(); $("#input_cerca_modulo").select(); shortcut("enter", onEnterMod,{"propagate":false, target:"input_cerca_modulo"} );')->response();
+	$pr->addHtml('container-mod',$out)->addScript('$("#input_cerca_modulo").focus(); $("#input_cerca_modulo").select(); shortcut("enter", onEnterMod,{"propagate":false, target:"input_cerca_modulo"} );')->response();
 ?>

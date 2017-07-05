@@ -34,7 +34,7 @@
     "db:iface:service": "Servizio",
     "db:iface:type": "Tipologia",
     "db:iface:uid": "UID",
-    "db:iface:undelConnUsed": "L' id non \u00e8 modificabile (e non \u00e8 cancellabile) finch\u00e8 la sorgente risuta in uso",
+    "db:iface:undelConnUsed": "L' id non \u00e8 modificabile (e non \u00e8 cancellabile) finch\u00e8 la sorgente risulta in uso",
     "db:iface:used": "Usato",
     "db:iface:user": "Utente",
     "db:iface:visibility": "Visibilit\u00e0",

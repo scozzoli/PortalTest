@@ -11,21 +11,7 @@
 		$usr[$v['menu']]++;
 	}
 	
-	$out = '<div class="panel red" style="text-align:center;">
-	
-		<table class="form" id="cerca_menu">
-			<tr>
-				<th>
-					<input type="hidden" name="Q" value="Menu/Load_Interface">
-					Nome Menu : 
-				</th>
-				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_menu"> </td>
-				<td> <button class="red" onclick="pi.request(\'cerca_menu\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
-				<th> <button class="red" onclick="pi.request(null,\'Menu/Win_New\');"><i class="mdi mdi-playlist-plus"></i> <i18n>menu:iface:newMenu</i18n> </button> </th>
-			</tr>
-		</table>
-	</div>
-	<table class="lite red">
+	$out = '<table class="lite red">
 		<tr>
 			<th><i18n>menu:iface:name</i18n></th>
 			<th><i18n>menu:iface:nUtenti</i18n></th>
@@ -65,5 +51,5 @@
 			</tr>';
 	}
 	$out.='</table>';
-	$pr->addHtml('container',$out)->addScript('$("#input_cerca_menu").focus(); $("#input_cerca_menu").select(); shortcut("enter", onEnterMenu,{"propagate":false, target:"input_cerca_menu"} );')->response();
+	$pr->addHtml('container-menu',$out)->addScript('$("#input_cerca_menu").focus(); $("#input_cerca_menu").select(); shortcut("enter", onEnterMenu,{"propagate":false, target:"input_cerca_menu"} );')->response();
 ?>

@@ -4,21 +4,7 @@
 	
 	$filter = strtolower($pr->post('cerca',''));
 
-	$out='<div class="panel purple" style="text-align:center;">
-	
-		<table class="form" id="cerca_db">
-			<tr>
-				<th>
-					<input type="hidden" name="Q" value="DB/Load_Interface">
-					<i18n>db:iface:dbName</i18n>  
-				</th>
-				<td> <input type="text" name="cerca" class="full" value="'.$filter.'" id="input_cerca_db"> </td>
-				<td> <button class="purple" onclick="pi.request(\'cerca_db\');"><i class="mdi mdi-magnify"></i> <i18n>search</i18n> </button></td>
-				<th> <button class="purple" onclick="pi.request(null,\'DB/Win_New\');"><i class="mdi mdi-database-plus"></i> <i18n>db:iface:newDb</i18n> </button> </th>
-			</tr>
-		</table>
-	</div>
-	<table class="lite purple">
+	$out='<table class="lite purple">
 		<tr>
 			<th title="DB Id univoco"> <i18n>db:iface:uid</i18n> </th>
 			<th title="Nome DB"> <i18n>db:iface:name</i18n> </th>
@@ -110,5 +96,5 @@
 	}
 	
 	$out .= $db_abil.$db_dis.'</table>';
-	$pr->addHtml('container',$out)->addScript('$("#input_cerca_db").focus(); $("#input_cerca_db").select(); shortcut("enter", onEnterDB,{"propagate":false, target:"input_cerca_db"} );')->response();
+	$pr->addHtml('container-db',$out)->addScript('$("#input_cerca_db").focus(); $("#input_cerca_db").select(); shortcut("enter", onEnterDB,{"propagate":false, target:"input_cerca_db"} );')->response();
 ?>
