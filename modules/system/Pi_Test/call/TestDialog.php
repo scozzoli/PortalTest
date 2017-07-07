@@ -1,4 +1,8 @@
 <?php
+
+  //$txt = $pr->getString('txt');
+  //$pr->addInfoBox($txt)->response();;
+
   switch($pr->post("type")){
     case "info" :
       $pr->addInfoBox('Messagio di <b class="focus">informazione</b> generigo!');

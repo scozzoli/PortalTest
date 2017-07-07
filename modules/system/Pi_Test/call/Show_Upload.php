@@ -36,6 +36,123 @@
 
 			</div>
 
+			<table id="ciccia">
+								
+	<tbody><tr><th width="100px"></th>
+		<th width="100px" style="text-align:center;">Gestione</th>
+		<th width="100px" style="text-align:center;">Condivisione</th>
+		<th width="100px" style="text-align:center;">Lettura</th>
+		<th width="100px" style="text-align:center;">Scrittura</th>
+							
+		</tr><tr>
+			<th style="font-weight: bold;">Tutti</th>
+		
+			<td style="text-align:center;">
+				<input type="hidden" name="PermessiUser" value="0">
+				<input class="checkPerm" id="checkPermG-0" data-type="G" data-idnumb="0" type="checkbox" name="PermessiG" data-pi-inputparse="true"><label for="checkPermG-0"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermC-0" data-type="C" data-idnumb="0" type="checkbox" name="PermessiC" data-pi-inputparse="true"><label for="checkPermC-0"></label>
+			</td>
+
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermL-0" data-type="L" data-idnumb="0" type="checkbox" name="PermessiL" data-pi-inputparse="true"><label for="checkPermL-0"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermS-0" data-type="S" data-idnumb="0" type="checkbox" name="PermessiS" data-pi-inputparse="true"><label for="checkPermS-0"></label>
+			</td>										
+		</tr>
+
+		<tr>
+			<th style="font-weight: bold;">Contabilita</th>
+		
+			<td style="text-align:center;">
+				<input type="hidden" name="PermessiUser" value="4">
+				<input class="checkPerm" id="checkPermG-1" data-type="G" data-idnumb="1" type="checkbox" name="PermessiG" data-pi-inputparse="true"><label for="checkPermG-1"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermC-1" data-type="C" data-idnumb="1" type="checkbox" name="PermessiC" data-pi-inputparse="true"><label for="checkPermC-1"></label>
+			</td>
+
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermL-1" data-type="L" data-idnumb="1" type="checkbox" name="PermessiL" data-pi-inputparse="true"><label for="checkPermL-1"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermS-1" data-type="S" data-idnumb="1" type="checkbox" name="PermessiS" data-pi-inputparse="true"><label for="checkPermS-1"></label>
+			</td>										
+		</tr>
+
+		<tr>
+			<th style="font-weight: normal;">Betta</th>
+		
+			<td style="text-align:center;">
+				<input type="hidden" name="PermessiUser" value="2">
+				<input class="checkPerm" id="checkPermG-2" data-type="G" data-idnumb="2" type="checkbox" name="PermessiG" checked="" data-pi-inputparse="true"><label for="checkPermG-2"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermC-2" data-type="C" data-idnumb="2" type="checkbox" name="PermessiC" checked="" data-pi-inputparse="true"><label for="checkPermC-2"></label>
+			</td>
+
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermL-2" data-type="L" data-idnumb="2" type="checkbox" name="PermessiL" checked="" data-pi-inputparse="true"><label for="checkPermL-2"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermS-2" data-type="S" data-idnumb="2" type="checkbox" name="PermessiS" checked="" data-pi-inputparse="true"><label for="checkPermS-2"></label>
+			</td>										
+		</tr>
+
+		<tr>
+			<th style="font-weight: normal;">Massimo</th>
+		
+			<td style="text-align:center;">
+				<input type="hidden" name="PermessiUser" value="1">
+				<input class="checkPerm" id="checkPermG-3" data-type="G" data-idnumb="3" type="checkbox" name="PermessiG" checked="" data-pi-inputparse="true"><label for="checkPermG-3"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermC-3" data-type="C" data-idnumb="3" type="checkbox" name="PermessiC" checked="" data-pi-inputparse="true"><label for="checkPermC-3"></label>
+			</td>
+
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermL-3" data-type="L" data-idnumb="3" type="checkbox" name="PermessiL" checked="" data-pi-inputparse="true"><label for="checkPermL-3"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermS-3" data-type="S" data-idnumb="3" type="checkbox" name="PermessiS" checked="" data-pi-inputparse="true"><label for="checkPermS-3"></label>
+			</td>										
+		</tr>
+
+		<tr>
+			<th style="font-weight: normal;">Rossella</th>
+		
+			<td style="text-align:center;">
+				<input type="hidden" name="PermessiUser" value="3">
+				<input class="checkPerm" id="checkPermG-4" data-type="G" data-idnumb="4" type="checkbox" name="PermessiG" data-pi-inputparse="true"><label for="checkPermG-4"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermC-4" data-type="C" data-idnumb="4" type="checkbox" name="PermessiC" data-pi-inputparse="true"><label for="checkPermC-4"></label>
+			</td>
+
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermL-4" data-type="L" data-idnumb="4" type="checkbox" name="PermessiL" data-pi-inputparse="true"><label for="checkPermL-4"></label>
+			</td>
+			
+			<td style="text-align:center;">
+				<input class="checkPerm" id="checkPermS-4" data-type="S" data-idnumb="4" type="checkbox" name="PermessiS" data-pi-inputparse="true"><label for="checkPermS-4"></label>
+			</td>										
+		</tr>
+															
+	</tbody>
+</table>
+<button onclick="pi.request(\'ciccia\')"> TEST </button>
+
 			<table class="lite green" >
 				<theader>
 					<tr>

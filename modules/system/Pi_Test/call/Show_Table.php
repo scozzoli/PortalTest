@@ -113,14 +113,14 @@
 						<td>Angelo</td>
 						<td>Scozzoli</td>
 						<td>55665</td>
-						<td>01/01/2010</td>
+						<td>01/01/2010 9:20</td>
 						<td> dati a caso </td>
 					</tr>
 					<tr>
 						<td>Zanfo</td>
 						<td>Zanfagni</td>
 						<td>558</td>
-						<td class="green">02/01/2010</td>
+						<td class="green">01/01/2010 10:20</td>
 						<td> dati a caso </td>
 					</tr>
 					<tr>

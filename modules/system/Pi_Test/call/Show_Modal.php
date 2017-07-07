@@ -89,6 +89,7 @@
 				Test per i messaggi lato srver
 				<div class="focus blue" id="TestDialog">
 					<input type="hidden" name="Q" value="TestDialog">
+					<!--input type="text" name="txt"-->
 						<table class="form">
 							<tr>
 								<th>Tipo messaggio : </th>
