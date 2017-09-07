@@ -34,11 +34,11 @@
 		
 		$icon = ($miss > 0) ? '<i class="mdi mdi-alert-circle orange" />' : '<i class="mdi mdi-check green" />';
 			
-		$out.='<tr onclick="pi.request(\'Load_Dett_'.$k.'\');" style="cursor:pointer;">
+		$out.='<tr onclick="pi.request(\'Load_MenuDett_'.$k.'\');" style="cursor:pointer;">
 				<td>'.$k.'</td>
 				<td><i class="mdi mdi-account" /> '.(isset($usr[$k]) ? $usr[$k]: ' --- ').'</td>
 				<td>
-					<div id="Load_Dett_'.$k.'">
+					<div id="Load_MenuDett_'.$k.'">
 						<input type="hidden" name="Q" value="Menu/Load_Dett">
 						<input type="hidden" name="menu" value="'.$k.'">
 						'.$icon.'
