@@ -19,7 +19,7 @@
 			<th><i18n>menu:iface:making</i18n></th>
 		</tr>';
 	
-	
+	$idx = 0;
 	foreach($menu_list as $k => $v){
 	  if($filter != ''){
 			if(!(strpos(strtolower($k),$filter)!==false)){ continue; }
@@ -34,11 +34,11 @@
 		
 		$icon = ($miss > 0) ? '<i class="mdi mdi-alert-circle orange" />' : '<i class="mdi mdi-check green" />';
 			
-		$out.='<tr onclick="pi.request(\'Load_MenuDett_'.$k.'\');" style="cursor:pointer;">
+		$out.='<tr onclick="pi.request(\'Load_MenuDett_'.$idx.'\');" style="cursor:pointer;">
 				<td>'.$k.'</td>
 				<td><i class="mdi mdi-account" /> '.(isset($usr[$k]) ? $usr[$k]: ' --- ').'</td>
 				<td>
-					<div id="Load_MenuDett_'.$k.'">
+					<div id="Load_MenuDett_'.$idx.'">
 						<input type="hidden" name="Q" value="Menu/Load_Dett">
 						<input type="hidden" name="menu" value="'.$k.'">
 						'.$icon.'
@@ -49,6 +49,7 @@
 				</td>
 				<td>'.$struct.'</td>
 			</tr>';
+		$idx++;
 	}
 	$out.='</table>';
 	$pr->addHtml('container-menu',$out)->addScript('$("#input_cerca_menu").focus(); $("#input_cerca_menu").select(); shortcut("enter", onEnterMenu,{"propagate":false, target:"input_cerca_menu"} );')->response();

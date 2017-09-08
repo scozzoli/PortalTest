@@ -17,6 +17,8 @@
 			<th title="Gruppo di appartenenza"><i18n>mod:iface:group</i18n></th>
 			<th><i18n>mod:iface:modify</i18n></th>
 		</tr>';
+
+	$idx = 0;
 	foreach($mod_list as $k => $v){
 		
 		if($filter != ''){
@@ -47,14 +49,15 @@
 				<td>'.$v['path'].'</td>
 				<td>'.$des_stato.'</td>
 				<td>[ <b>'.$v['grp'].' </b>] '.$sysConfig->i18nGet($grp_list[$v['grp']]['nome']).'</td>
-				<td class="green" style="text-align:center; cursor:pointer;" onclick="pi.request(\'Load_Dett_'.$k.'\')">
-					<div id="Load_Dett_'.$k.'">
+				<td class="green" style="text-align:center; cursor:pointer;" onclick="pi.request(\'Load_ModDett_'.$idx.'\')">
+					<div id="Load_ModDett_'.$idx.'">
 						<input type="hidden" name="Q" value="Mod/Win_Load_Dett">
 						<input type="hidden" name="ID" value="'.$k.'">
 						<i class="mdi mdi-pencil green l2" />
 					</div>
 				</td>
 			</tr>';
+		$idx++;
 	}
 	$out.='</table>';
 	$pr->addHtml('container-mod',$out)->addScript('$("#input_cerca_modulo").focus(); $("#input_cerca_modulo").select(); shortcut("enter", onEnterMod,{"propagate":false, target:"input_cerca_modulo"} );')->response();

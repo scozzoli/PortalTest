@@ -16,13 +16,14 @@
 		$v['id'] = $k;
 		$grp_mod_list[$v['grp']][]=$v;
 	}
+	$idx = 0;
 	foreach($grp_list as $k => $v){
 		if($filter != ''){
 			if(!(strpos(strtolower($k),$filter)!==false || strpos(strtolower($sysConfig->i18nGet($v['nome'])),$filter)!==false)){ continue; }
 		}
-		$out.='<tr onclick="pi.request(\'Load_Dett_'.$k.'\');" style="cursor:pointer; height:30px;" class="orange">
+		$out.='<tr onclick="pi.request(\'Load_GrpDett_'.$idx.'\');" style="cursor:pointer; height:30px;" class="orange">
 			<td colspan="2"> 
-				<div id="Load_Dett_'.$k.'">
+				<div id="Load_GrpDett_'.$idx.'">
 				<input type="hidden" name="Q" value="Grp/Win_Load_Dett">
 				<input type="hidden" name="ID" value="'.$k.'">
 				[ <b>'.$k.'</b> ] '.$sysConfig->i18nGet($v['nome']).'
@@ -54,6 +55,7 @@
 				</tr>';
 			}
 		}
+		$idx++;
 	}
 	$out.='</table>';
 	$pr->addHtml('container-grp',$out)->addScript('$("#input_cerca_gruppo").focus(); $("#input_cerca_gruppo").select(); shortcut("enter", onEnterGrp,{"propagate":false, target:"input_cerca_gruppo"} );')->response();
