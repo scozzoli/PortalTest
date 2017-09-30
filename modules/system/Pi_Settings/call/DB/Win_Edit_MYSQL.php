@@ -7,7 +7,7 @@
 	}else{
 		$oldID = '';
 		$fill = Array(
-			'des' => 'Nuovo DB', 
+			'des' => 'Nuovo DB',
 			'DB' => 'MYSQL',
 			'server' => '',
 			'dbuser' => '',
@@ -19,13 +19,13 @@
 		);
 		$delButton='';
 	}
-	
+
 	if($isUsed){
 		$txtMod = '<br><b><i18n>db:iface:undelConnUsed</i18n></b>';
 	}else{
 		$txtMod = '';
 	}
-	
+
 	$out = '<div id="Win_Edit">
 		<div class="focus purple">
 			<i18n>db:conn:mysqlInfo</i18n>'.$txtMod.'
@@ -78,8 +78,9 @@
 			</tr>
 		</table>
 		</div>';
-		
-	$footer = '<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n></button>'.$delButton.'<button class="green" onclick="pi.requestOnModal(\'Win_Edit\',\'DB/Save_MYSQL\')"><i18n>save</i18n></button>';
-	
+
+	$footer = '<button class="red" onclick="pi.win.close();"> <i18n>cancel</i18n></button>'.$delButton.'<button class="green"
+		onclick="pi.chk(function(){return mandatoryFieldsChk([{name:\'id\',label:\'UID\'}])}).requestOnModal(\'Win_Edit\',\'DB/Save_MYSQL\')"><i18n>save</i18n></button>';
+
 	$pr->addWindow(600,0,'<i18n>db:conn:mysql</i18n>',$out,$footer)->addScript('$("#WinEditFocus").focus();')->addFill('Win_Edit',$fill)->response();
 ?>
