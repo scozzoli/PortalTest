@@ -1,0 +1,40 @@
+{
+    "FM": {
+        "des": "Fantamorte",
+        "DB": "MYSQL",
+        "server": "localhost",
+        "dbuser": "pi",
+        "dbpwd": "pi",
+        "dbname": "fantamorte",
+        "userid": "0",
+        "userpwd": "0",
+        "hide": "0"
+    },
+    "SQLITE": {
+        "des": "General SQLITE",
+        "DB": "SQLITE3",
+        "hide": "1"
+    },
+    "i18n": {
+        "des": "PI System i18n",
+        "DB": "MYSQL",
+        "server": "localhost",
+        "dbuser": "pi",
+        "dbpwd": "pi",
+        "dbname": "pi",
+        "userid": "0",
+        "userpwd": "0",
+        "hide": "1"
+    },
+    "pi": {
+        "des": "PI System",
+        "DB": "MYSQL",
+        "server": "localhost",
+        "dbuser": "pi",
+        "dbpwd": "pi",
+        "dbname": "pi",
+        "userid": "0",
+        "userpwd": "0",
+        "hide": "1"
+    }
+}

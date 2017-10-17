@@ -1,0 +1,49 @@
+{
+    "guest": {
+        "nome": "Ospite",
+        "use_pwd": 0,
+        "menu": "guest",
+        "http": 1,
+        "https": 1,
+        "db": "",
+        "grpdef": 0,
+        "acc_dev": 0,
+        "acc_err": 0,
+        "acc_dis": 0,
+        "acc_priv": 0,
+        "theme": "material",
+        "style": "",
+        "email": "",
+        "showsidemenu": 0,
+        "lang": "it",
+        "extension": [
+
+        ],
+        "grp": {
+            "guest": "1"
+        }
+    },
+    "root": {
+        "nome": "Volsi cosi cola dove si puote cio che si vuole e piu non dimandare",
+        "pwd": "3c1ac024fe1cf813c99783c0c9e54928",
+        "use_pwd": 1,
+        "menu": "root",
+        "http": 1,
+        "https": 0,
+        "db": "FM",
+        "theme": "material",
+        "style": "red",
+        "grpdef": 1,
+        "grphide": "0",
+        "acc_dev": 1,
+        "acc_err": 1,
+        "acc_dis": 1,
+        "acc_priv": 1,
+        "email": "",
+        "showsidemenu": 1,
+        "lang": "it",
+        "extension": [
+
+        ]
+    }
+}

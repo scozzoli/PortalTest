@@ -1,0 +1,34 @@
+{
+    "guest": {
+        "nome": {
+            "it": "Ospiti"
+        },
+        "des": {
+            "it": "Strumenti pubblici"
+        }
+    },
+    "pub": {
+        "nome": {
+            "it": "Pubblico"
+        },
+        "des": {
+            "it": "Gruppo Pubblico"
+        }
+    },
+    "qry": {
+        "nome": {
+            "it": "Query"
+        },
+        "des": {
+            "it": "Gruppo per la gestione delle query"
+        }
+    },
+    "sys": {
+        "nome": {
+            "it": "System"
+        },
+        "des": {
+            "it": "Strumenti di sistema"
+        }
+    }
+}
