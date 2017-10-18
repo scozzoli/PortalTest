@@ -1,4 +1,4 @@
-<?
+<?php
 	class PiPhone{
 		private $number;
 		private $format;
